@@ -44,8 +44,8 @@ export const createUser = (user) => async (dispatch) => {
     dispatch(receiveUser(data.user));
   } else {
     console.log("Server response:", res);
-    // Or to see the response body:
-    // console.log('Server response:', await res.json());
+    const errorResponse = await res.json();
+    throw new Error(JSON.stringify(errorResponse));
   }
 };
 

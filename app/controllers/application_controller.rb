@@ -4,12 +4,7 @@ class ApplicationController < ActionController::API
     helper_method :current_user, :logged_in?
     before_action :snake_case_params
     before_action :attach_authenticity_token
-  # skip_before_action :verify_authenticity_token
-    def test 
-        render json: {message: ["Hello from Rails"]}
-    end
 
-  
 
     # ////////////////////////////////////////////////////////////
     def current_user 
