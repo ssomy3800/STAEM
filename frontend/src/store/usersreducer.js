@@ -10,11 +10,9 @@ export const receiveUser = (user) => ({
   payload: user,
 });
 
-export const removeUser = (userId) => ({
+export const removeUser = () => ({
   type: REMOVE_USER,
-  userId, // userId: userId
 });
-
 // THUNK ACTION CREATORS
 export const loginUser = (user) => async (dispatch) => {
   let res = await csrfFetch("/api/session", {
@@ -23,7 +21,7 @@ export const loginUser = (user) => async (dispatch) => {
   });
   let data = await res.json();
   sessionStorage.setItem("currentUser", JSON.stringify(data.user));
-  debugger;
+
   dispatch(receiveUser(data.user));
 };
 
@@ -40,23 +38,28 @@ export const createUser = (user) => async (dispatch) => {
     method: "POST",
     body: JSON.stringify(user),
   });
-  let data = await res.json();
-  sessionStorage.setItem("currentUser", JSON.stringify(data.user));
-  dispatch(receiveUser(data.user));
+  if (res.ok) {
+    let data = await res.json();
+    sessionStorage.setItem("currentUser", JSON.stringify(data.user));
+    dispatch(receiveUser(data.user));
+  } else {
+    console.log("Server response:", res);
+    // Or to see the response body:
+    // console.log('Server response:', await res.json());
+  }
+};
+
+const initialState = {
+  user: JSON.parse(sessionStorage.getItem("currentUser")),
 };
 
 // REDUCER
-const userReducer = (state = {}, action) => {
-  const nextState = { ...state };
-
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_USER:
-      debugger;
-      nextState[action.payload.id] = action.payload;
-      return nextState;
+      return { ...state, user: action.payload };
     case REMOVE_USER:
-      delete nextState[action.userId];
-      return nextState;
+      return { ...state, user: null };
     default:
       return state;
   }
