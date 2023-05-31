@@ -1,0 +1,42 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  position: static;
+  width: 100%;
+  top: 0%;
+  z-index: 1;
+  background-color: #1b2738;
+}
+
+.sessionLinks {
+  display: flex;
+  gap: 10px;
+}
+.fa-brands.fa-steam {
+  font-size: 50px; /* adjust the size as needed */
+  height: 50px; /* should be the same as .sessionLinks height */
+  line-height: 50px; /* vertically center the icon */
+  width: 50px;
+  padding: 10px;
+  color: #ffffff; /* change the color of the icon */
+  background-color: transparent;
+}
+
+.right {
+  margin-left: auto;
+}
+.nav-link .userIcon {
+  position: absolute;
+  right: 10px; /* Adjust as needed */
+}
+
+.nav-link li {
+  list-style: none;
+}
+/* Optional: you might want to style the overall Navigation as well */
+.navigation {
+  display: block;
+  justify-content: space-between;
+  padding: 0 10px; /* Or whatever value you find suitable */
+  background-color: #0d1117; /* blackblue color */
+}
