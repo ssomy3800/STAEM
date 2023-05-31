@@ -20,46 +20,64 @@ function SignupFormPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
+  let confirmedPWError = false;
+
   if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
-      setErrors([]);
-      console.log("before");
-      return dispatch(
-        userActions.createUser({
-          username,
-          firstname,
-          lastname,
-          email,
-          password,
-        })
-      ).catch((err) => {
-        let data;
-        try {
-          data = JSON.parse(err.message);
-        } catch {
-          data = err.message;
-        }
-        if (data?.errors) setErrors(data.errors);
-        else setErrors([data]);
-      });
-    }
-    console.log("after");
-    return setErrors([
-      "Confirm Password field must be the same as the Password field",
-    ]);
+
+    setErrors([]);
+
+    let errorMessages = [];
+
+    dispatch(
+      userActions.createUser({
+        username,
+        firstname,
+        lastname,
+        email,
+        password,
+      })
+    ).catch((err) => {
+      let data;
+
+      try {
+        data = JSON.parse(err.message);
+      } catch {
+        data = err.message;
+      }
+      if (data?.errors) errorMessages = [...errorMessages, ...data.errors[0]];
+      else errorMessages.push(data);
+      setErrors(errorMessages);
+    });
   };
+  console.log(errors);
+  const getUsernameError = errors[0]?.find((error) =>
+    error.includes("Username")
+  );
+  const getEmailError = errors[0]?.find((error) => error.includes("Email"));
+  const getPasswordError = errors[0]?.find((error) =>
+    error.includes("Password")
+  );
+
+  if (password !== confirmPassword) {
+    confirmedPWError = true;
+  }
 
   return (
     <>
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <ul>
-          {errors.map((error) => (
-            <li key={error}>{error}</li>
+          {errors[0]?.map((error, index) => (
+            <li key={index}>{error}</li>
           ))}
+          {confirmedPWError && (
+            <li>
+              Confirm Password field must be the same as the Password field
+            </li>
+          )}
         </ul>
 
         <label>
@@ -68,6 +86,7 @@ function SignupFormPage() {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            className={getUsernameError ? "error" : ""}
             required
           />
         </label>
@@ -95,6 +114,7 @@ function SignupFormPage() {
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className={getEmailError ? "error" : ""}
             required
           />
         </label>
@@ -104,6 +124,7 @@ function SignupFormPage() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className={getPasswordError ? "error" : ""}
             required
           />
         </label>
@@ -113,6 +134,7 @@ function SignupFormPage() {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            className={confirmedPWError ? "error" : ""}
             required
           />
         </label>

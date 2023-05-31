@@ -1,13 +1,13 @@
 class User < ApplicationRecord
 
     has_secure_password
-    validates :username, presence: { message: 'Username cannot be blank' }, uniqueness: { message: 'Username is already taken' }, length: { minimum: 6, message: 'Username should be at least 6 characters' }
+    validates :username, presence: { message: ' cannot be blank' }, uniqueness: { message: ' is already taken' }, length: { minimum: 6, message: ' should be at least 6 characters' }
     validates :firstname, presence: true
     validates :lastname, presence: true
-    validates :email, presence: true, uniqueness: true , format: { with: URI::MailTo::EMAIL_REGEXP }
+    validates :email, presence: { message: ' cannot be blank' }, uniqueness: { message: ' is already taken' }, format: { with: URI::MailTo::EMAIL_REGEXP }
     validates :session_token, uniqueness: true
     validates :password_digest, presence: true
-    validates :password,  length: { minimum: 8, maximum: 16 }, allow_nil: true
+    validates :password,  length: { minimum: 8, maximum: 16, message: ' should be at least 8 characters and at most 16 characters' }, allow_nil: true
     attr_reader :password
 
     before_validation :ensure_session_token
