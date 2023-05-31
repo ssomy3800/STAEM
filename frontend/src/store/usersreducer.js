@@ -19,10 +19,14 @@ export const loginUser = (user) => async (dispatch) => {
     method: "POST",
     body: JSON.stringify(user),
   });
-  let data = await res.json();
-  sessionStorage.setItem("currentUser", JSON.stringify(data.user));
-
-  dispatch(receiveUser(data.user));
+  if (res.ok) {
+    let data = await res.json();
+    sessionStorage.setItem("currentUser", JSON.stringify(data.user));
+    dispatch(receiveUser(data.user));
+  } else {
+    const errorResponse = await res.json();
+    throw new Error(JSON.stringify(errorResponse));
+  }
 };
 
 export const logoutUser = (userId) => async (dispatch) => {
@@ -43,7 +47,6 @@ export const createUser = (user) => async (dispatch) => {
     sessionStorage.setItem("currentUser", JSON.stringify(data.user));
     dispatch(receiveUser(data.user));
   } else {
-    console.log("Server response:", res);
     const errorResponse = await res.json();
     throw new Error(JSON.stringify(errorResponse));
   }

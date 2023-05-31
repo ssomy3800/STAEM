@@ -52,7 +52,7 @@ function SignupFormPage() {
       setErrors(errorMessages);
     });
   };
-  console.log(errors);
+
   const getUsernameError = errors[0]?.find((error) =>
     error.includes("Username")
   );
@@ -64,22 +64,21 @@ function SignupFormPage() {
   if (password !== confirmPassword) {
     confirmedPWError = true;
   }
-
+  const ErrorList = () => (
+    <ul>
+      {errors[0]?.map((error, index) => (
+        <li key={index}>{error}</li>
+      ))}
+      {confirmedPWError && (
+        <li>Confirm Password field must be the same as the Password field</li>
+      )}
+    </ul>
+  );
   return (
-    <>
+    <div className="signup">
       <h1>Sign Up</h1>
+      <ErrorList />
       <form onSubmit={handleSubmit}>
-        <ul>
-          {errors[0]?.map((error, index) => (
-            <li key={index}>{error}</li>
-          ))}
-          {confirmedPWError && (
-            <li>
-              Confirm Password field must be the same as the Password field
-            </li>
-          )}
-        </ul>
-
         <label>
           Username
           <input
@@ -140,7 +139,7 @@ function SignupFormPage() {
         </label>
         <button type="submit">Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 

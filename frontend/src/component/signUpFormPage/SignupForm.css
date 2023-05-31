@@ -1,6 +1,88 @@
-/* SignupForm.css */
+.signup {
+  /* Replace with your actual image */
+  background-image: url("../../assets/images/signupbackground.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
-.error {
+.signup form {
+  /* Replace with your actual image */
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 30%;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.signup form h1 {
+  margin-bottom: 20px;
+  text-align: center;
+  position: absolute;
+  top: 10%;
+}
+
+.signup h1 {
+  color: white;
+}
+.signup ul {
+  color: red;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.signup ul li:last-child {
+  margin-bottom: 0;
+}
+
+.signup label {
+  background-color: gray transparent 80%;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+  color: rgba(146, 138, 138, 0.982);
+  display: flex;
+  flex-direction: column;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.signup input {
+  background-color: #d3d3d3; /* Light grey color */
+  margin-top: 10px;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+.signup button {
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  border: none;
+  padding: 15px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 1.2em;
+  color: white;
+  border-radius: 5px;
+}
+
+.signup .error {
   border: 2px solid red;
-  /* background-color: red; */
 }
