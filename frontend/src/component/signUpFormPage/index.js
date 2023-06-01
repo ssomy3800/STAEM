@@ -78,7 +78,7 @@ function SignupFormPage() {
   );
   return (
     <div className="signup">
-      <h1>Sign Up</h1>
+      
       <ErrorList />
       <form onSubmit={handleSubmit}>
         <label>
