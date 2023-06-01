@@ -74,8 +74,28 @@ function Navigation() {
       </div>
       <div className="mid">
         <div className="store">
-          <NavLink to="/store">Store</NavLink>
-          <NavLink to="/store/features">Features</NavLink>
+          <a
+            href="https://github.com/ssomy3800"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="github-button"
+          >
+            <i className="fa-brands fa-github"></i>
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="github-button"
+          >
+            <i className="fa-brands fa-linkedin"></i>
+          </a>
+          <div className="storeLink">
+            <NavLink to="/store">Store</NavLink>
+          </div>
+          <div className="storeLink">
+            <NavLink to="/store/features">Features</NavLink>
+          </div>
         </div>
       </div>
 

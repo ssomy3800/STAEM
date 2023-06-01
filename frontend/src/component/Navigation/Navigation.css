@@ -1,6 +1,7 @@
 .navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: static;
   width: 100%;
   top: 0%;
@@ -9,11 +10,9 @@
   background-color: #1b2738;
 }
 
-.sessionLinks {
-  display: flex;
-  gap: 10px;
-}
-.fa-brands.fa-steam {
+.fa-brands.fa-steam,
+.fa-brands.fa-github,
+.fa-brands.fa-linkedin {
   font-size: 50px; /* adjust the size as needed */
   height: 50px; /* should be the same as .sessionLinks height */
   line-height: 50px; /* vertically center the icon */
@@ -22,6 +21,7 @@
   color: #ffffff; /* change the color of the icon */
   background-color: transparent;
 }
+
 .right {
   align-items: center;
   margin-top: 10px;
@@ -44,8 +44,22 @@
   margin-right: 10px;
   transition: 0.3s;
 }
+.storeLink {
+  display: inline-block;
+  padding: 0 10px;
+  height: 30px;
+  line-height: 30px;
+  background-image: linear-gradient(to right, #d3e62aa9, #d3e71ed2);
+  color: white;
+  border: 1px solid #bcce18;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  margin-right: 10px;
+  transition: 0.3s;
+}
 
-.sessionLinks:hover {
+.sessionLinks:hover,
+.storeLink:hover {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   transform: translateY(-2px);
 }
@@ -154,6 +168,9 @@
   justify-content: space-between;
 }
 
+.mid > .store > a:not(:last-child) {
+  margin-right: 10px; /* Adjust the desired space between the elements */
+}
 .navbar .steamLogo {
   display: flex;
   align-items: center;

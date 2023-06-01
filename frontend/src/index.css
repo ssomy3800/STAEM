@@ -4,7 +4,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #171a21;
   color: white;
   height: 60px;
   width: 100%;
@@ -14,11 +13,9 @@
 
 body {
   font-family: "Motiva Sans", Arial, sans-serif;
-  background: linear-gradient(#2a475e 5%, rgba(42, 71, 94, 0) 70%) top no-repeat
-    #1b2838;
-  /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); */
+  background: linear-gradient(#2a475e 25%, rgba(187, 187, 187, 0) 70%) top
+    no-repeat #15283f;
   border-radius: 5px;
-  /* height: 100vh; */
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;

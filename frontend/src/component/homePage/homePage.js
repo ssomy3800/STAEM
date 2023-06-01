@@ -9,7 +9,14 @@ function HomePage() {
     JSON.parse(sessionStorage.getItem("currentUser"))
   );
 
-  return <div className="home"></div>;
+  return (
+    <div className="home">
+      <div className="home-body">
+        <div className="block1"></div>
+        <div className="block2"></div>
+      </div>
+    </div>
+  );
 }
 
 export default HomePage;
