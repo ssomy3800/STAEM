@@ -29,17 +29,34 @@ function LoginFormPage() {
         }
         if (data?.errors) setErrors(data.errors[0]);
         else setErrors([data]);
+        setPassword("");
       }
     );
+  };
+
+  const handleDemoUser = (e) => {
+    e.preventDefault();
+
+    setErrors([]);
+    return dispatch(
+      userActions.loginUser({ username: "DemoUser", password: "DemoPassword" })
+    ).catch((err) => {
+      let data;
+      try {
+        data = JSON.parse(err.message);
+      } catch {
+        data = err.message;
+      }
+      if (data?.errors) setErrors(data.errors[0]);
+      else setErrors([data]);
+    });
   };
 
   return (
     <div className="login">
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
-        <ul>
-          {errors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
+        <ul>{errors}</ul>
         <label>
           Username or Email
           <input
@@ -62,6 +79,9 @@ function LoginFormPage() {
         </label>
         <button className="login-button" type="submit">
           Log In
+        </button>
+        <button className="login-button" onClick={handleDemoUser}>
+          Log In as Demo User
         </button>
       </form>
     </div>

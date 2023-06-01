@@ -12,7 +12,7 @@
 
 .signup form {
   /* Replace with your actual image */
-
+  background-color: rgba(0, 0, 0, 0.849);
   background-repeat: no-repeat;
   background-size: cover;
   width: 30%;
@@ -37,14 +37,28 @@
   margin-top: 10px;
   color: white;
 }
+@keyframes flash {
+  0% {
+    background-color: rgba(0, 0, 0, 0.849);
+  }
+  50% {
+    background-color: transparent;
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.849);
+  }
+}
+
 .signup ul {
+  background-color: rgba(0, 0, 0, 0.849);
+
   color: red;
   min-height: 40px;
   padding: 0;
   margin-bottom: 10px;
   margin-top: 10px;
+  animation: flash 1s ease-in-out infinite;
 }
-
 .signup ul li:last-child {
   margin-bottom: 0;
 }

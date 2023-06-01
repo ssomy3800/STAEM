@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Dropdown } from "react-bootstrap";
 import * as userActions from "../../store/usersreducer";
@@ -6,31 +6,49 @@ import * as userActions from "../../store/usersreducer";
 function ProfileButton({ user }) {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
+  const dropdownRef = useRef(null);
 
-  const handleOpen = () => setOpen(!open);
-  const handleClose = () => setOpen(false);
+  const handleClick = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleOutsideClick = (e) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      setOpen(false);
+    }
+  };
 
   const logout = (e) => {
     e.preventDefault();
     dispatch(userActions.logoutUser());
   };
 
+  React.useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
   return (
-    <div onMouseEnter={handleOpen} onMouseLeave={handleClose}>
-      <Dropdown>
-        <Dropdown.Toggle id="dropdown-basic" as="div">
-          <i className="fa-solid fa-user-circle" />
-        </Dropdown.Toggle>
-        {open && (
-          <Dropdown.Menu>
-            <Dropdown.Item href="#">{user.username}</Dropdown.Item>
-            <Dropdown.Item href="#">{user.email}</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item onClick={logout}>Log Out</Dropdown.Item>
-          </Dropdown.Menu>
-        )}
-      </Dropdown>
+    <div className="profile-button-container" ref={dropdownRef}>
+      <button className="profile-button" onClick={handleClick}>
+       <i className="fa-solid fa-user-circle" /> 
+      </button>
+      {open && (
+        <div className="dropdown">
+          <div className="dropdown-item">{user.username}</div>
+          <div className="dropdown-item">{user.email}</div>
+          <div className="dropdown-divider" />
+          <div className="dropdown-item" onClick={logout}>
+            Log Out
+          </div>
+        </div>
+      )}
     </div>
   );
 }
+
 export default ProfileButton;
+
+  /* <i className="fa-solid fa-user-circle" /> */

@@ -50,6 +50,8 @@ function SignupFormPage() {
       if (data?.errors) errorMessages = [...errorMessages, ...data.errors[0]];
       else errorMessages.push(data);
       setErrors(errorMessages);
+      setPassword(""); // Reset the password field
+      setConfirmPassword(""); // Reset the confirmPassword field
     });
   };
 

@@ -15,4 +15,9 @@ h2 {
   display: flex;
   width: 100%;
   padding: 0;
+  color: white;
+}
+#user-welcome{
+  display: flex;
+  justify-content: center;
 }
