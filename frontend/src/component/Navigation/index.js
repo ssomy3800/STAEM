@@ -12,9 +12,14 @@ function Navigation() {
     sessionLinks = <ProfileButton user={sessionUser} />;
   } else {
     sessionLinks = (
-      <div className="sessionLinks">
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+      <div className="right">
+        <NavLink to="/login">
+          <div className="sessionLinks">Log In</div>
+        </NavLink>
+
+        <NavLink to="/signup">
+          <div className="sessionLinks">Sign Up</div>
+        </NavLink>
       </div>
     );
   }

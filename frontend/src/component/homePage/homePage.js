@@ -11,13 +11,7 @@ function HomePage() {
 
   return (
     <div className="home">
-      {currentUser ? (
-        <>
-          <h2>Welcome, {currentUser.username}!</h2>
-        </>
-      ) : (
-        <></>
-      )}
+      {currentUser && <h2>Welcome, {currentUser.username}!</h2>}
     </div>
   );
 }

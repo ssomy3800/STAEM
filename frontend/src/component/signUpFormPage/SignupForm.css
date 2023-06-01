@@ -1,5 +1,4 @@
 .signup {
-
   background-image: url("../../assets/images/signupbackground.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -35,13 +34,15 @@
 }
 
 .signup h1 {
+  margin-top: 10px;
   color: white;
 }
 .signup ul {
   color: red;
-  min-height: 50px;
+  min-height: 40px;
   padding: 0;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .signup ul li:last-child {

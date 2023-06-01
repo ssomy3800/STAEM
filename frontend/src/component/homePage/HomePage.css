@@ -1,8 +1,18 @@
 .home {
-  background-color: #1b2738;
+  background-color: #0e61d4;
   width: 100vw; /* 100% of the viewport width */
   min-height: 100vh; /* 100% of the viewport height */
+  /* background-position: center;  */
+  /* height: 100vh; */
+  display: flex;
+  justify-content: center;
+  align-items: top;
+
+  /* flex-direction: column; */
 }
-body {
+h2 {
   background-color: #1b2738;
+  display: flex;
+  width: 100%;
+  padding: 0;
 }
