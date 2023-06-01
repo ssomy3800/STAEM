@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import * as userActions from "../../store/usersreducer";
+// import "bootstrap/dist/css/bootstrap.min.css";
+import { Dropdown } from 'react-bootstrap';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -29,21 +31,20 @@ function ProfileButton({ user }) {
   };
 
   return (
-    <div className="userIcon">
-      <button onClick={openMenu}>
+    <div className="dropdown-menu">
+      <button className="user-profile-button" onClick={openMenu}>
         <i className="fa-solid fa-user-circle" />
+        {showMenu && (
+          <ul className="dropdown-item">
+            <li>{user.username}</li>
+            <li>{user.email}</li>
+            <li>
+              <button onClick={logout}>Log Out</button>
+            </li>
+          </ul>
+        )}
       </button>
-      {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
-      )}
     </div>
   );
 }
-
 export default ProfileButton;

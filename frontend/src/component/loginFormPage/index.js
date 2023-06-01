@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import * as userActions from "../../store/usersreducer";
-
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { csrfFetch } from "../../store/csrf";
@@ -34,15 +33,17 @@ function LoginFormPage() {
     );
   };
 
-
   return (
-    <>
+    <div className="login">
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
-        <ul>{errors}</ul>
+        <ul>
+          {errors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
         <label>
           Username or Email
           <input
+            className="login-input"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -52,15 +53,18 @@ function LoginFormPage() {
         <label>
           Password
           <input
+            className="login-input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button className="login-button" type="submit">
+          Log In
+        </button>
       </form>
-    </>
+    </div>
   );
 }
 

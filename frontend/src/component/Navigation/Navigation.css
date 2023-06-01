@@ -68,3 +68,48 @@
   padding: 0 10px; /* Or whatever value you find suitable */
   background-color: #0d1117; /* blackblue color */
 }
+.fa-solid.fa-user-circle {
+  font-size: 50px; /* adjust the size as needed */
+  height: 50px; /* should be the same as .sessionLinks height */
+  line-height: 50px; /* vertically center the icon */
+  width: 50px;
+  padding: 10px;
+  color: #000000; /* initial color, will be overridden by background-clip */
+  background-image: linear-gradient(
+    to right,
+    #007bff,
+    #00bfff
+  ); /* blue gradient */
+  background-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: 0.3s;
+}
+
+.fa-solid.fa-user-circle:hover {
+  transform: translateY(-2px);
+}
+
+.fa-solid.fa-user-circle:active {
+  transform: translateY(1px);
+}
+
+.user-profile-button {
+  background-color: transparent;
+}
+.dropdown {
+  position: relative; /* Make the dropdown container a positioning context for the menu */
+  display: inline-block; /* Shrink the container to the size of its content */
+}
+
+.dropdown-menu {
+  position: absolute; /* Position the menu within the dropdown container */
+  top: 100%; /* Position it just below the button */
+  left: 0; /* Align it to the left of the button */
+  display: none; /* Hide it by default */
+  /* Add any other styles you want for the dropdown menu */
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block; /* Show the menu when hovering over the dropdown container */
+}
