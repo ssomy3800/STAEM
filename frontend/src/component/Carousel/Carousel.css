@@ -1,0 +1,33 @@
+.carousel-slide {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 50vh;
+}
+
+.carousel-slide-image {
+  width: 50% !important;
+  height: 100%;
+  object-fit: fill;
+}
+
+.carousel-slide-content {
+  width: 50% !important;
+  height: 100% !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-slide-ingame-images {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 50% !important; /* occupies half the height of its parent */
+  overflow: hidden; /* prevent contents from overflowing */
+}
+
+.carousel-slide-ingame-images img {
+  width: 50% !important;  /* each image occupies half the width of its parent */
+  height: 50% !important; /* each image occupies half the height of its parent */
+  object-fit: cover; /* make the image cover its entire area */
+}

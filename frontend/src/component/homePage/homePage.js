@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../store/usersreducer";
+import Carousel from "../Carousel";
 import "./HomePage.css";
 
 function HomePage() {
@@ -13,7 +14,9 @@ function HomePage() {
     <div className="home">
       <div className="home-body">
         <div className="block1"></div>
-        <div className="block2"></div>
+        <div className="block2">
+          <Carousel />
+        </div>
       </div>
     </div>
   );
