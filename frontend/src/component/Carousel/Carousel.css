@@ -1,8 +1,10 @@
 .carousel-slide {
-  position: relative;
+  position: relative !important;
   display: flex;
   flex-direction: row;
   height: 50vh;
+  background-color: rgba(41, 38, 38, 0.971);
+  color: white;
 }
 
 .carousel-slide-image {
@@ -16,6 +18,7 @@
   height: 100% !important;
   display: flex;
   flex-direction: column;
+  z-index: 2;
 }
 
 .carousel-slide-ingame-images {
@@ -27,7 +30,17 @@
 }
 
 .carousel-slide-ingame-images img {
-  width: 50% !important;  /* each image occupies half the width of its parent */
+  width: 50% !important; /* each image occupies half the width of its parent */
   height: 50% !important; /* each image occupies half the height of its parent */
   object-fit: cover; /* make the image cover its entire area */
+  pointer-events: all !important;
+}
+.carousel-slide-image-hovered {
+  position: relative !important;
+  top: 0;
+  left: 0;
+  width: 50% !important; /* width of the original slide image */
+  height: 100% !important; /* height of the original slide image */
+  object-fit: cover;
+  z-index: 1; /* make it appear on top of the other elements */
 }

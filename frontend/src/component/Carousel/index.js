@@ -30,8 +30,12 @@ const gameData = [
   },
   // ... other games
 ];
+
 function Carousel() {
-  const [hoveredImage, setHoveredImage] = React.useState(null);
+  const [hoveredImage, setHoveredImage] = useState(null);
+
+  // log the hoveredImage whenever it changes
+  console.log(hoveredImage);
 
   return (
     <ResponsiveCarousel
@@ -48,7 +52,11 @@ function Carousel() {
             className="carousel-slide-image"
             src={hoveredImage || game.image}
             alt={game.title}
+            style={{ display: hoveredImage ? "none" : "block" }}
           />
+          {hoveredImage && (
+            <img src={hoveredImage} className="carousel-slide-image-hovered" />
+          )}
           <div className="carousel-slide-content">
             <h2>{game.title}</h2>
             <p>{game.description}</p>
@@ -58,9 +66,14 @@ function Carousel() {
                   key={id}
                   src={img}
                   alt={`in-game-${id}`}
-                  onMouseEnter={() => setHoveredImage(img)}
-                  onMouseLeave={() => setHoveredImage(null)}
-                  onClick={() => (window.location.href = game.url)} // redirect to the URL when image is clicked
+                  onMouseEnter={() => {
+                    console.log('Mouse Enter');
+                    setHoveredImage(img);
+                  }}
+                  onMouseLeave={() => {
+                    console.log('Mouse Leave');
+                    setHoveredImage(null);
+                  }}
                 />
               ))}
             </div>
