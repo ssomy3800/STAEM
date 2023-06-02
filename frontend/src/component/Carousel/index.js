@@ -25,7 +25,7 @@ const gameData = [
     image: csgo,
     title: "Counter-Strike: Global Offensive",
     description:
-      "CS:GO is a multiplayer first-person shooter developed by Valve and Hidden Path Entertainment.",
+      "Counter-Strike: Global Offensive (CS:GO) is a round-based, 5v5 tactical FPS with an Attackers vs. Defenders setup and no respawns, meaning if a player is eliminated they will not respawn until the next round. The game is available to download from the STEAM Games Client",
     inGameImages: [csgo1, csgo2, csgo3, csgo4],
     url: "https://www.github.com",
   },
@@ -51,8 +51,6 @@ const gameData = [
 function Carousel() {
   const [hoveredImage, setHoveredImage] = useState(null);
   const history = useHistory();
-  // log the hoveredImage whenever it changes
-  console.log(hoveredImage);
 
   return (
     <ResponsiveCarousel

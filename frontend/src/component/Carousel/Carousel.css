@@ -2,14 +2,16 @@
   position: relative !important;
   display: flex;
   flex-direction: row;
-  height: 50vh;
+  height: 353px;
+  width: 940px;
+
   background-color: rgba(41, 38, 38, 0.971);
   color: white;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 .carousel-slide-image {
-  width: 50% !important;
+  width: 616px !important;
   height: 100%;
   object-fit: fill;
   pointer-events: all !important;
@@ -31,13 +33,15 @@
   height: 50% !important; /* occupies half the height of its parent */
   overflow: hidden; /* prevent contents from overflowing */
   margin-top: auto;
+  padding-bottom: 1px;
 }
 
 .carousel-slide-ingame-images img {
   width: 50% !important; /* each image occupies half the width of its parent */
   height: 50% !important; /* each image occupies half the height of its parent */
-  object-fit: cover; /* make the image cover its entire area */
+  object-fit: fill; /* make the image cover its entire area */
   pointer-events: all !important;
+  padding: 1%;
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -48,8 +52,11 @@
   position: relative !important;
   top: 0;
   left: 0;
-  width: 50% !important; /* width of the original slide image */
-  height: 100% !important; /* height of the original slide image */
+  width: 616px !important;
+  height: 100%;
   object-fit: fill;
+  pointer-events: all !important;
+  cursor: pointer;
   z-index: 1; /* make it appear on top of the other elements */
+  flex-shrink: 0;
 }
