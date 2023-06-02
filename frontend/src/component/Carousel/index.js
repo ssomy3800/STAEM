@@ -2,8 +2,22 @@ import React, { useState } from "react";
 import { Carousel as ResponsiveCarousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./Carousel.css";
+import { useHistory } from "react-router-dom";
 import csgo from "../../assets/images/csgo.png";
 import lostark from "../../assets/images/lostark.png";
+import DBD from "../../assets/images/DBD.png";
+import dbd1 from "../../assets/images/DBD-ingame1.png";
+import dbd2 from "../../assets/images/DBD-ingame2.png";
+import dbd3 from "../../assets/images/DBD-ingame3.png";
+import dbd4 from "../../assets/images/DBD-ingame4.png";
+import csgo1 from "../../assets/images/csgo-ingame1.png";
+import csgo2 from "../../assets/images/csgo-ingame2.png";
+import csgo3 from "../../assets/images/csgo-ingame3.png";
+import csgo4 from "../../assets/images/csgo-ingame4.png";
+import la1 from "../../assets/images/la-ingame1.png";
+import la2 from "../../assets/images/la-ingame2.png";
+import la3 from "../../assets/images/la-ingame3.png";
+import la4 from "../../assets/images/la-ingame4.png";
 
 // list of game images
 const gameData = [
@@ -12,28 +26,31 @@ const gameData = [
     title: "Counter-Strike: Global Offensive",
     description:
       "CS:GO is a multiplayer first-person shooter developed by Valve and Hidden Path Entertainment.",
-    inGameImages: [csgo, csgo],
+    inGameImages: [csgo1, csgo2, csgo3, csgo4],
+    url: "https://www.github.com",
   },
   {
     image: lostark,
-    title: "Counter-Strike: Global Offensive",
+    title: "Lost Ark",
     description:
-      "CS:GO is a multiplayer first-person shooter developed by Valve and Hidden Path Entertainment.",
-    inGameImages: [lostark, lostark],
+      "Lost Ark provides a unique dungeon experience. You'll face monsters and bosses for loot, but you can choose to play solo in the Abyss Dungeon or with a party in the Chaos Dungeons. Just like everything else in Lost Ark, your choices will decide your destiny.",
+    inGameImages: [la1, la2, la3, la4],
+    url: "https://www.github.com",
   },
   {
-    image: csgo,
-    title: "Counter-Strike: Global Offensive",
+    image: DBD,
+    title: "Dead By Daylight",
     description:
-      "CS:GO is a multiplayer first-person shooter developed by Valve and Hidden Path Entertainment.",
-    inGameImages: [lostark, csgo, csgo, csgo],
+      "Dead by Daylight is a multiplayer (4vs1) horror game where one player takes on the role of the savage Killer, and the other four players play as Survivors, trying to escape the Killer and avoid being caught, tortured and killed. Survivors play in third-person and have the advantage of better situational awareness.",
+    inGameImages: [dbd1, dbd2, dbd3, dbd4],
+    url: "https://www.github.com",
   },
   // ... other games
 ];
 
 function Carousel() {
   const [hoveredImage, setHoveredImage] = useState(null);
-
+  const history = useHistory();
   // log the hoveredImage whenever it changes
   console.log(hoveredImage);
 
@@ -53,7 +70,9 @@ function Carousel() {
             src={hoveredImage || game.image}
             alt={game.title}
             style={{ display: hoveredImage ? "none" : "block" }}
+            onClick={() => history.push(game.url)}
           />
+
           {hoveredImage && (
             <img src={hoveredImage} className="carousel-slide-image-hovered" />
           )}
@@ -67,13 +86,12 @@ function Carousel() {
                   src={img}
                   alt={`in-game-${id}`}
                   onMouseEnter={() => {
-                    console.log('Mouse Enter');
                     setHoveredImage(img);
                   }}
                   onMouseLeave={() => {
-                    console.log('Mouse Leave');
                     setHoveredImage(null);
                   }}
+                  onClick={() => history.push(game.url)}
                 />
               ))}
             </div>

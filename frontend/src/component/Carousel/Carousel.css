@@ -5,12 +5,15 @@
   height: 50vh;
   background-color: rgba(41, 38, 38, 0.971);
   color: white;
+  margin-top: 20px;
 }
 
 .carousel-slide-image {
   width: 50% !important;
   height: 100%;
   object-fit: fill;
+  pointer-events: all !important;
+  cursor: pointer;
 }
 
 .carousel-slide-content {
@@ -27,6 +30,7 @@
   flex-wrap: wrap;
   height: 50% !important; /* occupies half the height of its parent */
   overflow: hidden; /* prevent contents from overflowing */
+  margin-top: auto;
 }
 
 .carousel-slide-ingame-images img {
@@ -34,6 +38,11 @@
   height: 50% !important; /* each image occupies half the height of its parent */
   object-fit: cover; /* make the image cover its entire area */
   pointer-events: all !important;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.carousel-slide-ingame-images img:hover {
+  transform: scale(1.1); /* Enlarge the image a bit */
 }
 .carousel-slide-image-hovered {
   position: relative !important;
@@ -41,6 +50,6 @@
   left: 0;
   width: 50% !important; /* width of the original slide image */
   height: 100% !important; /* height of the original slide image */
-  object-fit: cover;
+  object-fit: fill;
   z-index: 1; /* make it appear on top of the other elements */
 }
