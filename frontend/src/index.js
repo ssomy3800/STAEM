@@ -8,6 +8,7 @@ import { createUser, loginUser, logoutUser } from "./store/usersreducer";
 import { restoreSession } from "./store/csrf";
 import configureStore from "./store";
 import { csrfFetch } from "./store/csrf";
+import { fetchGames } from "./store/gamesreducer";
 
 let currentUser;
 let storedUser = sessionStorage.getItem("currentUser");
@@ -33,6 +34,7 @@ if (process.env.NODE_ENV !== "production") {
 window.createUser = createUser;
 window.loginUser = loginUser;
 window.logoutUser = logoutUser;
+window.games = fetchGames
 
 function Root() {
   return (
