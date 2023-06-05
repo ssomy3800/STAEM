@@ -61,3 +61,36 @@
   z-index: 1; /* make it appear on top of the other elements */
   flex-shrink: 0;
 }
+
+/* //////////////////////////////////////////////////////////////////////////// */
+.carousel-slide-title {
+  padding: 10px;
+  text-align: center;
+  font-size: 32px;
+}
+.carousel-slide-ingame-images,
+.carousel-slide-onsale,
+.carousel-slide-popular,
+.carousel-slide-price {
+  padding: 10px;
+  text-align: left;
+}
+
+.carousel-slide-popular {
+  background-color: grey;
+  color: white;
+  margin-left: 3%;
+  display: flex;
+  justify-content: center;  /* Aligns items on the horizontal line */
+  align-items: center; 
+  width: 80px;
+  height: 20px;
+
+  font-size: 12px;
+  text-align: center;
+}
+
+.carousel-slide-price {
+  font-size: 20px;
+  font-weight: bold;
+}

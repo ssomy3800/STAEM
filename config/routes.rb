@@ -6,13 +6,18 @@ Rails.application.routes.draw do
 
 
   namespace :api, defaults: {format: :json} do
-    resources :users, only: [:create]
+    resources :users, only: [:create] do
+      resources :carted_items, path: 'cart', only: [:index, :create,:destroy]
+    end
+    get 'users/:user_id/storage', to: 'carted_items#storage'
+    
     resource :session, only: [:create, :show, :destroy]
     resources :games, only: [:index, :show] do
       collection do
         get 'search/:name', to: 'games#search', as: 'search'
       end
       end
+
     resources :tags, only: [:index, :show]
   end
   

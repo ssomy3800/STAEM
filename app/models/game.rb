@@ -14,6 +14,8 @@
 #  updated_at        :datetime         not null
 #
 class Game < ApplicationRecord
+    has_many :carted_items
+    has_many :users, through: :carted_items
     validates :title, presence: true, uniqueness: true
     validates :short_description, :long_description, :publisher, :developer, presence: true
     validates :price, presence: true, numericality: true

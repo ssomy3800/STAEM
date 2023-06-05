@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Carousel as ResponsiveCarousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -6,6 +5,7 @@ import "./Carousel.css";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGames } from "../../store/gamesreducer";
+import { fetchUserCart } from "../../store/carteditemreducer";
 
 function Carousel() {
   const [hoveredImage, setHoveredImage] = useState(null);
@@ -14,7 +14,7 @@ function Carousel() {
   const games = useSelector((state) => state.games.list);
 
   useEffect(() => {
-    dispatch(fetchGames()); // Fetch games data from the backend
+    dispatch(fetchGames());
   }, [dispatch]);
 
   return (
@@ -30,7 +30,7 @@ function Carousel() {
         <div key={game.id} className={`carousel-slide`}>
           <img
             className="carousel-slide-image"
-            src={hoveredImage || game.images[0]} // The first image in the array is the main image
+            src={hoveredImage || game.images[0]}
             alt={game.title}
             style={{ display: hoveredImage ? "none" : "block" }}
             onClick={() => history.push(`/games/${game.id}`)}
@@ -40,23 +40,29 @@ function Carousel() {
             <img src={hoveredImage} className="carousel-slide-image-hovered" />
           )}
           <div className="carousel-slide-content">
-            <h2>{game.title}</h2>
-            <p>{game.shortDescription}</p>
+            <div className="carousel-slide-title">
+              <h2>{game.title}</h2>
+            </div>
             <div className="carousel-slide-ingame-images">
-              {game.images.slice(1).map((img, id) => ( // The rest of the images in the array are in-game images
+              {game.images.slice(1).map((img, id) => (
                 <img
                   key={id}
                   src={img}
                   alt={`in-game-${id}`}
-                  onMouseEnter={() => {
-                    setHoveredImage(img);
-                  }}
-                  onMouseLeave={() => {
-                    setHoveredImage(null);
-                  }}
+                  onMouseEnter={() => setHoveredImage(img)}
+                  onMouseLeave={() => setHoveredImage(null)}
                   onClick={() => history.push(`/games/${game.id}`)}
                 />
               ))}
+            </div>
+            <div className="carousel-slide-onsale">
+              <p>On Sale!</p>
+            </div>
+            <div className="carousel-slide-popular">
+              <span>Popular</span>
+            </div>
+            <div className="carousel-slide-price">
+              <p>{game.price === 0 ? "Free" : `$${game.price}`}</p>
             </div>
           </div>
         </div>

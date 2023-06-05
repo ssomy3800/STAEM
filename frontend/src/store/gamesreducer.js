@@ -19,7 +19,7 @@ const setSearchResults = (games) => ({
   payload: games,
 });
 // THUNK ACTIONS
-// THUNK ACTIONS
+
 export const fetchGame = (gameId) => async (dispatch) => {
   let res = await csrfFetch(`/api/games/${gameId}`);
   if (res.ok) {

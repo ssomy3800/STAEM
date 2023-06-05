@@ -192,3 +192,21 @@ csgo = Game.create(
   csgo.tags << action << fps
   dbd.tags << action << horror
   lost_sky.tags << action
+
+  demo_user = User.find_by(username: "DemoUser")
+lost_ark = Game.find_by(title: "Lost Ark")
+lost_sky = Game.find_by(title: "Lost Sky")
+
+# Add Lost Ark to demo user's cart with purchased: true
+CartedItem.create(
+  user: demo_user,
+  game: lost_ark,
+  purchased: true
+)
+
+# Add Lost Sky to demo user's cart with purchased: false
+CartedItem.create(
+  user: demo_user,
+  game: lost_sky,
+  purchased: false
+)

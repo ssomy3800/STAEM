@@ -4,7 +4,8 @@ import LoginFormPage from "./component/loginFormPage";
 import HomePage from "./component/homePage/homePage";
 import SignupFormPage from "./component/signUpFormPage";
 import Navigation from "./component/Navigation";
-import GamePage from './component/gamePage';
+import GamePage from "./component/gamePage";
+import CartPage from "./component/cartPage";
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route path="/games/:id">
           <GamePage />
+        </Route>
+        <Route path="/cart">
+          <CartPage />
         </Route>
       </Switch>
     </>
