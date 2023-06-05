@@ -22,15 +22,20 @@ const setSearchResults = (games) => ({
 
 export const fetchGame = (gameId) => async (dispatch) => {
   let res = await csrfFetch(`/api/games/${gameId}`);
+  // console.log(res); // Debugging statement
   if (res.ok) {
     let game = await res.json();
+    // console.log(game); // Debugging statement
+    // console.log("22222222222222222222");
     // Convert the images array to an object
     game.images = game.images.reduce((obj, imageUrl) => {
       const filename = imageUrl.split("/").pop();
       obj[filename] = imageUrl;
+      // console.log(obj);
       return obj;
     }, {});
     dispatch(setGame(game));
+ 
   } else {
     const errorResponse = await res.json();
     throw new Error(JSON.stringify(errorResponse));
@@ -75,7 +80,6 @@ const initialState = {
 const gamesReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_GAMES:
-      console.log("Setting games...", action.payload);
       return {
         ...state,
         list: action.payload,

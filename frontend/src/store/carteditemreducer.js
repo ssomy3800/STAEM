@@ -4,11 +4,28 @@ import { csrfFetch } from "./csrf";
 const ADD_TO_CART = "cartedItems/ADD_TO_CART";
 const REMOVE_FROM_CART = "cartedItems/REMOVE_FROM_CART";
 const SET_CART = "cartedItems/SET_CART";
+const SET_STORAGE = "cartedItems/SET_STORAGE";
 
+const setStorage = (storage) => ({
+  type: SET_STORAGE,
+  storage,
+});
 const setCart = (cart) => ({
   type: SET_CART,
   cart,
 });
+
+export const fetchUserStorage = (userId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/users/${userId}/storage`);
+
+  if (res.ok) {
+    const storage = await res.json();
+    dispatch(setStorage(storage));
+  } else {
+    const errorResponse = await res.json();
+    throw new Error(JSON.stringify(errorResponse));
+  }
+};
 
 export const fetchUserCart = (userId) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${userId}/cart`);
