@@ -28,6 +28,10 @@ User.create!(
   
   # Attach images and video for Lost Ark
   lost_ark.images.attach(
+    io: URI.open("https://staem-seeds.s3.amazonaws.com/lostark.png"),
+    filename: "la-cover.png"
+  )
+  lost_ark.images.attach(
     io: URI.open("https://staem-seeds.s3.amazonaws.com/la-ingame1.png"),
     filename: "la1.png"
   )
@@ -43,21 +47,12 @@ User.create!(
     io: URI.open("https://staem-seeds.s3.amazonaws.com/la-ingame4.png"),
     filename: "la4.png"
   )
-  lost_ark.images.attach(
-    io: URI.open("https://staem-seeds.s3.amazonaws.com/lostark.png"),
-    filename: "la-cover.png"
-  )
+
 
   
-  # Attach video for Lost Ark
-  # begin
-  #   lost_ark.video.attach(
-  #     io: URI.open("https://your-s3-bucket-url/lost_ark_video.mp4"),
-  #     filename: "lost_ark_video.mp4"
-  #   )
-  # rescue OpenURI::HTTPError
-  #   puts "No video found for Lost Ark"
-  # end
+  lost_ark.video.attach(
+    io: URI.open("https://staem-seeds.s3.amazonaws.com/lostark-trailer.webm"),
+    filename: "lostark-trailer.webm")
   
   # Save the game after attaching images and video
   lost_ark.save!
@@ -75,6 +70,10 @@ csgo = Game.create(
   
   # Attach images and video for Lost Ark
   csgo.images.attach(
+    io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo.png"),
+    filename: "csgo-cover.png"
+  )
+  csgo.images.attach(
     io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-ingame1.png"),
     filename: "csgo1.png"
   )
@@ -90,21 +89,12 @@ csgo = Game.create(
     io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-ingame4.png"),
     filename: "csgo4.png"
   )
-  csgo.images.attach(
-    io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo.png"),
-    filename: "csgo-cover.png"
-  )
 
+  csgo.video.attach(
+    io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-trailer.webm"),
+    filename: "csgo-trailer.webm")
   
-  # Attach video for Lost Ark
-  # begin
-  #   csgo.video.attach(
-  #     io: URI.open("https://your-s3-bucket-url/csgo_video.mp4"),
-  #     filename: "csgo_video.mp4"
-  #   )
-  # rescue OpenURI::HTTPError
-  #   puts "No video found for CSGO"
-  # end
+
   
   # Save the game after attaching images and video
   csgo.save!
@@ -122,39 +112,75 @@ csgo = Game.create(
     
     # Attach images and video for Lost Ark
     dbd.images.attach(
+      io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD.png"),
+      filename: "DBD-cover.png"
+    )
+    dbd.images.attach(
       io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-ingame1.png"),
       filename: "DBD1.png"
     )
     dbd.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-ingame1.png"),
+      io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-ingame2.png"),
       filename: "DBD2.png"
     )
     dbd.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-ingame1.png"),
+      io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-ingame3.png"),
       filename: "DBD3.png"
     )
     dbd.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-ingame1.png"),
+      io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-ingame4.png"),
       filename: "DBD4.png"
     )
-    dbd.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD.png"),
-      filename: "DBD-cover.png"
-    )
+
   
     
 
-    # begin
-    #   dbd.video.attach(
-    #     io: URI.open("https://your-s3-bucket-url/dbd_video.mp4"),
-    #     filename: "dbd_video.mp4"
-    #   )
-    # rescue OpenURI::HTTPError
-    #   puts "No video found for dbd"
-    # end
+  
+      dbd.video.attach(
+        io: URI.open("https://staem-seeds.s3.amazonaws.com/dbd-trailer.webm"),
+        filename: "dbd-trailer.webm")
+
     
     # Save the game after attaching images and video
     dbd.save!
+
+    lost_sky = Game.new(
+      title: "Lost Sky",
+      short_description: "Lost Sky is an adventure puzzle game set in a mysterious world.",
+      long_description: "Embark on a journey through a captivating world filled with challenging puzzles and intriguing secrets. Unravel the mysteries of the Lost Sky and discover its hidden treasures.",
+      publisher: "Dreamscape Studios",
+      developer: "Dreamscape Studios",
+      price: 19.99,
+      publish_date: Date.new(2023, 5, 18)
+    )
+    
+    # Attach images and video for Lost Sky
+    lost_sky.images.attach(
+      io: URI.open("https://staem-seeds.s3.amazonaws.com/ls-cover.png"),
+      filename: "ls-cover.png"
+    )
+    lost_sky.images.attach(
+      io: URI.open("https://staem-seeds.s3.amazonaws.com/ls1.png"),
+      filename: "ls1.png"
+    )
+    lost_sky.images.attach(
+      io: URI.open("https://staem-seeds.s3.amazonaws.com/ls2.png"),
+      filename: "ls2.png"
+    )
+    lost_sky.images.attach(
+      io: URI.open("https://staem-seeds.s3.amazonaws.com/ls3.png"),
+      filename: "ls3.png"
+    )
+    lost_sky.images.attach(
+      io: URI.open("https://staem-seeds.s3.amazonaws.com/ls4.png"),
+      filename: "ls4.png"
+    )
+
+    lost_sky.video.attach(
+      io: URI.open("https://staem-seeds.s3.amazonaws.com/lostsky-trailer.webm"),
+      filename: "lostsky-trailer.webm")
+      
+    lost_sky.save!
   # Tags
   action = Tag.create(name: "Action")
   horror = Tag.create(name: "Horror")
@@ -165,3 +191,4 @@ csgo = Game.create(
   lost_ark.tags << action << mmorpg
   csgo.tags << action << fps
   dbd.tags << action << horror
+  lost_sky.tags << action

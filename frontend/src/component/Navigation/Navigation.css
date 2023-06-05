@@ -96,8 +96,7 @@
     #00bfff
   ); /* blue gradient */
   background-color: transparent;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+ 
   transition: 0.3s;
 }
 

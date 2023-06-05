@@ -2,11 +2,23 @@
 
 class Api::GamesController < ApplicationController
     def index
-      @games = Game.all
+      if params[:search].present?
+        @games = Game.where("title ILIKE ?", "%#{params[:search]}%")
+      else
+        @games = Game.all
+      end
     end
   
     def show
       @game = Game.find(params[:id])
+    end
+    def search
+      if params[:name].present?
+        @games = Game.where("title ILIKE ?", "%#{params[:name]}%")
+      else
+        @games = []
+      end
+      render :index
     end
   
   private

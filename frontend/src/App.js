@@ -4,6 +4,7 @@ import LoginFormPage from "./component/loginFormPage";
 import HomePage from "./component/homePage/homePage";
 import SignupFormPage from "./component/signUpFormPage";
 import Navigation from "./component/Navigation";
+import GamePage from './component/gamePage';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
         </Route>
         <Route path="/signup">
           <SignupFormPage />
+        </Route>
+        <Route path="/games/:id">
+          <GamePage />
         </Route>
       </Switch>
     </>

@@ -1,8 +1,9 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../store/usersreducer";
 import Carousel from "../Carousel";
 import "./HomePage.css";
+import SearchBar from "../searchBar";
+import React, { useState } from "react";
 import HeaderVideo from "../Header";
 
 function HomePage() {
@@ -13,7 +14,9 @@ function HomePage() {
 
   return (
     <div className="home">
+      <SearchBar />
       <HeaderVideo />
+
       <div className="home-body">
         <div className="block1"></div>
         <div className="block2">

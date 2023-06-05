@@ -21,6 +21,7 @@
 .carousel-slide-content {
   width: 50% !important;
   height: 100% !important;
+  background-image: url("../../assets/images/carouselbg.png");
   display: flex;
   flex-direction: column;
   z-index: 2;
