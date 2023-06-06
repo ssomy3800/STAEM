@@ -53,10 +53,9 @@ export const fetchGames = () => async (dispatch) => {
   }
 };
 
-
-
-export const fetchCartGames = (gameIds) => async (dispatch) => {
+export const fetchCartGames = (gameIds) => async () => {
   const games = [];
+  // debugger;
   for (const gameId of gameIds) {
     let res = await csrfFetch(`/api/games/${gameId}`);
     if (res.ok) {
@@ -74,7 +73,7 @@ export const fetchCartGames = (gameIds) => async (dispatch) => {
       throw new Error(JSON.stringify(errorResponse));
     }
   }
-  dispatch(setGames(games));
+  return games;
 };
 
 export const fetchGamesByName = (name) => async (dispatch) => {

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { Dropdown } from "react-bootstrap";
+
 import * as userActions from "../../store/usersreducer";
 
 function ProfileButton({ user }) {
@@ -18,9 +18,10 @@ function ProfileButton({ user }) {
     }
   };
 
-  const logout = (e) => {
+  const logout = async (e) => {
     e.preventDefault();
-    dispatch(userActions.logoutUser());
+    await dispatch(userActions.logoutUser());
+    window.location.replace("/");
   };
 
   React.useEffect(() => {
@@ -33,7 +34,7 @@ function ProfileButton({ user }) {
   return (
     <div className="profile-button-container" ref={dropdownRef}>
       <button className="profile-button" onClick={handleClick}>
-       <i className="fa-solid fa-user-circle" /> 
+        <i className="fa-solid fa-user-circle" />
       </button>
       {open && (
         <div className="dropdown">
@@ -50,5 +51,3 @@ function ProfileButton({ user }) {
 }
 
 export default ProfileButton;
-
-  /* <i className="fa-solid fa-user-circle" /> */

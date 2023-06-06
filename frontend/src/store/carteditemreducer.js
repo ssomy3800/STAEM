@@ -28,6 +28,7 @@ export const fetchUserStorage = (userId) => async (dispatch) => {
 };
 
 export const fetchUserCart = (userId) => async (dispatch) => {
+  // debugger;
   const res = await csrfFetch(`/api/users/${userId}/cart`);
 
   if (res.ok) {
@@ -74,9 +75,10 @@ export const removeGameFromCart = (gameId, userId) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${userId}/cart?game_id=${gameId}`, {
     method: "DELETE",
   });
+  // debugger;
   if (res.ok) {
     dispatch(removeFromCart(gameId));
-    dispatch(fetchUserCart(userId));
+    // dispatch(fetchUserCart(userId));
   } else {
     const errorResponse = await res.json();
     throw new Error(JSON.stringify(errorResponse));
@@ -90,14 +92,22 @@ const initialState = [];
 const cartedItemsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CART:
-      return action.cart;
+      return [...action.cart];
     case ADD_TO_CART:
       return [...state, action.game];
     case REMOVE_FROM_CART:
-      return state.filter((game) => game.id !== action.gameId);
+      const newState = [...state];
+
+      return newState.filter((cartedGame) => cartedGame.gameId !== action.gameId);
+
     default:
       return state;
   }
 };
 
 export default cartedItemsReducer;
+
+
+/// game slice state needs to fetch for each page (fetch new games base on which page you are on)
+/// carteditem reducer state needs to be objects instead of array---- the jbuilder should return object instead of array
+/// refactor the component to dispatch the fetch request instead of use .then

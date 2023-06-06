@@ -10,32 +10,23 @@ const CartPage = () => {
   const dispatch = useDispatch();
   const cartedItems = useSelector((state) => state.cart);
 
-  const games = useSelector((state) => state.games.list);
+  const [games, setGames] = useState([]);
+
 
   useEffect(() => {
     //////////////////// to see which items are in the cart////////////
+    // debugger
     dispatch(fetchUserCart(id));
   }, [dispatch, id]);
 
-  const [prevGameIds, setPrevGameIds] = useState([]);
-
   useEffect(() => {
     const gameIds = cartedItems.map((cartedItem) => cartedItem.gameId);
-    if (!arrayEquals(gameIds, prevGameIds)) {
-      dispatch(fetchCartGames(gameIds));
-      setPrevGameIds(gameIds);
-    }
-  }, [dispatch, cartedItems, prevGameIds]);
-  function arrayEquals(a, b) {
-    return (
-      Array.isArray(a) &&
-      Array.isArray(b) &&
-      a.length === b.length &&
-      a.every((val, index) => val === b[index])
-    );
-  }
+    // debugger
+    fetchCartGames(gameIds)().then((games) => setGames(games));
+  }, [dispatch, cartedItems]);
 
   const handleRemoveFromCart = (gameId, userId) => {
+    // debugger
     dispatch(removeGameFromCart(gameId, userId));
   };
 

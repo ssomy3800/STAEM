@@ -55,7 +55,7 @@ function Navigation() {
             <i className="fa-brands fa-linkedin"></i>
           </a>
           <div className="storeLink">
-            <NavLink to="/store">Store</NavLink>
+            <NavLink to="/cart">Cart</NavLink>
           </div>
           <div className="storeLink">
             <NavLink to="/store/features">Features</NavLink>

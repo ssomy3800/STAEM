@@ -8,6 +8,11 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'open-uri'
 
+CartedItem.destroy_all
+
+User.destroy_all
+Game.destroy_all
+Tag.destroy_all
 
 User.create!(
     username: "DemoUser",
