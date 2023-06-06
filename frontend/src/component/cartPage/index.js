@@ -15,18 +15,18 @@ const CartPage = () => {
 
   useEffect(() => {
     //////////////////// to see which items are in the cart////////////
-    // debugger
+
     dispatch(fetchUserCart(id));
   }, [dispatch, id]);
 
   useEffect(() => {
     const gameIds = cartedItems.map((cartedItem) => cartedItem.gameId);
-    // debugger
+ 
     fetchCartGames(gameIds)().then((games) => setGames(games));
   }, [dispatch, cartedItems]);
 
   const handleRemoveFromCart = (gameId, userId) => {
-    // debugger
+
     dispatch(removeGameFromCart(gameId, userId));
   };
 

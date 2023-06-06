@@ -22,14 +22,14 @@ const setSearchResults = (games) => ({
 
 export const fetchGame = (gameId) => async (dispatch) => {
   let res = await csrfFetch(`/api/games/${gameId}`);
-  // console.log(res); // Debugging statement
+
   if (res.ok) {
     let game = await res.json();
 
     game.images = game.images.reduce((obj, imageUrl) => {
       const filename = imageUrl.split("/").pop();
       obj[filename] = imageUrl;
-      // console.log(obj);
+
       return obj;
     }, {});
     dispatch(setGame(game));
@@ -44,7 +44,7 @@ export const fetchGames = () => async (dispatch) => {
 
   if (res.ok) {
     let data = await res.json();
-    console.log(data);
+
     dispatch(setGames(data));
   } else {
     const errorResponse = await res.json();
@@ -55,7 +55,7 @@ export const fetchGames = () => async (dispatch) => {
 
 export const fetchCartGames = (gameIds) => async () => {
   const games = [];
-  // debugger;
+
   for (const gameId of gameIds) {
     let res = await csrfFetch(`/api/games/${gameId}`);
     if (res.ok) {

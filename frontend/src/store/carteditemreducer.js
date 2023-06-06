@@ -28,7 +28,7 @@ export const fetchUserStorage = (userId) => async (dispatch) => {
 };
 
 export const fetchUserCart = (userId) => async (dispatch) => {
-  // debugger;
+
   const res = await csrfFetch(`/api/users/${userId}/cart`);
 
   if (res.ok) {
@@ -71,11 +71,11 @@ export const addGameToCart = (game, userId) => async (dispatch) => {
 };
 
 export const removeGameFromCart = (gameId, userId) => async (dispatch) => {
-  console.log(gameId);
+
   const res = await csrfFetch(`/api/users/${userId}/cart?game_id=${gameId}`, {
     method: "DELETE",
   });
-  // debugger;
+
   if (res.ok) {
     dispatch(removeFromCart(gameId));
     // dispatch(fetchUserCart(userId));
