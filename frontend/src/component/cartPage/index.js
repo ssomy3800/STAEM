@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeGameFromCart } from "../../store/carteditemreducer";
 import { fetchUserCart } from "../../store/carteditemreducer";
-import { fetchGame } from "../../store/gamesreducer";
+import { fetchCartGames } from "../../store/gamesreducer";
 
 const CartPage = () => {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
@@ -10,25 +10,30 @@ const CartPage = () => {
   const dispatch = useDispatch();
   const cartedItems = useSelector((state) => state.cart);
 
-  const [games, setGames] = useState([]);
+  const games = useSelector((state) => state.games.list);
 
   useEffect(() => {
-    // Replace `userId` with the actual user ID you have
+    //////////////////// to see which items are in the cart////////////
     dispatch(fetchUserCart(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
+
+  const [prevGameIds, setPrevGameIds] = useState([]);
 
   useEffect(() => {
-    // Fetch details for each game in the cart
-    cartedItems.forEach((cartedItem) => {
-      console.log(cartedItem.gameId);
-      console.log('33333333333333333333333333333333333333333333333')
-      dispatch(fetchGame(cartedItem.gameId)).then((game) => {
-        console.log(game);
-        console.log('44444444444444444444444444444444444')
-        setGames((prevGames) => [...prevGames, game]);
-      });
-    });
-  }, [dispatch, cartedItems]);
+    const gameIds = cartedItems.map((cartedItem) => cartedItem.gameId);
+    if (!arrayEquals(gameIds, prevGameIds)) {
+      dispatch(fetchCartGames(gameIds));
+      setPrevGameIds(gameIds);
+    }
+  }, [dispatch, cartedItems, prevGameIds]);
+  function arrayEquals(a, b) {
+    return (
+      Array.isArray(a) &&
+      Array.isArray(b) &&
+      a.length === b.length &&
+      a.every((val, index) => val === b[index])
+    );
+  }
 
   const handleRemoveFromCart = (gameId, userId) => {
     dispatch(removeGameFromCart(gameId, userId));

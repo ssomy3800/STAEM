@@ -25,9 +25,7 @@ export const fetchGame = (gameId) => async (dispatch) => {
   // console.log(res); // Debugging statement
   if (res.ok) {
     let game = await res.json();
-    // console.log(game); // Debugging statement
-    // console.log("22222222222222222222");
-    // Convert the images array to an object
+
     game.images = game.images.reduce((obj, imageUrl) => {
       const filename = imageUrl.split("/").pop();
       obj[filename] = imageUrl;
@@ -35,7 +33,6 @@ export const fetchGame = (gameId) => async (dispatch) => {
       return obj;
     }, {});
     dispatch(setGame(game));
- 
   } else {
     const errorResponse = await res.json();
     throw new Error(JSON.stringify(errorResponse));
@@ -55,6 +52,31 @@ export const fetchGames = () => async (dispatch) => {
     throw new Error(JSON.stringify(errorResponse));
   }
 };
+
+
+
+export const fetchCartGames = (gameIds) => async (dispatch) => {
+  const games = [];
+  for (const gameId of gameIds) {
+    let res = await csrfFetch(`/api/games/${gameId}`);
+    if (res.ok) {
+      let game = await res.json();
+
+      game.images = game.images.reduce((obj, imageUrl) => {
+        const filename = imageUrl.split("/").pop();
+        obj[filename] = imageUrl;
+        return obj;
+      }, {});
+
+      games.push(game);
+    } else {
+      const errorResponse = await res.json();
+      throw new Error(JSON.stringify(errorResponse));
+    }
+  }
+  dispatch(setGames(games));
+};
+
 export const fetchGamesByName = (name) => async (dispatch) => {
   if (name === "") {
     dispatch(setSearchResults([]));

@@ -22,13 +22,16 @@ class Api::CartedItemsController < ApplicationController
       end
   
       def destroy
-        @carted_item = CartedItem.find(params[:id])
+        
+        @carted_item = CartedItem.find_by(game_id: params[:game_id], user_id: params[:user_id])
+
         if @carted_item.user == @user && @carted_item.destroy
           render json: { message: 'Carted item successfully removed' }
         else
           render json: { error: 'Failed to remove carted item' }, status: 422
         end
       end
+      
 
     private
     def set_user

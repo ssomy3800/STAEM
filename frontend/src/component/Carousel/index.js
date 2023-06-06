@@ -5,7 +5,6 @@ import "./Carousel.css";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGames } from "../../store/gamesreducer";
-import { fetchUserCart } from "../../store/carteditemreducer";
 
 function Carousel() {
   const [hoveredImage, setHoveredImage] = useState(null);

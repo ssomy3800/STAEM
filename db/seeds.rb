@@ -210,3 +210,13 @@ CartedItem.create(
   game: lost_sky,
   purchased: false
 )
+CartedItem.create(
+  user: demo_user,
+  game: csgo,
+  purchased: false
+)
+CartedItem.create(
+  user: demo_user,
+  game: dbd,
+  purchased: false
+)

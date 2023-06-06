@@ -70,12 +70,13 @@ export const addGameToCart = (game, userId) => async (dispatch) => {
 };
 
 export const removeGameFromCart = (gameId, userId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/users/${userId}/cart/${gameId}`, {
+  console.log(gameId);
+  const res = await csrfFetch(`/api/users/${userId}/cart?game_id=${gameId}`, {
     method: "DELETE",
   });
-
   if (res.ok) {
     dispatch(removeFromCart(gameId));
+    dispatch(fetchUserCart(userId));
   } else {
     const errorResponse = await res.json();
     throw new Error(JSON.stringify(errorResponse));
@@ -89,7 +90,6 @@ const initialState = [];
 const cartedItemsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CART:
-      console.log("Setting cart...", action.payload);
       return action.cart;
     case ADD_TO_CART:
       return [...state, action.game];
