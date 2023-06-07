@@ -4,10 +4,14 @@ import { csrfFetch } from "./csrf";
 const SET_GAMES = "games/SET_GAMES";
 const SET_GAME = "games/SET_GAME";
 const SET_SEARCH_RESULTS = "games/SET_SEARCH_RESULTS";
+const CLEAR_GAMES = "games/CLEAR_GAMES";
 // ACTION CREATORS
 const setGames = (games) => ({
   type: SET_GAMES,
   payload: games,
+});
+export const clearGames = () => ({
+  type: CLEAR_GAMES,
 });
 
 const setGame = (game) => ({
@@ -53,27 +57,21 @@ export const fetchGames = () => async (dispatch) => {
   }
 };
 
-export const fetchCartGames = (gameIds) => async () => {
+export const fetchCartGames = (gameIds) => async (dispatch) => {
   const games = [];
-
+  console.log("did it hit twice?");
   for (const gameId of gameIds) {
     let res = await csrfFetch(`/api/games/${gameId}`);
     if (res.ok) {
       let game = await res.json();
-
-      game.images = game.images.reduce((obj, imageUrl) => {
-        const filename = imageUrl.split("/").pop();
-        obj[filename] = imageUrl;
-        return obj;
-      }, {});
-
       games.push(game);
     } else {
       const errorResponse = await res.json();
       throw new Error(JSON.stringify(errorResponse));
     }
   }
-  return games;
+
+  dispatch(setGames(games));
 };
 
 export const fetchGamesByName = (name) => async (dispatch) => {
@@ -114,6 +112,11 @@ const gamesReducer = (state = initialState, action) => {
       return {
         ...state,
         searchResults: action.payload,
+      };
+    case CLEAR_GAMES:
+      return {
+        ...state,
+        list: [],
       };
     default:
       return state;

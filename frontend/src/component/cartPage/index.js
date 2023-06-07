@@ -2,31 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeGameFromCart } from "../../store/carteditemreducer";
 import { fetchUserCart } from "../../store/carteditemreducer";
-import { fetchCartGames } from "../../store/gamesreducer";
+
 
 const CartPage = () => {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   const id = currentUser ? currentUser.id : null;
   const dispatch = useDispatch();
-  const cartedItems = useSelector((state) => state.cart);
 
-  const [games, setGames] = useState([]);
-
+  const games = useSelector((state) => state.games.list);
 
   useEffect(() => {
-    //////////////////// to see which items are in the cart////////////
-
-    dispatch(fetchUserCart(id));
+    if (id) {
+      dispatch(fetchUserCart(id));
+    }
   }, [dispatch, id]);
 
-  useEffect(() => {
-    const gameIds = cartedItems.map((cartedItem) => cartedItem.gameId);
- 
-    fetchCartGames(gameIds)().then((games) => setGames(games));
-  }, [dispatch, cartedItems]);
 
   const handleRemoveFromCart = (gameId, userId) => {
-
     dispatch(removeGameFromCart(gameId, userId));
   };
 
