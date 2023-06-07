@@ -66,6 +66,7 @@ const removeFromCart = (gameId) => ({
 });
 
 export const addGameToCart = (game, userId) => async (dispatch) => {
+  console.log(game);
   const res = await csrfFetch(`/api/users/${userId}/cart`, {
     method: "POST",
     headers: {
@@ -77,8 +78,10 @@ export const addGameToCart = (game, userId) => async (dispatch) => {
   });
 
   if (res.ok) {
+    // console.log("res okkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
     const newCartedItem = await res.json();
-    dispatch(addToCart(newCartedItem[game.id]));
+    console.log(newCartedItem);
+    dispatch(addToCart(newCartedItem));
   } else {
     const errorResponse = await res.json();
     throw new Error(JSON.stringify(errorResponse));
@@ -97,22 +100,8 @@ export const removeGameFromCart = (gameId, userId) => async (dispatch) => {
     throw new Error(JSON.stringify(errorResponse));
   }
 };
-// export const removeGameFromCart = (gameId, userId) => async (dispatch) => {
-//   const res = await csrfFetch(`/api/users/${userId}/cart?game_id=${gameId}`, {
-//     method: "DELETE",
-//   });
 
-//   if (res.ok) {
-//     dispatch(removeFromCart(gameId));
-//     // dispatch(fetchUserCart(userId));
-//   } else {
-//     const errorResponse = await res.json();
-//     throw new Error(JSON.stringify(errorResponse));
-//   }
-// };
-
-// Initial State
-const initialState = {};
+const initialState = { cartedItems: {} };
 
 // Reducer
 const cartedItemsReducer = (state = initialState, action) => {
@@ -120,26 +109,23 @@ const cartedItemsReducer = (state = initialState, action) => {
     case SET_CART:
       return { ...action.cart };
     case ADD_TO_CART:
+      const newCartedItem = action.game;
       return {
         ...state,
-        [action.game.id]: action.game,
+        cartedItems: {
+          ...state.cartedItems,
+          [newCartedItem.id]: newCartedItem,
+        },
       };
     case REMOVE_FROM_CART:
       const newState = { ...state };
       delete newState[action.gameId];
-      debugger;
+
       return newState;
-    // case REMOVE_FROM_CART:
-    //   const newState = { ...state };
-    //   delete newState[action.gameId];
-    //   return newState;
+
     default:
       return state;
   }
 };
 
 export default cartedItemsReducer;
-
-/// game slice state needs to fetch for each page (fetch new games base on which page you are on)
-/// carteditem reducer state needs to be objects instead of array---- the jbuilder should return object instead of array
-/// refactor the component to dispatch the fetch request instead of use .then
