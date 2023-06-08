@@ -7,6 +7,7 @@ import Navigation from "./component/Navigation";
 import GamePage from "./component/gamePage";
 import CartPage from "./component/cartPage";
 import StoragePage from "./component/storagePage";
+import TagPage from "./component/tagPage";
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <HomePage />
+        </Route>
+        <Route exact path="/tags/:name">
+          <TagPage />
         </Route>
         <Route path="/login">
           <LoginFormPage />

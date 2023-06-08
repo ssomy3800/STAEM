@@ -24,7 +24,10 @@ Rails.application.routes.draw do
       end
       end
 
-    resources :tags, only: [:index, :show]
+      resources :tags, only: [:index, :show] do
+        get ':name', to: 'tags#show', on: :collection
+      end
+    
   end
   get '*path', to: "static_pages#frontend_index"
   

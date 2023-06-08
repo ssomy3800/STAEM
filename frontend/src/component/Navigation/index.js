@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -11,7 +9,11 @@ function Navigation() {
 
   let sessionLinks;
   if (sessionUser) {
-    sessionLinks = <ProfileButton user={sessionUser} />;
+    sessionLinks = (
+      <div className="right">
+        <ProfileButton user={sessionUser} />
+      </div>
+    );
   } else {
     sessionLinks = (
       <div className="right">
@@ -54,12 +56,16 @@ function Navigation() {
           >
             <i className="fa-brands fa-linkedin"></i>
           </a>
-          <div className="storeLink">
-            <NavLink to="/cart">Cart</NavLink>
-          </div>
-          <div className="storeLink">
-            <NavLink to="/storage">storage</NavLink>
-          </div>
+          {sessionUser && (
+            <div className="storeLink">
+              <NavLink to="/cart">Cart</NavLink>
+            </div>
+          )}
+          {sessionUser && (
+            <div className="storeLink">
+              <NavLink to="/storage">Storage</NavLink>
+            </div>
+          )}
         </div>
       </div>
 

@@ -1,19 +1,12 @@
-
-
 class Api::TagsController < ApplicationController
-    def index
-      @tags = Tag.all
-    end
-  
-    def show
-      @tag = Tag.find(params[:id])
-    end
-  
-  
+  # GET /tags
+  def index
+    @tags = Tag.all
+  end
 
-private
-
-def tag_params
-  params.require(:tag).permit(:name)
-end
+  # GET /tags/:name
+  def show
+    @tag = Tag.find_by(name: params[:name])
+    @games = @tag.games
+  end
 end
