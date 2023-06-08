@@ -36,7 +36,7 @@ export const purchaseCartedItem = (gameId, userId) => async (dispatch) => {
   if (res.ok) {
     dispatch(purchaseItem(gameId));
     dispatch(fetchUserCart(userId)); // Refresh the cart
-    dispatch(fetchUserStorage(userId)); // Refresh the storage
+    // dispatch(fetchUserStorage(userId)); // Refresh the storage
   } else {
     const errorResponse = await res.json();
     throw new Error(JSON.stringify(errorResponse));
