@@ -1,33 +1,33 @@
 .game-page {
-    display: flex;
-    justify-content: space-between;
-    width: 70%;
-    margin: 0 auto;
-    
-  }
-  
-  .game-carousel {
-    width: 50%;
-    padding: 3%;
-  }
-  
-  .rightside {
-    margin-top: 3%;
-    width: 50%;
-    padding: 3%;
-    
-  }
-  
-  .game-cover {
-    width: 100%;
-    height: auto; /* Preserve aspect ratio */
-  }
-  
-  .game-info {
-    margin-top: 20px;
-    color: white;
-  }
-  .carousel-image {
-    max-width: 500px;
-    max-height: 500px;
-  }
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.game-title,
+.game-header,
+.game-carousel {
+  width: 50%;
+  padding: 1%;
+}
+
+.rightside {
+  margin-top: 3%;
+  width: 50%;
+  padding: 3%;
+}
+
+.game-cover {
+  width: 100%;
+  height: auto; /* Preserve aspect ratio */
+}
+
+.game-info {
+  margin-top: 20px;
+  color: white;
+}
+.carousel-image {
+  max-width: 500px;
+  max-height: 500px;
+}

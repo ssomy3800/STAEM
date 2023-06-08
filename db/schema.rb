@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_08_113317) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_08_215542) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_113317) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
+    t.boolean "likes"
     t.index ["game_id"], name: "index_comments_on_game_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGame } from "../../store/gamesreducer";
 import { addGameToCart } from "../../store/carteditemreducer";
@@ -33,6 +33,7 @@ function GamePage() {
   const activeComment = useSelector((state) => state.comments.active);
 
   const [newComment, setNewComment] = useState("");
+  const [newCommentLike, setNewCommentLike] = useState(false); // Like/dislike state
 
   useEffect(() => {
     if (game) {
@@ -45,11 +46,14 @@ function GamePage() {
       dispatch(
         createComment({
           content: newComment,
+          likes: newCommentLike,
           game_id: game.id,
           user_id: currentUser.id,
+          username: currentUser.username,
         })
       );
       setNewComment("");
+      setNewCommentLike(false); // Reset the like/dislike state
     } else {
       history.push("/login");
     }
@@ -135,6 +139,13 @@ function GamePage() {
   return (
     <>
       <SearchBar />
+      <div className="game-header">
+        <Link to="/">All Games</Link> &gt;
+        <Link to={`/tags/${game.tags[0]}`}>{game.tags[0]}</Link> &gt;{" "}
+        
+        {game.title}
+      </div>
+      <div className="game-title">{game.title}</div>
       <div className="game-page">
         <div className="game-carousel">
           <ResponsiveCarousel
@@ -202,12 +213,21 @@ function GamePage() {
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
             />
+            <button onClick={() => setNewCommentLike(true)}>Like</button>{" "}
+            {/* Like button */}
+            <button onClick={() => setNewCommentLike(false)}>
+              Dislike
+            </button>{" "}
+            {/* Dislike button */}
             <button onClick={handleAddComment}>Add Comment</button>
           </>
         )}
         {comments.map((comment) => (
           <div key={comment.id}>
-            <p>{comment.content}</p>
+            <p>
+              <strong>{comment.username}</strong>: {comment.content}
+              {comment.likes ? <span>👍</span> : <span>👎</span>}
+            </p>
             {currentUser && currentUser.id === comment.user_id && (
               <>
                 <button onClick={() => handleEditComment(comment.id)}>

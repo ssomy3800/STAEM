@@ -12,6 +12,8 @@ class Api::CommentsController < ApplicationController
   
     def create
       @comment = Comment.new(comment_params)
+      @comment.username = current_user.username
+     
   
       if @comment.save
         render json: @comment, status: :created
@@ -39,6 +41,6 @@ class Api::CommentsController < ApplicationController
     end
   
     def comment_params
-      params.require(:comment).permit(:content, :game_id, :user_id)
+      params.require(:comment).permit(:content, :game_id, :user_id,:likes)
     end
   end
