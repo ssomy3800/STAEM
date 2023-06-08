@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGame } from "../../store/gamesreducer";
@@ -7,7 +7,7 @@ import { Carousel as ResponsiveCarousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./gamePage.css";
 import SearchBar from "../searchBar";
-import { fetchUserCart } from "../../store/carteditemreducer";
+import { fetchUserCart, fetchUserStorage } from "../../store/carteditemreducer";
 
 function GamePage() {
   const { id } = useParams();
@@ -16,25 +16,42 @@ function GamePage() {
   const game = useSelector((state) => state.games.current);
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   const cartedItems = useSelector((state) => state.cart.cartedItems);
-
+  const [purchased, setPurchased] = useState(null);
+  useEffect(() => {
+    if (game) {
+      // make sure game is not null before proceeding
+      let found = false;
+      for (let key in cartedItems) {
+        if (cartedItems[key].gameId === game.id) {
+          setPurchased(cartedItems[key].purchased);
+          // console.log("Game is purchased:", cartedItems[key].purchased); // Debug line
+          found = true;
+          break;
+        }
+      }
+      if (!found) setPurchased(undefined);
+    }
+  }, [cartedItems, game]);
   useEffect(() => {
     if (currentUser) {
       dispatch(fetchUserCart(currentUser.id));
+      dispatch(fetchUserStorage(currentUser.id));
     }
     dispatch(fetchGame(id));
   }, [dispatch, id]);
-  let purchased;
+
   const addToCart = () => {
+    let currentPurchased;
     for (let key in cartedItems) {
       if (cartedItems[key].gameId === game.id) {
-        purchased = cartedItems[key].purchased;
+        currentPurchased = cartedItems[key].purchased;
         break;
       }
     }
     if (currentUser) {
-      if (purchased) {
+      if (currentPurchased) {
         history.push("/storage");
-      } else if (purchased === false) {
+      } else if (currentPurchased === false) {
         history.push("/cart");
       } else {
         dispatch(addGameToCart(game, currentUser.id));

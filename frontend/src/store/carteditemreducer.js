@@ -19,10 +19,26 @@ const setCart = (cart) => ({
 
 export const fetchUserStorage = (userId) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${userId}/storage`);
-
+  console.log(res);
   if (res.ok) {
     const storage = await res.json();
+    console.log(storage);
     dispatch(setStorage(storage));
+
+    // If the storage has items, fetch their corresponding games
+    if (
+      Object.values(storage)[0] &&
+      Object.values(Object.values(storage)[0]).length > 0
+    ) {
+      const gameIds = Object.values(Object.values(storage)[0]).map(
+        (item) => item.gameId
+      );
+      console.log(gameIds);
+      dispatch(fetchCartGames(gameIds));
+    } else {
+      // If the storage is empty, clear the games
+      dispatch(clearGames());
+    }
   } else {
     const errorResponse = await res.json();
     throw new Error(JSON.stringify(errorResponse));
@@ -31,9 +47,11 @@ export const fetchUserStorage = (userId) => async (dispatch) => {
 
 export const fetchUserCart = (userId) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${userId}/cart`);
-  console.log("fetching user cart");
+
   if (res.ok) {
     const cart = await res.json();
+   
+    console.log(cart);
     dispatch(setCart(cart));
 
     // If the cart has items, fetch their corresponding games
@@ -44,6 +62,7 @@ export const fetchUserCart = (userId) => async (dispatch) => {
       const gameIds = Object.values(Object.values(cart)[0]).map(
         (item) => item.gameId
       );
+      console.log(gameIds);
       dispatch(fetchCartGames(gameIds));
     } else {
       // If the cart is empty, clear the games
@@ -108,6 +127,8 @@ const cartedItemsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CART:
       return { ...action.cart };
+    case SET_STORAGE:
+      return { ...action.storage };
     case ADD_TO_CART:
       const newCartedItem = action.game;
       return {
