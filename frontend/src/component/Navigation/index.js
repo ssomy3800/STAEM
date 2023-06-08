@@ -58,7 +58,7 @@ function Navigation() {
             <NavLink to="/cart">Cart</NavLink>
           </div>
           <div className="storeLink">
-            <NavLink to="/store/features">Features</NavLink>
+            <NavLink to="/storage">storage</NavLink>
           </div>
         </div>
       </div>

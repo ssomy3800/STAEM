@@ -6,6 +6,7 @@ import SignupFormPage from "./component/signUpFormPage";
 import Navigation from "./component/Navigation";
 import GamePage from "./component/gamePage";
 import CartPage from "./component/cartPage";
+import StoragePage from "./component/storagePage";
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
         </Route>
         <Route path="/cart">
           <CartPage />
+        </Route>
+        <Route path="/storage">
+          <StoragePage />
         </Route>
       </Switch>
     </>

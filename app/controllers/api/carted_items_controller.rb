@@ -20,18 +20,27 @@ class Api::CartedItemsController < ApplicationController
           render json: @carted_item.errors.full_messages, status: 422
         end
       end
-  
-      def destroy
-        
-        @carted_item = CartedItem.find_by(game_id: params[:game_id], user_id: params[:user_id])
 
-        if @carted_item.user == @user && @carted_item.destroy
-          render json: { message: 'Carted item successfully removed' }
-        else
-          render json: { error: 'Failed to remove carted item' }, status: 422
-        end
-      end
+    def destroy
       
+      @carted_item = CartedItem.find_by(game_id: params[:game_id], user_id: params[:user_id])
+
+      if @carted_item.user == @user && @carted_item.destroy
+        render json: { message: 'Carted item successfully removed' }
+      else
+        render json: { error: 'Failed to remove carted item' }, status: 422
+      end
+    end
+    
+    def update
+      carted_item = CartedItem.find_by(game_id: carted_item_params[:game_id], user_id: @user.id, purchased: false)
+
+      if carted_item && carted_item.update(purchased: true)
+        render json: { message: 'CartedItem was successfully updated.' }, status: :ok
+      else
+        render json: carted_item ? carted_item.errors : { message: 'CartedItem not found' }, status: :unprocessable_entity
+      end
+    end
 
     private
     def set_user

@@ -14,7 +14,7 @@
 #
 class User < ApplicationRecord
     has_many :carted_items
-    has_many :comments
+    has_many :comments ,dependent: :destroy
     has_many :games, through: :carted_items
     has_secure_password
     validates :username, presence: { message: ' cannot be blank' }, uniqueness: { message: ' is already taken' }, length: { minimum: 6, message: ' should be at least 6 characters' }

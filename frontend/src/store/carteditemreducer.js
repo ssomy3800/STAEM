@@ -7,7 +7,12 @@ const ADD_TO_CART = "cartedItems/ADD_TO_CART";
 const REMOVE_FROM_CART = "cartedItems/REMOVE_FROM_CART";
 const SET_CART = "cartedItems/SET_CART";
 const SET_STORAGE = "cartedItems/SET_STORAGE";
+const PURCHASE_ITEM = "cartedItems/PURCHASE_ITEM";
 
+const purchaseItem = (gameId) => ({
+  type: PURCHASE_ITEM,
+  gameId,
+});
 const setStorage = (storage) => ({
   type: SET_STORAGE,
   storage,
@@ -16,6 +21,27 @@ const setCart = (cart) => ({
   type: SET_CART,
   cart,
 });
+
+export const purchaseCartedItem = (gameId, userId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/users/${userId}/cart`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      carted_item: { game_id: gameId, purchased: true },
+    }),
+  });
+
+  if (res.ok) {
+    dispatch(purchaseItem(gameId));
+    dispatch(fetchUserCart(userId)); // Refresh the cart
+    dispatch(fetchUserStorage(userId)); // Refresh the storage
+  } else {
+    const errorResponse = await res.json();
+    throw new Error(JSON.stringify(errorResponse));
+  }
+};
 
 export const fetchUserStorage = (userId) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${userId}/storage`);
@@ -142,6 +168,12 @@ const cartedItemsReducer = (state = initialState, action) => {
       const newState = { ...state };
       delete newState.cartedItems[action.gameId];
       return newState;
+
+    case PURCHASE_ITEM: {
+      const newState = { ...state };
+      delete newState.cartedItems[action.gameId];
+      return newState;
+    }
     default:
       return state;
   }

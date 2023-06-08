@@ -7,8 +7,9 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:create] do
-      resources :carted_items, path: 'cart', only: [:index, :create]
+      resources :carted_items, path: 'cart', only: [:index, :create,:update]
       delete 'cart', to: 'carted_items#destroy'
+      put 'cart', to: 'carted_items#update'
     end
     get 'users/:user_id/storage', to: 'carted_items#storage'
     
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
     resources :games do
       resources :comments
     end
+    
     resources :games, only: [:index, :show] do
       collection do
         get 'search/:name', to: 'games#search', as: 'search'

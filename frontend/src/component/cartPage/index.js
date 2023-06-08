@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeGameFromCart } from "../../store/carteditemreducer";
-import { fetchUserCart } from "../../store/carteditemreducer";
-
+import {
+  removeGameFromCart,
+  fetchUserCart,
+  purchaseCartedItem,
+} from "../../store/carteditemreducer";
 
 const CartPage = () => {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
@@ -17,9 +19,18 @@ const CartPage = () => {
     }
   }, [dispatch, id]);
 
-
   const handleRemoveFromCart = (gameId, userId) => {
     dispatch(removeGameFromCart(gameId, userId));
+  };
+
+  const handlePurchaseItem = (gameId, userId) => {
+    dispatch(purchaseCartedItem(gameId, userId));
+  };
+
+  const handlePurchaseAll = (userId) => {
+    games.forEach((game) => {
+      dispatch(purchaseCartedItem(game.id, userId));
+    });
   };
 
   return (
@@ -28,11 +39,17 @@ const CartPage = () => {
       {games.map((game) => (
         <div key={game.id}>
           <h3>{game.title}</h3>
+          <button onClick={() => handlePurchaseItem(game.id, currentUser.id)}>
+            Purchase
+          </button>
           <button onClick={() => handleRemoveFromCart(game.id, currentUser.id)}>
             Remove from Cart
           </button>
         </div>
       ))}
+      <button onClick={() => handlePurchaseAll(currentUser.id)}>
+        Purchase All
+      </button>
     </div>
   );
 };
