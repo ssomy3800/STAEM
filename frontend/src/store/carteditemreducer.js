@@ -19,10 +19,10 @@ const setCart = (cart) => ({
 
 export const fetchUserStorage = (userId) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${userId}/storage`);
-  console.log(res);
+
   if (res.ok) {
     const storage = await res.json();
-    console.log(storage);
+
     dispatch(setStorage(storage));
 
     // If the storage has items, fetch their corresponding games
@@ -33,7 +33,7 @@ export const fetchUserStorage = (userId) => async (dispatch) => {
       const gameIds = Object.values(Object.values(storage)[0]).map(
         (item) => item.gameId
       );
-      console.log(gameIds);
+
       dispatch(fetchCartGames(gameIds));
     } else {
       // If the storage is empty, clear the games
@@ -50,8 +50,7 @@ export const fetchUserCart = (userId) => async (dispatch) => {
 
   if (res.ok) {
     const cart = await res.json();
-   
-    console.log(cart);
+
     dispatch(setCart(cart));
 
     // If the cart has items, fetch their corresponding games
@@ -62,7 +61,7 @@ export const fetchUserCart = (userId) => async (dispatch) => {
       const gameIds = Object.values(Object.values(cart)[0]).map(
         (item) => item.gameId
       );
-      console.log(gameIds);
+
       dispatch(fetchCartGames(gameIds));
     } else {
       // If the cart is empty, clear the games
@@ -85,7 +84,6 @@ const removeFromCart = (gameId) => ({
 });
 
 export const addGameToCart = (game, userId) => async (dispatch) => {
-  console.log(game);
   const res = await csrfFetch(`/api/users/${userId}/cart`, {
     method: "POST",
     headers: {
@@ -97,9 +95,8 @@ export const addGameToCart = (game, userId) => async (dispatch) => {
   });
 
   if (res.ok) {
-    // console.log("res okkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
     const newCartedItem = await res.json();
-    console.log(newCartedItem);
+
     dispatch(addToCart(newCartedItem));
   } else {
     const errorResponse = await res.json();
@@ -120,15 +117,18 @@ export const removeGameFromCart = (gameId, userId) => async (dispatch) => {
   }
 };
 
-const initialState = { cartedItems: {} };
+const initialState = {
+  cartedItems: {},
+  storageItems: {},
+};
 
 // Reducer
 const cartedItemsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CART:
-      return { ...action.cart };
+      return { ...state, cartedItems: action.cart };
     case SET_STORAGE:
-      return { ...action.storage };
+      return { ...state, storageItems: action.storage };
     case ADD_TO_CART:
       const newCartedItem = action.game;
       return {
@@ -140,10 +140,8 @@ const cartedItemsReducer = (state = initialState, action) => {
       };
     case REMOVE_FROM_CART:
       const newState = { ...state };
-      delete newState[action.gameId];
-
+      delete newState.cartedItems[action.gameId];
       return newState;
-
     default:
       return state;
   }

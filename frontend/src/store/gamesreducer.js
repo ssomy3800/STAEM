@@ -59,7 +59,7 @@ export const fetchGames = () => async (dispatch) => {
 
 export const fetchCartGames = (gameIds) => async (dispatch) => {
   const games = [];
-  console.log("did it hit twice?");
+
   for (const gameId of gameIds) {
     let res = await csrfFetch(`/api/games/${gameId}`);
     if (res.ok) {

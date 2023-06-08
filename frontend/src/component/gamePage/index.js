@@ -15,19 +15,29 @@ function GamePage() {
   const dispatch = useDispatch();
   const game = useSelector((state) => state.games.current);
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-  const cartedItems = useSelector((state) => state.cart.cartedItems);
+  const cartedItems = useSelector((state) => state.cart);
+
   const [purchased, setPurchased] = useState(null);
+
   useEffect(() => {
     if (game) {
       // make sure game is not null before proceeding
       let found = false;
       for (let key in cartedItems) {
-        if (cartedItems[key].gameId === game.id) {
-          setPurchased(cartedItems[key].purchased);
-          // console.log("Game is purchased:", cartedItems[key].purchased); // Debug line
-          found = true;
-          break;
+        // Iterate over each individual item in the current property
+        for (let itemKey in cartedItems[key]) {
+          for (let itemitemKey in cartedItems[key][itemKey]) {
+            let cartedItem = cartedItems[key][itemKey][itemitemKey];
+
+            if (cartedItem.gameId === game.id) {
+              setPurchased(cartedItems[key][itemKey][itemitemKey].purchased);
+
+              found = true;
+              break;
+            }
+          }
         }
+        if (found) break; // If an item was found, exit the outer loop as well
       }
       if (!found) setPurchased(undefined);
     }
@@ -41,11 +51,25 @@ function GamePage() {
   }, [dispatch, id]);
 
   const addToCart = () => {
-    let currentPurchased;
     for (let key in cartedItems) {
       if (cartedItems[key].gameId === game.id) {
         currentPurchased = cartedItems[key].purchased;
         break;
+      }
+    }
+    let currentPurchased;
+    for (let key in cartedItems) {
+      // Iterate over each individual item in the current property
+      for (let itemKey in cartedItems[key]) {
+        for (let itemitemKey in cartedItems[key][itemKey]) {
+          let cartedItem = cartedItems[key][itemKey][itemitemKey];
+
+          if (cartedItem.gameId === game.id) {
+            currentPurchased = cartedItem.purchased;
+
+            break;
+          }
+        }
       }
     }
     if (currentUser) {
