@@ -21,8 +21,8 @@ function GamePage() {
 
   useEffect(() => {
     if (game) {
-      // make sure game is not null before proceeding
       let found = false;
+      let currentPurchased;
       for (let key in cartedItems) {
         // Iterate over each individual item in the current property
         for (let itemKey in cartedItems[key]) {
@@ -30,18 +30,23 @@ function GamePage() {
             let cartedItem = cartedItems[key][itemKey][itemitemKey];
 
             if (cartedItem.gameId === game.id) {
-              setPurchased(cartedItems[key][itemKey][itemitemKey].purchased);
-
+              currentPurchased = cartedItem.purchased;
               found = true;
               break;
             }
           }
+          if (found) break;
         }
-        if (found) break; // If an item was found, exit the outer loop as well
       }
-      if (!found) setPurchased(undefined);
+
+      if (found) {
+        setPurchased(currentPurchased);
+      } else {
+        setPurchased(undefined);
+      }
     }
-  }, [cartedItems, game]);
+  }, [game]); // Include 'game' in the dependencies
+
   useEffect(() => {
     if (currentUser) {
       dispatch(fetchUserCart(currentUser.id));
@@ -51,34 +56,14 @@ function GamePage() {
   }, [dispatch, id]);
 
   const addToCart = () => {
-    for (let key in cartedItems) {
-      if (cartedItems[key].gameId === game.id) {
-        currentPurchased = cartedItems[key].purchased;
-        break;
-      }
-    }
-    let currentPurchased;
-    for (let key in cartedItems) {
-      // Iterate over each individual item in the current property
-      for (let itemKey in cartedItems[key]) {
-        for (let itemitemKey in cartedItems[key][itemKey]) {
-          let cartedItem = cartedItems[key][itemKey][itemitemKey];
-
-          if (cartedItem.gameId === game.id) {
-            currentPurchased = cartedItem.purchased;
-
-            break;
-          }
-        }
-      }
-    }
     if (currentUser) {
-      if (currentPurchased) {
+      if (purchased) {
         history.push("/storage");
-      } else if (currentPurchased === false) {
+      } else if (purchased === false) {
         history.push("/cart");
       } else {
         dispatch(addGameToCart(game, currentUser.id));
+        setPurchased(false); // set purchased state manually
       }
     } else {
       history.push("/login");
