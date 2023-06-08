@@ -9,15 +9,64 @@ import "./gamePage.css";
 import SearchBar from "../searchBar";
 import { fetchUserCart, fetchUserStorage } from "../../store/carteditemreducer";
 
+import {
+  fetchComments,
+  createComment,
+  removeComment,
+  setActiveComment,
+  editComment,
+  setActiveCommentId,
+} from "../../store/commentsreducer";
+
 function GamePage() {
   const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
   const game = useSelector((state) => state.games.current);
+
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   const cartedItems = useSelector((state) => state.cart);
 
   const [purchased, setPurchased] = useState(null);
+
+  const comments = useSelector((state) => state.comments.comments);
+  const activeComment = useSelector((state) => state.comments.active);
+
+  const [newComment, setNewComment] = useState("");
+
+  useEffect(() => {
+    if (game) {
+      dispatch(fetchComments(game.id));
+    }
+  }, [dispatch, game]);
+
+  const handleAddComment = () => {
+    if (currentUser) {
+      dispatch(
+        createComment({
+          content: newComment,
+          game_id: game.id,
+          user_id: currentUser.id,
+        })
+      );
+      setNewComment("");
+    } else {
+      history.push("/login");
+    }
+  };
+
+  const handleDeleteComment = (commentId) => {
+    dispatch(removeComment(game.id, commentId));
+  };
+
+  const handleEditComment = (commentId) => {
+    dispatch(setActiveCommentId(commentId));
+  };
+
+  const handleUpdateComment = () => {
+    dispatch(editComment(activeComment));
+    dispatch(setActiveComment(null));
+  };
 
   useEffect(() => {
     if (game) {
@@ -45,7 +94,7 @@ function GamePage() {
         setPurchased(undefined);
       }
     }
-  }, [game]); // Include 'game' in the dependencies
+  }, [game]);
 
   useEffect(() => {
     if (currentUser) {
@@ -127,6 +176,50 @@ function GamePage() {
             </button>
           </div>
         </div>
+      </div>
+      <div className="comments">
+        {activeComment && (
+          <>
+            <input
+              type="text"
+              value={activeComment.content}
+              onChange={(e) =>
+                dispatch(
+                  setActiveComment({
+                    ...activeComment,
+                    content: e.target.value,
+                  })
+                )
+              }
+            />
+            <button onClick={handleUpdateComment}>Update Comment</button>
+          </>
+        )}
+        {!activeComment && (
+          <>
+            <input
+              type="text"
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+            />
+            <button onClick={handleAddComment}>Add Comment</button>
+          </>
+        )}
+        {comments.map((comment) => (
+          <div key={comment.id}>
+            <p>{comment.content}</p>
+            {currentUser && currentUser.id === comment.user_id && (
+              <>
+                <button onClick={() => handleEditComment(comment.id)}>
+                  Edit
+                </button>
+                <button onClick={() => handleDeleteComment(comment.id)}>
+                  Delete
+                </button>
+              </>
+            )}
+          </div>
+        ))}
       </div>
     </>
   );

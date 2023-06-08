@@ -15,6 +15,7 @@
 #
 class Game < ApplicationRecord
     has_many :carted_items
+    has_many :comments
     has_many :users, through: :carted_items
     validates :title, presence: true, uniqueness: true
     validates :short_description, :long_description, :publisher, :developer, presence: true

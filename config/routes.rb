@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     get 'users/:user_id/storage', to: 'carted_items#storage'
     
     resource :session, only: [:create, :show, :destroy]
+    resources :games do
+      resources :comments
+    end
     resources :games, only: [:index, :show] do
       collection do
         get 'search/:name', to: 'games#search', as: 'search'
