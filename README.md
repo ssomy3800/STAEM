@@ -1,24 +1,56 @@
-# README
+# STAEM
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Background: 
+  This project is a clone of the gaming platform, Steam, aiming to reproduce the main functionalities and features that the platform offers. The application is built with a Ruby on Rails backend, React front end, and utilizes Redux as a state management library.
+## functionality:
 
-Things you may want to cover:
+ 
+The application allows users to:
 
-* Ruby version
+1. Browse through available games by category or search
+2. View detailed information about a specific game
+3. Add games to their personal library
+4. Write and post reviews about the games
+5. catagory search
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+## Feature:
+- User Authentication: Users can create an account, log in, and log out securely.
+- Game View: Users can go to the game page and see some trailer and in-game cutscenes.
+- Game Library: Users can add games to their library and manage it.
+- Reviews: Users can write, edit, and delete reviews for games.(FULL CRUD)
+- Cart/Storage: User has one cart and one storage which displays game base on whether if it is purchased, can add game to cart as well. (CRUD)
+- Tagging System: Games can be tagged by categories, which users can use to search and filter games.
 
-* Database initialization
 
-* How to run the test suite
+## Technologies, Libraries, APIs:
+- Backend: Ruby on Rails
+- Frontend: React.js, Redux.js
+- Database: PostgreSQL
+- Styling: CSS
+- Hosting: Render.com
+- Image hosting: AWS S3
 
-* Services (job queues, cache servers, search engines, etc.)
+## Production Timeline:
+Day 1-2: Setup project skeleton, including user authentication on both the frontend and backend.
+Day 3-4: Implement game preview and game page
+Day 5: Implement search functionality
+Day 6-8: Implement first CRUD cart
+Day 9-10: Implement full CRUD comment system.
+Day 11-12: Testing, debugging, and deploying the project.
+Day 13: Some more styling
+Day 14: Hosting
 
-* Deployment instructions
+## Future Implementations:
+- User profiles: Users can customize their profile and view others' profiles.
+- Friends System: Users can add other users as friends.
+- Real-time chat: Implement a real-time chat feature where users can message each other.
+- Achievements: Users can earn achievements based on their activities on the platform.
+- Game leaderboards: Show leaderboards for each game where users can compete.
 
-* ...
+## About Me
+You can find me via email: ssomy3800@gmail.com
+ 
+## Credit
+all sources from steam website
