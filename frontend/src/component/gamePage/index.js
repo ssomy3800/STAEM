@@ -35,6 +35,8 @@ function GamePage() {
   const [newComment, setNewComment] = useState("");
   const [newCommentLike, setNewCommentLike] = useState(false); // Like/dislike state
 
+  const [editingCommentId, setEditingCommentId] = useState(null);
+
   useEffect(() => {
     if (game) {
       dispatch(fetchComments(game.id));
@@ -65,13 +67,14 @@ function GamePage() {
 
   const handleEditComment = (commentId) => {
     dispatch(setActiveCommentId(commentId));
+    setEditingCommentId(commentId); // set the comment currently being edited
   };
 
   const handleUpdateComment = () => {
     dispatch(editComment(activeComment));
     dispatch(setActiveComment(null));
+    setEditingCommentId(null); // reset the comment currently being edited
   };
-
   useEffect(() => {
     if (game) {
       let found = false;
@@ -139,11 +142,11 @@ function GamePage() {
   return (
     <div
       className="game-body"
-      // style={{
-      //   backgroundImage: `url(${lastImageEntry[1]})`,
-      //   backgroundSize: "cover",
-      //   backgroundPosition: "center",
-      // }}
+      style={{
+        backgroundImage: `url(${lastImageEntry[1]})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
       <SearchBar />
       <div className="game-header">
@@ -183,81 +186,122 @@ function GamePage() {
             <p>Publisher: {game.publisher}</p>
             <p>Developer: {game.developer}</p>
             <p>Publish Date: {game.publishDate}</p>
-            <p>Short Description: {game.shortDescription}</p>
-            <p>Long Description: {game.longDescription}</p>
-            <button onClick={addToCart}>
-              {purchased === true
-                ? "Play!"
-                : purchased === false
-                ? "Go to Cart!"
-                : "Add to Cart"}
-            </button>
           </div>
+        </div>
+      </div>
+      <div className="mid">
+        <div class="about">
+          <p class="long-description-header">About this game:</p>
+          <p class="long-description-body">{game.longDescription}</p>
+        </div>
+        <div className="mid-right">
+          <p>Short Description: {game.shortDescription}</p>
+          <div className="tags">
+            <p>Tags:</p>
+            {game.tags.map((tag, index) => (
+              <Link key={index} to={`/tags/${tag}`} className="tag">
+                {tag}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="purchase">
+        <div class="game-info">Purchase: {game.title}</div>
+        <div class="price-layer">
+          <p>{game.price === 0 ? "Free" : "$ " + game.price}</p>
+          <button onClick={addToCart}>
+            {purchased === true
+              ? "Play!"
+              : purchased === false
+              ? "Go to Cart!"
+              : "Add to Cart"}
+          </button>
         </div>
       </div>
       <div className="comments">
         <div className="existing-comments">
           {comments.map((comment) => (
             <div key={comment.id} className="comment">
-              <p>
-                <strong>{comment.username}</strong>: {comment.content}
-                {comment.likes ? <span>👍</span> : <span>👎</span>}
-              </p>
-              {currentUser && currentUser.id === comment.user_id && (
+              {editingCommentId === comment.id ? (
                 <>
-                  <button onClick={() => handleEditComment(comment.id)}>
-                    Edit
+                  <input
+                    type="text"
+                    value={activeComment.content}
+                    onChange={(e) =>
+                      dispatch(
+                        setActiveComment({
+                          ...activeComment,
+                          content: e.target.value,
+                        })
+                      )
+                    }
+                  />
+                  <button
+                    className={activeComment.likes ? "button-selected" : ""}
+                    onClick={() =>
+                      dispatch(
+                        setActiveComment({ ...activeComment, likes: true })
+                      )
+                    }
+                  >
+                    Like
                   </button>
-                  <button onClick={() => handleDeleteComment(comment.id)}>
-                    Delete
+                  <button
+                    className={!activeComment.likes ? "button-selected" : ""}
+                    onClick={() =>
+                      dispatch(
+                        setActiveComment({ ...activeComment, likes: false })
+                      )
+                    }
+                  >
+                    Dislike
                   </button>
+                  <button onClick={handleUpdateComment}>Update Comment</button>
+                  <button onClick={() => setEditingCommentId(null)}>
+                    Cancel
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div className="comment-header">
+                    <strong>{comment.username}</strong>
+                    {comment.likes ? <span>👍</span> : <span>👎</span>}
+                  </div>
+                  <div className="comment-content">{comment.content}</div>
+                  {currentUser && currentUser.id === comment.user_id && (
+                    <>
+                      <button onClick={() => handleEditComment(comment.id)}>
+                        Edit
+                      </button>
+                      <button onClick={() => handleDeleteComment(comment.id)}>
+                        Delete
+                      </button>
+                    </>
+                  )}
                 </>
               )}
             </div>
           ))}
         </div>
         <div className="new-comment-form">
-          {activeComment && (
-            <>
-              <input
-                type="text"
-                value={activeComment.content}
-                onChange={(e) =>
-                  dispatch(
-                    setActiveComment({
-                      ...activeComment,
-                      content: e.target.value,
-                    })
-                  )
-                }
-              />
-              <button onClick={handleUpdateComment}>Update Comment</button>
-            </>
-          )}
-          {!activeComment && (
-            <div className="create-comment">
-              <textarea
-                rows="10"
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-              />
-              <div className="buttons">
-                <button
-                  className={newCommentLike ? "button-selected" : ""}
-                  onClick={() => setNewCommentLike(true)}
-                >
-                  Like
-                </button>
-                <button
-                  className={!newCommentLike ? "button-selected" : ""}
-                  onClick={() => setNewCommentLike(false)}
-                >
-                  Dislike
-                </button>
-              </div>
-              <button onClick={handleAddComment}>Add Comment</button>
-            </div>
-          )}
+          <textarea
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+          />
+          <button
+            className={newCommentLike ? "button-selected" : ""}
+            onClick={() => setNewCommentLike(true)}
+          >
+            Like
+          </button>
+          <button
+            className={!newCommentLike ? "button-selected" : ""}
+            onClick={() => setNewCommentLike(false)}
+          >
+            Dislike
+          </button>
+          <button onClick={handleAddComment}>Add Comment</button>
         </div>
       </div>
     </div>

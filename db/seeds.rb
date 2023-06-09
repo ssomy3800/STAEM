@@ -94,6 +94,10 @@ csgo = Game.create(
     io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-ingame4.png"),
     filename: "csgo4.png"
   )
+  csgo.images.attach(
+    io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-bg.png"),
+    filename: "csgo-bg.png"
+  )
 
   csgo.video.attach(
     io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-trailer.webm"),
