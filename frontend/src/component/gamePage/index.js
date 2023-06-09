@@ -190,9 +190,9 @@ function GamePage() {
         </div>
       </div>
       <div className="mid">
-        <div class="about">
-          <p class="long-description-header">About this game:</p>
-          <p class="long-description-body">{game.longDescription}</p>
+        <div className="about">
+          <p className="long-description-header">About this game:</p>
+          <p className="long-description-body">{game.longDescription}</p>
         </div>
         <div className="mid-right">
           <p>Short Description: {game.shortDescription}</p>
@@ -206,9 +206,9 @@ function GamePage() {
           </div>
         </div>
       </div>
-      <div class="purchase">
-        <div class="game-info">Purchase: {game.title}</div>
-        <div class="price-layer">
+      <div className="purchase">
+        <div className="game-info">Purchase: {game.title}</div>
+        <div className="price-layer">
           <p>{game.price === 0 ? "Free" : "$ " + game.price}</p>
           <button onClick={addToCart}>
             {purchased === true

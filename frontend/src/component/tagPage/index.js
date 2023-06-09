@@ -5,6 +5,7 @@ import { csrfFetch } from "../../store/csrf";
 const TagPage = () => {
   const [games, setGames] = useState([]);
   const { name } = useParams();
+  console.log(name);
 
   useEffect(() => {
     const fetchGames = async () => {

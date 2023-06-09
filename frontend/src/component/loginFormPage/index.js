@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as userActions from "../../store/usersreducer";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { csrfFetch } from "../../store/csrf";
+
 import "./LoginForm.css";
 
 function LoginFormPage() {

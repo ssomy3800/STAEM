@@ -4,12 +4,14 @@ import userReducer from "./usersreducer";
 import gamesReducer from "./gamesreducer";
 import cartedItemsReducer from "./carteditemreducer";
 import commentsReducer from "./commentsreducer";
+import tagsReducer from "./tagsreducer";
 
 export const rootReducer = combineReducers({
   user: userReducer,
   games: gamesReducer,
   cart: cartedItemsReducer,
   comments: commentsReducer,
+  tags: tagsReducer,
 });
 
 let enhancer;
