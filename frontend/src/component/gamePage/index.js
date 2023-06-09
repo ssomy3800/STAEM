@@ -127,22 +127,28 @@ function GamePage() {
     return <div>Loading...</div>;
   }
 
-  const gameImages = Object.entries(game.images).map(
-    ([filename, imageUrl], index) => (
-      <div key={index}>
-        <img className="carousel-image" src={imageUrl} alt={filename} />
-      </div>
-    )
-  );
+  let imageEntries = Object.entries(game.images);
+  const lastImageEntry = imageEntries.pop();
+  const gameImages = imageEntries.map(([filename, imageUrl], index) => (
+    <div key={index}>
+      <img className="carousel-image" src={imageUrl} alt={filename} />
+    </div>
+  ));
   const firstImageUrl = game.images[Object.keys(game.images)[0]];
 
   return (
-    <>
+    <div
+      className="game-body"
+      // style={{
+      //   backgroundImage: `url(${lastImageEntry[1]})`,
+      //   backgroundSize: "cover",
+      //   backgroundPosition: "center",
+      // }}
+    >
       <SearchBar />
       <div className="game-header">
         <Link to="/">All Games</Link> &gt;
         <Link to={`/tags/${game.tags[0]}`}>{game.tags[0]}</Link> &gt;{" "}
-        
         {game.title}
       </div>
       <div className="game-title">{game.title}</div>
@@ -153,6 +159,7 @@ function GamePage() {
             autoPlay
             infiniteLoop
             useKeyboardArrows
+            showIndicators={false}
           >
             {game.video && (
               <div>
@@ -189,59 +196,71 @@ function GamePage() {
         </div>
       </div>
       <div className="comments">
-        {activeComment && (
-          <>
-            <input
-              type="text"
-              value={activeComment.content}
-              onChange={(e) =>
-                dispatch(
-                  setActiveComment({
-                    ...activeComment,
-                    content: e.target.value,
-                  })
-                )
-              }
-            />
-            <button onClick={handleUpdateComment}>Update Comment</button>
-          </>
-        )}
-        {!activeComment && (
-          <>
-            <input
-              type="text"
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-            />
-            <button onClick={() => setNewCommentLike(true)}>Like</button>{" "}
-            {/* Like button */}
-            <button onClick={() => setNewCommentLike(false)}>
-              Dislike
-            </button>{" "}
-            {/* Dislike button */}
-            <button onClick={handleAddComment}>Add Comment</button>
-          </>
-        )}
-        {comments.map((comment) => (
-          <div key={comment.id}>
-            <p>
-              <strong>{comment.username}</strong>: {comment.content}
-              {comment.likes ? <span>👍</span> : <span>👎</span>}
-            </p>
-            {currentUser && currentUser.id === comment.user_id && (
-              <>
-                <button onClick={() => handleEditComment(comment.id)}>
-                  Edit
+        <div className="existing-comments">
+          {comments.map((comment) => (
+            <div key={comment.id} className="comment">
+              <p>
+                <strong>{comment.username}</strong>: {comment.content}
+                {comment.likes ? <span>👍</span> : <span>👎</span>}
+              </p>
+              {currentUser && currentUser.id === comment.user_id && (
+                <>
+                  <button onClick={() => handleEditComment(comment.id)}>
+                    Edit
+                  </button>
+                  <button onClick={() => handleDeleteComment(comment.id)}>
+                    Delete
+                  </button>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+        <div className="new-comment-form">
+          {activeComment && (
+            <>
+              <input
+                type="text"
+                value={activeComment.content}
+                onChange={(e) =>
+                  dispatch(
+                    setActiveComment({
+                      ...activeComment,
+                      content: e.target.value,
+                    })
+                  )
+                }
+              />
+              <button onClick={handleUpdateComment}>Update Comment</button>
+            </>
+          )}
+          {!activeComment && (
+            <div className="create-comment">
+              <textarea
+                rows="10"
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+              />
+              <div className="buttons">
+                <button
+                  className={newCommentLike ? "button-selected" : ""}
+                  onClick={() => setNewCommentLike(true)}
+                >
+                  Like
                 </button>
-                <button onClick={() => handleDeleteComment(comment.id)}>
-                  Delete
+                <button
+                  className={!newCommentLike ? "button-selected" : ""}
+                  onClick={() => setNewCommentLike(false)}
+                >
+                  Dislike
                 </button>
-              </>
-            )}
-          </div>
-        ))}
+              </div>
+              <button onClick={handleAddComment}>Add Comment</button>
+            </div>
+          )}
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 
