@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import "./Cart.css";
 import {
   removeGameFromCart,
   fetchUserCart,
@@ -34,19 +35,39 @@ const CartPage = () => {
   };
 
   return (
-    <div>
-      <h2>Cart</h2>
-      {games.map((game) => (
-        <div key={game.id}>
-          <h3>{game.title}</h3>
-          <button onClick={() => handlePurchaseItem(game.id, currentUser.id)}>
-            Purchase
-          </button>
-          <button onClick={() => handleRemoveFromCart(game.id, currentUser.id)}>
-            Remove from Cart
-          </button>
-        </div>
-      ))}
+    <div className="cart-container">
+      <div className="home-games-container">
+        {games.map((game) => (
+          <div key={game.id} className="home-game-row">
+            <div className="home-game-image-container">
+              <img
+                className="home-game-image"
+                src={game.images[0]}
+                alt={game.title}
+              />
+            </div>
+            <div className="home-game-info-container">
+              <h3 className="home-game-title">{game.title}</h3>
+              <div className="home-game-tags">
+                {game.tags.map((tag) => (
+                  <span key={tag} className="home-game-tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <button onClick={() => handlePurchaseItem(game.id, currentUser.id)}>
+              Purchase
+            </button>
+            <button
+              onClick={() => handleRemoveFromCart(game.id, currentUser.id)}
+            >
+              Remove from Cart
+            </button>
+            <div className="home-game-price">${game.price}</div>
+          </div>
+        ))}
+      </div>
       <button onClick={() => handlePurchaseAll(currentUser.id)}>
         Purchase All
       </button>
