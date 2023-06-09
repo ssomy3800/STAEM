@@ -25,7 +25,7 @@ function Carousel() {
       useKeyboardArrows
       dynamicHeight
     >
-      {games.map((game) => (
+      {games.slice(0, 4).map((game) => (
         <div key={game.id} className={`carousel-slide`}>
           <img
             className="carousel-slide-image"

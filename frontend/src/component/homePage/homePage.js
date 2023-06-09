@@ -5,6 +5,8 @@ import Carousel from "../Carousel";
 import "./HomePage.css";
 import SearchBar from "../searchBar";
 import { Link } from "react-router-dom";
+
+import { fetchGames } from "../../store/gamesreducer";
 import img1 from "../../assets/images/adventure.png";
 import img2 from "../../assets/images/anime.png";
 import img3 from "../../assets/images/exp.png";
@@ -20,10 +22,12 @@ function HomePage() {
   const currentUser = useSelector((state) =>
     JSON.parse(sessionStorage.getItem("currentUser"))
   );
+  const games = useSelector((state) => state.games.list);
   const tags = useSelector((state) => state.tags); // Access tags from the Redux store
 
   useEffect(() => {
     dispatch(tagActions.getTags()); // Fetch tags when the component mounts
+    dispatch(fetchGames());
   }, [dispatch]);
 
   return (
@@ -55,20 +59,47 @@ function HomePage() {
           <div className="tag-images">
             <Link to="/tags/Adventure">
               <img src={img1} alt="Tag 1" className="tag-image" id="a" />
-              <div class="text-overlay">Adventure</div>
+              <div className="text-overlay">Adventure</div>
             </Link>
             <Link to="/tags/Anime">
               <img src={img2} alt="Tag 2" className="tag-image" id="b" />
-              <div class="text-overlay">Anime</div>
+              <div className="text-overlay">Anime</div>
             </Link>
             <Link to="/tags/Open-World">
               <img src={img3} alt="Tag 3" className="tag-image" id="c" />
-              <div class="text-overlay">Open-World</div>
+              <div className="text-overlay">Open-World</div>
             </Link>
             <Link to="/tags/Science-Fiction">
               <img src={img4} alt="Tag 4" className="tag-image" id="d" />
-              <div class="text-overlay">Science-Fiction</div>
+              <div className="text-overlay">Science-Fiction</div>
             </Link>
+          </div>
+
+          <div className="home-games-container">
+            {games.map((game) => (
+              <Link to={`/games/${game.id}`} key={game.id}>
+                <div key={game.id} className="home-game-row">
+                  <div className="home-game-image-container">
+                    <img
+                      className="home-game-image"
+                      src={game.images[0]}
+                      alt={game.title}
+                    />
+                  </div>
+                  <div className="home-game-info-container">
+                    <h3 className="home-game-title">{game.title}</h3>
+                    <div className="home-game-tags">
+                      {game.tags.map((tag) => (
+                        <span key={tag} className="home-game-tag">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="home-game-price">${game.price}</div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </div>

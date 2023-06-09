@@ -195,7 +195,7 @@ function GamePage() {
           <p className="long-description-body">{game.longDescription}</p>
         </div>
         <div className="mid-right">
-          <p>Short Description: {game.shortDescription}</p>
+          <p id="Short-description">{game.shortDescription}</p>
           <div className="tags">
             <p>Tags:</p>
             {game.tags.map((tag, index) => (

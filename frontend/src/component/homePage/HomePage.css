@@ -83,12 +83,60 @@
   justify-content: space-between;
 }
 .text-overlay {
-
   color: white;
   font-size: 24px;
   font-weight: bold;
 }
 
-.on-sale{
+.on-sale {
   margin-top: 15%;
+}
+
+.home-games-container {
+  background: radial-gradient(
+    circle at 0%,
+    rgba(83, 111, 134, 0) 20%,
+    rgba(83, 111, 134, 0.25) 100%
+  );
+  padding: 20px;
+}
+
+.home-game-row {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  background: linear-gradient(to right, #c6e6f8 5%, #95bcd3 95%);
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.home-game-image-container {
+  flex-basis: 20%;
+}
+
+.home-game-image {
+  max-width: 184px;
+  max-height: 69px;
+}
+
+.home-game-info-container {
+  flex-basis: 70%;
+}
+
+.home-game-title {
+  font-weight: bold;
+}
+
+.home-game-tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.home-game-tag {
+  margin: 2px 5px;
+}
+
+.home-game-price {
+  flex-basis: 10%;
+  text-align: right;
 }

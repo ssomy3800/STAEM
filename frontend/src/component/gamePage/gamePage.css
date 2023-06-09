@@ -159,9 +159,14 @@
 .mid-right {
   background-color: #1b2838;
   margin-left: 15%;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.mid-right p{
+  margin-top: 10%;
+  margin-bottom: 10%;
 }
 
 .purchase button {
