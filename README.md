@@ -7,13 +7,15 @@ live link https://staem.onrender.com/
 ## functionality:
 
  
-The application allows users to:
+# MVPs
 
-1. Browse through available games by category or search
-2. View detailed information about a specific game
-3. Add games to their personal library
-4. Write and post reviews about the games
-5. catagory search
+1. User Auth
+2. Hosting on Live Side
+3. Game Previews
+4. Cart/Storage (CRUD)
+5. Reviews/Comments(CRUD)
+6. Search/Filter
+7. Tags/Genre Filter
 
 
 
