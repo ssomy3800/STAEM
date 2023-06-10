@@ -1,5 +1,7 @@
-# STAEM
+# [STAEM](https://staem.onrender.com/)
 
+
+live link https://staem.onrender.com/
 ## Background: 
   This project is a clone of the gaming platform, Steam, aiming to reproduce the main functionalities and features that the platform offers. The application is built with a Ruby on Rails backend, React front end, and utilizes Redux as a state management library.
 ## functionality:
