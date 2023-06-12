@@ -27,6 +27,32 @@ live link https://staem.onrender.com/
 - Cart/Storage: User has one cart and one storage which displays game base on whether if it is purchased, can add game to cart as well. (CRUD)
 - Tagging System: Games can be tagged by categories, which users can use to search and filter games.
 
+## Home Page
+### Hovering carousel will change the main picture
+![hovering carousel](https://github.com/ssomy3800/STAEM/assets/48814249/966f762d-6086-4681-8447-b690b2e94643)
+
+### Press carousel pictures, or game block will redirect you to the game page
+
+### Presss any tags will redirect you to the specific tag page with all game listed under the tag
+
+##Sign Up/Login
+### Entering wrong form in signup or entering wrong credential pair will resulting an error warning![image](https://github.com/ssomy3800/STAEM/assets/48814249/59576de4-f053-459a-9da3-8b4a4cff3e37)
+
+### Provided a Demo Login.
+
+## Game Page
+### Has a short game video
+### allow user to put the game into the cart through add to cart button, which changes the button to "go to cart!", press it will redirect user to the cart page.
+
+## Cart Page
+
+### Press add to cart button without login will redirect user to the login page
+### Allow user to purchase the game or remove the game, purchase the game will resulting the game disappear in the cart and show up in storage, remove the game will resulting the game being removed.
+
+## Comments
+### Under game page, will allow user to do CRUD action to the comments, try to leave a comment without login will redirect user to login page.
+
+
 
 ## Technologies, Libraries, APIs:
 - Backend: Ruby on Rails
