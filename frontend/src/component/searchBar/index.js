@@ -9,12 +9,16 @@ const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const searchResults = useSelector((state) => state.games.searchResults);
   const dropdownRef = useRef(null);
+  let searchCooldownTimer;
 
   const handleSearch = (searchValue) => {
     setSearchTerm(searchValue);
-    if (searchValue.length >= 1) {
-      dispatch(fetchGamesByName(searchValue));
-    }
+    clearTimeout(searchCooldownTimer); // clear the timer at the start of function
+    searchCooldownTimer = setTimeout(() => {
+      if (searchValue.length >= 1) {
+        dispatch(fetchGamesByName(searchValue));
+      }
+    }, 1000);
   };
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -33,10 +37,10 @@ const SearchBar = () => {
   return (
     <div className="search-container">
       <div className="tag-container">
-        <span className="tag">Your Store</span>
+        {/* <span className="tag">Your Store</span>
         <span className="tag">Special Store</span>
         <span className="tag">Category</span>
-        <span className="tag">News</span>
+        <span className="tag">News</span> */}
       </div>
       <div className="search-bar-container">
         <input

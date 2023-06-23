@@ -26,7 +26,8 @@ function GamePage() {
 
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   const cartedItems = useSelector((state) => state.cart);
-
+  const [activeItem, setActiveItem] = useState(0);
+  const handleThumbClick = (index) => setActiveItem(index);
   const [purchased, setPurchased] = useState(null);
 
   const comments = useSelector((state) => state.comments.comments);
@@ -138,6 +139,7 @@ function GamePage() {
     </div>
   ));
   const firstImageUrl = game.images[Object.keys(game.images)[0]];
+  const lastImageUrl = game.images[Object.keys(game.images)[6]];
 
   return (
     <div
@@ -163,6 +165,23 @@ function GamePage() {
             infiniteLoop
             useKeyboardArrows
             showIndicators={false}
+            selectedItem={activeItem}
+            renderThumbs={() => [
+              // include an image that represents the video first
+              <img
+                onClick={() => handleThumbClick(0)}
+                src={lastImageUrl}
+                key="firstImage"
+              />,
+              // then map the rest of your images
+              ...Object.values(game.images).map((imageUrl, index) => (
+                <img
+                  onClick={() => handleThumbClick(index + 1)}
+                  src={imageUrl}
+                  key={`image-${index + 1}`}
+                />
+              )),
+            ]}
           >
             {game.video && (
               <div>
@@ -171,6 +190,7 @@ function GamePage() {
                   className="carousel-image"
                   src={game.video}
                   controls
+                  style={{ position: "relative", zIndex: 10, padding: "3%" }}
                 >
                   Your browser does not support the video tag.
                 </video>

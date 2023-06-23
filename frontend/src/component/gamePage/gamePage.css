@@ -159,12 +159,12 @@
 .mid-right {
   background-color: #1b2838;
   margin-left: 15%;
-  
+
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.mid-right p{
+.mid-right p {
   margin-top: 10%;
   margin-bottom: 10%;
 }
@@ -237,4 +237,13 @@
 .tags .tag:hover {
   background-color: #ddd;
   color: #000;
+}
+
+.game-carousel .thumb {
+  height: 48px;
+  width: 80px;
+}
+
+.game-images {
+  object-fit: fill;
 }

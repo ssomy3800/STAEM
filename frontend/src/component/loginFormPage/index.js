@@ -54,11 +54,10 @@ function LoginFormPage() {
 
   return (
     <div className="login">
-     
       <form onSubmit={handleSubmit}>
         <ul>{errors}</ul>
         <label>
-          Username or Email
+          Username
           <input
             className="login-input"
             type="text"

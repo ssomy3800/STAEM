@@ -43,7 +43,7 @@ function Carousel() {
               <h2>{game.title}</h2>
             </div>
             <div className="carousel-slide-ingame-images">
-              {game.images.slice(1).map((img, id) => (
+              {game.images.slice(1, 5).map((img, id) => (
                 <img
                   key={id}
                   src={img}

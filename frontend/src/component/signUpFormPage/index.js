@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as userActions from "../../store/usersreducer";
-
+import WebcamCapture from "../webcam";
 import "./SignupForm.css";
 import { csrfFetch } from "../../store/csrf";
 
@@ -11,14 +11,13 @@ function SignupFormPage() {
   const sessionUser = useSelector((state) => state.user.user);
 
   const [username, setUsername] = useState("");
-
   const [password, setPassword] = useState("");
   const [lastname, setLastname] = useState("");
   const [firstname, setFirstname] = useState("");
   const [email, setEmail] = useState("");
-
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [image, setImage] = useState(null); // New state for storing the captured image
 
   let confirmedPWError = false;
 
@@ -31,28 +30,36 @@ function SignupFormPage() {
 
     let errorMessages = [];
 
-    dispatch(
-      userActions.createUser({
-        username,
-        firstname,
-        lastname,
-        email,
-        password,
-      })
-    ).catch((err) => {
-      let data;
+    if (password === confirmPassword) {
+      dispatch(
+        userActions.createUser({
+          username,
+          firstname,
+          lastname,
+          email,
+          password,
+          image, // Include the image when dispatching the action
+        })
+      ).catch((err) => {
+        let data;
 
-      try {
-        data = JSON.parse(err.message);
-      } catch {
-        data = err.message;
-      }
-      if (data?.errors) errorMessages = [...errorMessages, ...data.errors[0]];
-      else errorMessages.push(data);
-      setErrors(errorMessages);
-      setPassword(""); // Reset the password field
-      setConfirmPassword(""); // Reset the confirmPassword field
-    });
+        try {
+          data = JSON.parse(err.message);
+        } catch {
+          data = err.message;
+        }
+        if (data?.errors) errorMessages = [...errorMessages, ...data.errors[0]];
+        else errorMessages.push(data);
+        setErrors(errorMessages);
+        setPassword(""); // Reset the password field
+        setConfirmPassword(""); // Reset the confirmPassword field
+      });
+    } else {
+      confirmedPWError = true;
+      setErrors([
+        "Confirm Password field must be the same as the Password field",
+      ]);
+    }
   };
 
   const getUsernameError = errors[0]?.find((error) =>
@@ -63,22 +70,16 @@ function SignupFormPage() {
     error.includes("Password")
   );
 
-  if (password !== confirmPassword) {
-    confirmedPWError = true;
-  }
   const ErrorList = () => (
     <ul>
       {errors[0]?.map((error, index) => (
         <li key={index}>{error}</li>
       ))}
-      {confirmedPWError && (
-        <li>Confirm Password field must be the same as the Password field</li>
-      )}
     </ul>
   );
+
   return (
     <div className="signup">
-      
       <ErrorList />
       <form onSubmit={handleSubmit}>
         <label>
