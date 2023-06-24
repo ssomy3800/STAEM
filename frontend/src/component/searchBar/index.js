@@ -9,12 +9,14 @@ const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const searchResults = useSelector((state) => state.games.searchResults);
   const dropdownRef = useRef(null);
-  let searchCooldownTimer;
+  const searchCooldownTimer = useRef(null);
 
   const handleSearch = (searchValue) => {
     setSearchTerm(searchValue);
-    clearTimeout(searchCooldownTimer); // clear the timer at the start of function
-    searchCooldownTimer = setTimeout(() => {
+    if (searchCooldownTimer.current) {
+      clearTimeout(searchCooldownTimer.current); // clear the timer at the start of function
+    }
+    searchCooldownTimer.current = setTimeout(() => {
       if (searchValue.length >= 1) {
         dispatch(fetchGamesByName(searchValue));
       }

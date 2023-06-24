@@ -49,7 +49,7 @@ function Navigation() {
             <i className="fa-brands fa-github"></i>
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/hong-chen-5779311a5/"
             target="_blank"
             rel="noopener noreferrer"
             className="github-button"

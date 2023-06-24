@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as userActions from "../../store/usersreducer";
-import WebcamCapture from "../webcam";
+
 import "./SignupForm.css";
 import { csrfFetch } from "../../store/csrf";
 
