@@ -134,7 +134,7 @@ function GamePage() {
   let imageEntries = Object.entries(game.images);
   const lastImageEntry = imageEntries.pop();
   const gameImages = imageEntries.map(([filename, imageUrl], index) => (
-    <div key={index}>
+    <div key={index} className="carousel-image-container">
       <img className="carousel-image" src={imageUrl} alt={filename} />
     </div>
   ));
@@ -172,6 +172,7 @@ function GamePage() {
                 onClick={() => handleThumbClick(0)}
                 src={lastImageUrl}
                 key="firstImage"
+                alt="videopreview"
               />,
               // then map the rest of your images
               ...Object.values(game.images).map((imageUrl, index) => (
@@ -179,6 +180,7 @@ function GamePage() {
                   onClick={() => handleThumbClick(index + 1)}
                   src={imageUrl}
                   key={`image-${index + 1}`}
+                  alt="game"
                 />
               )),
             ]}

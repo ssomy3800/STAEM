@@ -115,8 +115,8 @@
 }
 
 .home-game-image {
-  max-width: 184px;
-  max-height: 69px;
+  width: 150px;
+  height: 69px;
 }
 
 .home-game-info-container {
@@ -139,4 +139,8 @@
 .home-game-price {
   flex-basis: 10%;
   text-align: right;
+}
+
+.carousel-image-container {
+height: 100%;
 }
