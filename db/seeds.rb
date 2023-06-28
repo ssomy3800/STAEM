@@ -32,34 +32,16 @@ User.create!(
   )
   
   # Attach images and video for Lost Ark
-  lost_ark.images.attach(
-    io: URI.open("https://staem-seeds.s3.amazonaws.com/lostark.png"),
-    filename: "la-cover.png"
-  )
-  lost_ark.images.attach(
-    io: URI.open("https://staem-seeds.s3.amazonaws.com/la-ingame1.png"),
-    filename: "la1.png"
-  )
-  lost_ark.images.attach(
-    io: URI.open("https://staem-seeds.s3.amazonaws.com/la-ingame2.png"),
-    filename: "la2.png"
-  )
-  lost_ark.images.attach(
-    io: URI.open("https://staem-seeds.s3.amazonaws.com/la-ingame3.png"),
-    filename: "la3.png"
-  )
-  lost_ark.images.attach(
-    io: URI.open("https://staem-seeds.s3.amazonaws.com/la-ingame4.png"),
-    filename: "la4.png"
-  )
-  lost_ark.images.attach(
-    io: URI.open("https://staem-seeds.s3.amazonaws.com/la-ingame5.png"),
-    filename: "la5.png"
-  )
-  lost_ark.images.attach(
-    io: URI.open("https://staem-seeds.s3.amazonaws.com/la-bg.png"),
-    filename: "la-bg.png"
-  )
+  lost_ark.images.attach([
+    { io: URI.open("https://staem-seeds.s3.amazonaws.com/lostark.png"), filename: "la-cover.png" },
+    { io: URI.open("https://staem-seeds.s3.amazonaws.com/la-ingame1.png"), filename: "la1.png" },
+    { io: URI.open("https://staem-seeds.s3.amazonaws.com/la-ingame2.png"), filename: "la2.png" },
+    { io: URI.open("https://staem-seeds.s3.amazonaws.com/la-ingame3.png"), filename: "la3.png" },
+    { io: URI.open("https://staem-seeds.s3.amazonaws.com/la-ingame4.png"), filename: "la4.png" },
+    { io: URI.open("https://staem-seeds.s3.amazonaws.com/la-ingame5.png"), filename: "la5.png" },
+    { io: URI.open("https://staem-seeds.s3.amazonaws.com/la-bg.png"),filename: "la-bg.png"}
+  ])
+
 
   
   lost_ark.video.attach(
@@ -81,34 +63,16 @@ csgo = Game.create(
 
   
   # Attach images and video for Lost Ark
-  csgo.images.attach(
-    io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo.png"),
-    filename: "csgo-cover.png"
-  )
-  csgo.images.attach(
-    io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-ingame1.png"),
-    filename: "csgo1.png"
-  )
-  csgo.images.attach(
-    io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-ingame2.png"),
-    filename: "csgo2.png"
-  )
-  csgo.images.attach(
-    io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-ingame3.png"),
-    filename: "csgo3.png"
-  )
-  csgo.images.attach(
-    io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-ingame4.png"),
-    filename: "csgo4.png"
-  )
-  csgo.images.attach(
-    io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-ingame5.png"),
-    filename: "csgo5.png"
-  )
-  csgo.images.attach(
-    io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-bg.png"),
-    filename: "csgo-bg.png"
-  )
+  csgo.images.attach([
+    { io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo.png"), filename: "csgo-cover.png" },
+    { io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-ingame1.png"), filename: "csgo1.png" },
+    { io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-ingame2.png"), filename: "csgo2.png" },
+    { io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-ingame3.png"), filename: "csgo3.png" },
+    { io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-ingame4.png"), filename: "csgo4.png" },
+    { io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-ingame5.png"), filename: "csgo5.png" },
+    { io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-bg.png"), filename: "csgo-bg.png" }
+  ])
+  
 
   csgo.video.attach(
     io: URI.open("https://staem-seeds.s3.amazonaws.com/csgo-trailer.webm"),
@@ -131,35 +95,15 @@ csgo = Game.create(
   
     
     # Attach images and video for Lost Ark
-    dbd.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD.png"),
-      filename: "DBD-cover.png"
-    )
-    dbd.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-ingame1.png"),
-      filename: "DBD1.png"
-    )
-    dbd.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-ingame2.png"),
-      filename: "DBD2.png"
-    )
-    dbd.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-ingame3.png"),
-      filename: "DBD3.png"
-    )
-    dbd.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-ingame4.png"),
-      filename: "DBD4.png"
-    )
-    dbd.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-ingame5.png"),
-      filename: "DBD5.png"
-    )
-
-    dbd.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-bg.png"),
-      filename: "DBD-bg.png"
-    )
+    dbd.images.attach([
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD.png"), filename: "DBD-cover.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-ingame1.png"), filename: "DBD1.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-ingame2.png"), filename: "DBD2.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-ingame3.png"), filename: "DBD3.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-ingame4.png"), filename: "DBD4.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-ingame5.png"), filename: "DBD5.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/DBD-bg.png"), filename: "DBD-bg.png" }
+    ])
 
   
     
@@ -184,34 +128,15 @@ csgo = Game.create(
     )
     
     # Attach images and video for Lost Sky
-    lost_sky.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/ls-cover.png"),
-      filename: "ls-cover.png"
-    )
-    lost_sky.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/ls-ingame1.png"),
-      filename: "ls1.png"
-    )
-    lost_sky.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/ls-ingame2.png"),
-      filename: "ls2.png"
-    )
-    lost_sky.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/ls-ingame3.png"),
-      filename: "ls3.png"
-    )
-    lost_sky.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/ls-ingame4.png"),
-      filename: "ls4.png"
-    )
-    lost_sky.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/ls-ingame5.png"),
-      filename: "ls5.png"
-    )
-    lost_sky.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/ls-bg.png"),
-      filename: "ls-bg.png"
-    )
+    lost_sky.images.attach([
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/ls-cover.png"), filename: "ls-cover.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/ls-ingame1.png"), filename: "ls1.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/ls-ingame2.png"), filename: "ls2.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/ls-ingame3.png"), filename: "ls3.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/ls-ingame4.png"), filename: "ls4.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/ls-ingame5.png"), filename: "ls5.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/ls-bg.png"), filename: "ls-bg.png" }
+    ])
 
     lost_sky.video.attach(
       io: URI.open("https://staem-seeds.s3.amazonaws.com/lostsky-trailer.webm"),
@@ -232,34 +157,15 @@ csgo = Game.create(
       publish_date: Date.new(2005, 1, 11)
     )
     
-    re4.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/re4-cover.png"),
-      filename: "re4-cover.png"
-    )
-    re4.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/re4-ingame1.png"),
-      filename: "re4-ingame1.png"
-    )
-    re4.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/re4-ingame2.png"),
-      filename: "re4-ingame2.png"
-    )
-    re4.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/re4-ingame3.png"),
-      filename: "re4-ingame3.png"
-    )
-    re4.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/re4-ingame4.png"),
-      filename: "re4-ingame4.png"
-    )
-    re4.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/re4-ingame5.png"),
-      filename: "re4-ingame5.png"
-    )
-    re4.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/re4-bg.png"),
-      filename: "re4-bg.png"
-    )
+    re4.images.attach([
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/re4-cover.png"), filename: "re4-cover.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/re4-ingame1.png"), filename: "re4-ingame1.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/re4-ingame2.png"), filename: "re4-ingame2.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/re4-ingame3.png"), filename: "re4-ingame3.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/re4-ingame4.png"), filename: "re4-ingame4.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/re4-ingame5.png"), filename: "re4-ingame5.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/re4-bg.png"), filename: "re4-bg.png" }
+    ])
   
     
     re4.video.attach(
@@ -280,34 +186,15 @@ csgo = Game.create(
     )
     
 
-    sf.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/sf-cover.png"),
-      filename: "sf-cover.png"
-    )
-    sf.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/sf-ingame1.png"),
-      filename: "sf-ingame1.png"
-    )
-    sf.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/sf-ingame2.png"),
-      filename: "sf-ingame2.png"
-    )
-    sf.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/sf-ingame3.png"),
-      filename: "sf-ingame3.png"
-    )
-    sf.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/sf-ingame4.png"),
-      filename: "sf-ingame4.png"
-    )
-    sf.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/sf-ingame5.png"),
-      filename: "sf-ingame5.png"
-    )
-    sf.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/sf-bg.png"),
-      filename: "sf-bg.png"
-    )
+    sf.images.attach([
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/sf-cover.png"), filename: "sf-cover.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/sf-ingame1.png"), filename: "sf-ingame1.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/sf-ingame2.png"), filename: "sf-ingame2.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/sf-ingame3.png"), filename: "sf-ingame3.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/sf-ingame4.png"), filename: "sf-ingame4.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/sf-ingame5.png"), filename: "sf-ingame5.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/sf-bg.png"), filename: "sf-bg.png" }
+    ])
   
     
     sf.video.attach(
@@ -327,34 +214,15 @@ csgo = Game.create(
       publish_date: Date.new(2019, 2, 4)
     )
     
-    apex.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/apex-cover.png"),
-      filename: "apex-cover.png"
-    )
-    apex.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/apex-ingame1.png"),
-      filename: "apex-ingame1.png"
-    )
-    apex.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/apex-ingame2.png"),
-      filename: "apex-ingame2.png"
-    )
-    apex.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/apex-ingame3.png"),
-      filename: "apex-ingame3.png"
-    )
-    apex.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/apex-ingame4.png"),
-      filename: "apex-ingame4.png"
-    )
-    apex.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/apex-ingame5.png"),
-      filename: "apex-ingame5.png"
-    )
-    apex.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/apex-bg.png"),
-      filename: "apex-bg.png"
-    )
+    apex.images.attach([
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/apex-cover.png"), filename: "apex-cover.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/apex-ingame1.png"), filename: "apex-ingame1.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/apex-ingame2.png"), filename: "apex-ingame2.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/apex-ingame3.png"), filename: "apex-ingame3.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/apex-ingame4.png"), filename: "apex-ingame4.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/apex-ingame5.png"), filename: "apex-ingame5.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/apex-bg.png"), filename: "apex-bg.png" }
+    ])
   
     
     apex.video.attach(
@@ -375,34 +243,15 @@ csgo = Game.create(
     )
     
     
-    cod.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/cod-cover.png"),
-      filename: "cod-cover.png"
-    )
-    cod.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/cod-ingame1.png"),
-      filename: "cod-ingame1.png"
-    )
-    cod.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/cod-ingame2.png"),
-      filename: "cod-ingame2.png"
-    )
-    cod.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/cod-ingame3.png"),
-      filename: "cod-ingame3.png"
-    )
-    cod.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/cod-ingame4.png"),
-      filename: "cod-ingame4.png"
-    )
-    cod.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/cod-ingame5.png"),
-      filename: "cod-ingame5.png"
-    )
-    cod.images.attach(
-      io: URI.open("https://staem-seeds.s3.amazonaws.com/cod-bg.png"),
-      filename: "cod-bg.png"
-    )
+    cod.images.attach([
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/cod-cover.png"), filename: "cod-cover.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/cod-ingame1.png"), filename: "cod-ingame1.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/cod-ingame2.png"), filename: "cod-ingame2.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/cod-ingame3.png"), filename: "cod-ingame3.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/cod-ingame4.png"), filename: "cod-ingame4.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/cod-ingame5.png"), filename: "cod-ingame5.png" },
+      { io: URI.open("https://staem-seeds.s3.amazonaws.com/cod-bg.png"), filename: "cod-bg.png" }
+    ])
   
     
     cod.video.attach(

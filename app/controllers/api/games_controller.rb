@@ -5,7 +5,7 @@ class Api::GamesController < ApplicationController
       if params[:search].present?
         @games = Game.where("title ILIKE ?", "%#{params[:search]}%")
       else
-        @games = Game.all
+        @games = Game.order(publish_date: :desc)
       end
     end
   

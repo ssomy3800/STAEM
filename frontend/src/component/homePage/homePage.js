@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-
+import GameDetails from "../gameDetails";
 import React, { useEffect } from "react";
 import Carousel from "../Carousel";
 import "./HomePage.css";
@@ -24,7 +24,7 @@ function HomePage() {
   );
   const games = useSelector((state) => state.games.list);
   const tags = useSelector((state) => state.tags); // Access tags from the Redux store
-
+  const [hoveredGame, setHoveredGame] = React.useState(null);
   useEffect(() => {
     dispatch(tagActions.getTags()); // Fetch tags when the component mounts
     dispatch(fetchGames());
@@ -77,7 +77,12 @@ function HomePage() {
 
           <div className="home-games-container">
             {games.map((game) => (
-              <Link to={`/games/${game.id}`} key={game.id}>
+              <Link
+                to={`/games/${game.id}`}
+                key={game.id}
+                onMouseEnter={() => setHoveredGame(game)}
+                onMouseLeave={() => setHoveredGame(null)}
+              >
                 <div key={game.id} className="home-game-row">
                   <div className="home-game-image-container">
                     <img
@@ -100,6 +105,7 @@ function HomePage() {
                 </div>
               </Link>
             ))}
+            {hoveredGame && <GameDetails game={hoveredGame} />}
           </div>
         </div>
       </div>
