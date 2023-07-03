@@ -68,7 +68,7 @@ const CartPage = () => {
           </div>
         ))}
       </div>
-      <button onClick={() => handlePurchaseAll(currentUser.id)}>
+      <button id="purchase-all" onClick={() => handlePurchaseAll(currentUser.id)}>
         Purchase All
       </button>
     </div>

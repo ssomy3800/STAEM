@@ -60,7 +60,7 @@ export const fetchUserStorage = (userId) => async (dispatch) => {
         (item) => item.gameId
       );
 
-      dispatch(fetchCartGames(gameIds));
+      return dispatch(fetchCartGames(gameIds));
     } else {
       // If the storage is empty, clear the games
       dispatch(clearGames());

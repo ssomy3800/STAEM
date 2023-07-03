@@ -72,6 +72,7 @@ export const fetchCartGames = (gameIds) => async (dispatch) => {
   }
 
   dispatch(setGames(games));
+  return false;
 };
 
 export const fetchGamesByName = (name) => async (dispatch) => {

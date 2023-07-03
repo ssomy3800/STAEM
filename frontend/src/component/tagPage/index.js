@@ -25,7 +25,13 @@ const TagPage = () => {
         {games.map((game) => (
           <Link to={`/games/${game.id}`} key={game.id}>
             <div key={game.id} className="home-game-row">
-              <div className="home-game-image-container"></div>
+              <div className="home-game-image-container">
+                <img
+                  className="home-game-image"
+                  src={game.image}
+                  alt={game.title}
+                />
+              </div>
               <div className="home-game-info-container">
                 <h3 className="home-game-title">{game.title}</h3>
                 <div className="home-game-tags">

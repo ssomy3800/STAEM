@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUserStorage } from "../../store/carteditemreducer";
 import "./Storage.css";
 
 const StoragePage = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   const id = currentUser ? currentUser.id : null;
   const dispatch = useDispatch();
@@ -12,10 +13,17 @@ const StoragePage = () => {
 
   useEffect(() => {
     if (id) {
-      dispatch(fetchUserStorage(id));
+      dispatch(fetchUserStorage(id)).then((done) => {
+        if (done === false) {
+          setIsLoading(false);
+        }
+      });
     }
   }, [dispatch, id]);
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="storage-container">
       <div className="home-games-container">
@@ -43,7 +51,6 @@ const StoragePage = () => {
           </div>
         ))}
       </div>
-
     </div>
   );
 };
