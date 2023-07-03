@@ -74,37 +74,39 @@ function HomePage() {
               <div className="text-overlay">Science-Fiction</div>
             </Link>
           </div>
-
-          <div className="home-games-container">
-            {games.map((game) => (
-              <Link
-                to={`/games/${game.id}`}
-                key={game.id}
-                onMouseEnter={() => setHoveredGame(game)}
-                onMouseLeave={() => setHoveredGame(null)}
-              >
-                <div key={game.id} className="home-game-row">
-                  <div className="home-game-image-container">
-                    <img
-                      className="home-game-image"
-                      src={game.images[0]}
-                      alt={game.title}
-                    />
-                  </div>
-                  <div className="home-game-info-container">
-                    <h3 className="home-game-title">{game.title}</h3>
-                    <div className="home-game-tags">
-                      {game.tags.map((tag) => (
-                        <span key={tag} className="home-game-tag">
-                          {tag}
-                        </span>
-                      ))}
+          <div className="home-games-and-details">
+            <div className="home-games-container">
+              {games.map((game) => (
+                <Link
+                  to={`/games/${game.id}`}
+                  key={game.id}
+                  onMouseEnter={() => setHoveredGame(game)}
+                  onMouseLeave={() => setHoveredGame(null)}
+                >
+                  <div key={game.id} className="home-game-row">
+                    <div className="home-game-image-container">
+                      <img
+                        className="home-game-image"
+                        src={game.images[0]}
+                        alt={game.title}
+                      />
                     </div>
+
+                    <div className="home-game-info-container">
+                      <h3 className="home-game-title">{game.title}</h3>
+                      <div className="home-game-tags">
+                        {game.tags.map((tag) => (
+                          <span key={tag} className="home-game-tag">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="home-game-price">${game.price}</div>
                   </div>
-                  <div className="home-game-price">${game.price}</div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
             {hoveredGame && <GameDetails game={hoveredGame} />}
           </div>
         </div>

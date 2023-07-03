@@ -246,7 +246,7 @@ function GamePage() {
           {comments.map((comment) => (
             <div key={comment.id} className="comment">
               {editingCommentId === comment.id ? (
-                <>
+                <div className="create-comment-button">
                   <input
                     type="text"
                     value={activeComment.content}
@@ -283,7 +283,7 @@ function GamePage() {
                   <button onClick={() => setEditingCommentId(null)}>
                     Cancel
                   </button>
-                </>
+                </div>
               ) : (
                 <>
                   <div className="comment-header">
@@ -292,14 +292,14 @@ function GamePage() {
                   </div>
                   <div className="comment-content">{comment.content}</div>
                   {currentUser && currentUser.id === comment.user_id && (
-                    <>
+                    <div className="exist-comment-button">
                       <button onClick={() => handleEditComment(comment.id)}>
                         Edit
                       </button>
                       <button onClick={() => handleDeleteComment(comment.id)}>
                         Delete
                       </button>
-                    </>
+                    </div>
                   )}
                 </>
               )}
@@ -310,6 +310,7 @@ function GamePage() {
           <textarea
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
+            maxLength={100}
           />
           <button
             className={newCommentLike ? "button-selected" : ""}

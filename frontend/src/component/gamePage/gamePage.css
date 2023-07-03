@@ -63,30 +63,27 @@
 .comments {
   display: flex;
   flex-direction: row; /* Changing from row to column */
-  min-height: 50vh;
+  min-height: 500px;
   margin: 0 auto;
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    color-stop(50%, rgba(0, 0, 0, 0)),
-    color-stop(100%, rgba(0, 0, 0, 0.4))
-  );
+  overflow-y: auto;
+  background: rgba(174, 214, 229, 0.4);
   width: 70%; /* Ensures it takes full width of the parent container */
 }
-
+.comments::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari and Opera */
+}
 .comment {
-  background-color: grey;
+  background: #1b2838;
   padding: 1%;
   margin: 1% 0;
-  height: 30%;
+  min-height: 30%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .existing-comments {
   display: flex;
-  background-color: #3f5460;
+  /* background-color: #0f415e; */
   min-height: 30%;
   flex-direction: column;
   width: 50%;
@@ -98,12 +95,15 @@
 
 .comment-content {
   padding: 10px 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .new-comment-form {
-  margin-top: 20%;
+  margin-top: 2%;
   display: flex;
   width: 50%;
+  align-items: center;
   flex-direction: column;
   justify-content: space-between;
   height: 75%; /* Increased the height as per your requirement */
@@ -111,35 +111,54 @@
 
 .new-comment-form textarea {
   width: 75%; /* Set to 75% as per your requirement */
-  min-height: 50%;
+  min-height: 30vh;
   margin: auto;
 }
 
-.button-selected {
+.comments .button-selected {
   background-color: #4caf50;
   color: white;
 }
 
 /* Removing margins and padding from buttons */
 .comments button {
-  width: 70%;
-  margin-left: 15%;
-  padding: 0;
+  width: 30%;
+  /* margin-left: 15%; */
+  padding: 10px;
+  color: #ffffff;
+  background-color: #196ed7;
+  border-radius: 5%;
 }
-
+.create-comment-button input {
+  min-height: 70%;
+  min-width: 70%;
+}
+.create-comment-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-left: 50%; */
+}
+.comments button:hover {
+  background-color: #66c0f4;
+}
+.exist-comment-button {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
 .game-body .mid {
   display: flex;
   justify-content: space-between;
   width: 70%;
   text-align: center;
+
   margin: 0 auto;
 }
 .about {
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 30vh;
   background-color: darkblue;
-  margin: auto;
-  margin-left: 5%;
   margin-top: 10%;
   color: #acb2b8;
 
@@ -153,27 +172,33 @@
 .long-description-header {
   color: red;
   padding: 10px;
+  font-size: 200%;
   font-weight: bold;
   margin-bottom: 10px;
 }
-
+.long-description-body {
+  padding: 30px;
+  font-size: 110%;
+}
 .mid-right {
   background-color: #1b2838;
-  margin-left: 15%;
-
+  margin-left: 1%;
+  width: 50%;
+  height: 30vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .mid-right p {
   margin-top: 10%;
-  margin-bottom: 10%;
+  /* margin-bottom: 10%; */
 }
 
 .purchase button {
   color: white;
   width: 50%;
   height: 90%;
+
   background: linear-gradient(to right, #75b022 5%, #588a1b 95%);
 }
 
