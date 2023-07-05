@@ -88,7 +88,7 @@ export const fetchUserCart = (userId) => async (dispatch) => {
         (item) => item.gameId
       );
 
-      dispatch(fetchCartGames(gameIds));
+      return dispatch(fetchCartGames(gameIds));
     } else {
       // If the cart is empty, clear the games
       dispatch(clearGames());

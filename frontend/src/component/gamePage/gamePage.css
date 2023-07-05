@@ -83,7 +83,7 @@
 }
 .existing-comments {
   display: flex;
-  /* background-color: #0f415e; */
+  background-color: #0f415e;
   min-height: 30%;
   flex-direction: column;
   width: 50%;

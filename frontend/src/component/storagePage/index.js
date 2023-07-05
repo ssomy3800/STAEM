@@ -22,10 +22,13 @@ const StoragePage = () => {
   }, [dispatch, id]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="loading">Loading...</div>;
   }
   return (
     <div className="storage-container">
+      <div className="storage-title">
+        <span>Your Storage</span>
+      </div>
       <div className="home-games-container">
         {games.map((game) => (
           <div key={game.id} className="home-game-row">

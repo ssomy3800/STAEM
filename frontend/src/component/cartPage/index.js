@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Cart.css";
 import {
@@ -11,14 +11,22 @@ const CartPage = () => {
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
   const id = currentUser ? currentUser.id : null;
   const dispatch = useDispatch();
-
+  const [isLoading, setIsLoading] = useState(true);
   const games = useSelector((state) => state.games.list);
 
   useEffect(() => {
     if (id) {
-      dispatch(fetchUserCart(id));
+      dispatch(fetchUserCart(id)).then((done) => {
+        if (done === false) {
+          setIsLoading(false);
+        }
+      });
     }
   }, [dispatch, id]);
+
+  if (isLoading) {
+    return <div className="loading">Loading...</div>;
+  }
 
   const handleRemoveFromCart = (gameId, userId) => {
     dispatch(removeGameFromCart(gameId, userId));
@@ -36,6 +44,9 @@ const CartPage = () => {
 
   return (
     <div className="cart-container">
+      <div className="cart-title">
+        <span>Your Cart</span>
+      </div>
       <div className="home-games-container">
         {games.map((game) => (
           <div key={game.id} className="home-game-row">
@@ -56,10 +67,14 @@ const CartPage = () => {
                 ))}
               </div>
             </div>
-            <button onClick={() => handlePurchaseItem(game.id, currentUser.id)}>
+            <button
+              className="cart-button"
+              onClick={() => handlePurchaseItem(game.id, currentUser.id)}
+            >
               Purchase
             </button>
             <button
+              className="cart-button"
               onClick={() => handleRemoveFromCart(game.id, currentUser.id)}
             >
               Remove from Cart
@@ -68,7 +83,11 @@ const CartPage = () => {
           </div>
         ))}
       </div>
-      <button id="purchase-all" onClick={() => handlePurchaseAll(currentUser.id)}>
+      <button
+        id="purchase-all"
+        className="cart-button"
+        onClick={() => handlePurchaseAll(currentUser.id)}
+      >
         Purchase All
       </button>
     </div>
