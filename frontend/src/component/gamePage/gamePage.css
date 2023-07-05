@@ -130,8 +130,9 @@
   border-radius: 5%;
 }
 .create-comment-button input {
-  min-height: 70%;
+  min-height: 120px;
   min-width: 70%;
+  margin-bottom: 1%;
 }
 .create-comment-button {
   display: flex;
