@@ -11,6 +11,14 @@
   z-index: 2;
 }
 
+.search-container {
+  color: white;
+}
+
+.welcome {
+  margin-left: 20%;
+}
+
 .tag-container {
   display: flex;
   margin-left: 5%;
@@ -30,7 +38,7 @@
 
 .search-bar-container {
   display: flex;
-  margin-right: 5%;
+  margin-right: 20.5%;
   align-items: center;
 
   background: linear-gradient(to right, #75bbcdad, #8e9eab);
@@ -60,23 +68,20 @@
 .search-results-dropdown {
   position: absolute;
   top: 85%;
-  right: 3%;
+  right: 20%;
   width: 20%;
   background-color: lightgray;
   border-radius: 5px;
   padding: 3px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  
 }
 
 .search-result {
   display: flex;
   align-items: center;
-
 }
 
-.search-result-details{
+.search-result-details {
   margin-left: 20%;
   font-size: small;
-  
 }

@@ -1,13 +1,19 @@
 .navbar {
+  width: 100%;
+
+  background-color: #1b2738;
+}
+
+.navbar-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: static;
-  width: 100%;
   top: 0%;
   z-index: 1;
   color: white;
-  background-color: #1b2738;
+  width: 60%;
+  margin-left: 20%;
 }
 
 .fa-brands.fa-steam,
@@ -17,19 +23,19 @@
   height: 50px; /* should be the same as .sessionLinks height */
   line-height: 50px; /* vertically center the icon */
   width: 50px;
-  padding: 10px;
+  /* padding: 10px; */
   color: #ffffff; /* change the color of the icon */
   background-color: transparent;
 }
 
 .right {
-  align-items: center;
   margin-top: 10px;
-  margin-right: 20px;
+
 }
 .right a {
   color: white;
   text-decoration: none;
+  
 }
 .sessionLinks {
   display: inline-block;
@@ -41,7 +47,7 @@
   border: 1px solid #005000;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   border-radius: 3px;
-  margin-right: 10px;
+  margin-left: 10px;
   transition: 0.3s;
 }
 .storeLink {
@@ -96,7 +102,7 @@
     #00bfff
   ); /* blue gradient */
   background-color: transparent;
- 
+
   transition: 0.3s;
 }
 
@@ -173,6 +179,7 @@
   margin-right: 10px; /* Adjust the desired space between the elements */
 }
 .navbar .steamLogo {
+  /* margin-right: 25%; */
   display: flex;
   align-items: center;
   font-size: 32px;

@@ -10,6 +10,7 @@ const SearchBar = () => {
   const searchResults = useSelector((state) => state.games.searchResults);
   const dropdownRef = useRef(null);
   const searchCooldownTimer = useRef(null);
+  const sessionUser = useSelector((state) => state.user.user);
 
   const handleSearch = (searchValue) => {
     setSearchTerm(searchValue);
@@ -38,6 +39,9 @@ const SearchBar = () => {
 
   return (
     <div className="search-container">
+      <div className="welcome">
+        {sessionUser ? `Welcome! ${sessionUser.username}` : null}
+      </div>
       <div className="tag-container">
         {/* <span className="tag">Your Store</span>
         <span className="tag">Special Store</span>

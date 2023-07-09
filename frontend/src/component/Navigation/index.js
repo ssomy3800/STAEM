@@ -29,47 +29,49 @@ function Navigation() {
 
   return (
     <div className="navbar">
-      <div className="left">
-        <div className="steamLogo">
-          <NavLink exact to="/">
-            <i className="fa-brands fa-steam"></i>
-          </NavLink>
-          STAEM
+      <div className="navbar-content">
+        <div className="left">
+          <div className="steamLogo">
+            <NavLink exact to="/">
+              <i className="fa-brands fa-steam"></i>
+            </NavLink>
+            STAEM
+          </div>
+          {/* {sessionUser ? `Welcome! ${sessionUser.username}` : null} */}
         </div>
-        {sessionUser ? `Welcome! ${sessionUser.username}` : null}
-      </div>
-      <div className="mid">
-        <div className="store">
-          <a
-            href="https://github.com/ssomy3800"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="github-button"
-          >
-            <i className="fa-brands fa-github"></i>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/hong-chen-5779311a5/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="github-button"
-          >
-            <i className="fa-brands fa-linkedin"></i>
-          </a>
-          {sessionUser && (
-            <div className="storeLink">
-              <NavLink to="/cart">Cart</NavLink>
-            </div>
-          )}
-          {sessionUser && (
-            <div className="storeLink">
-              <NavLink to="/storage">Storage</NavLink>
-            </div>
-          )}
+        <div className="mid">
+          <div className="store">
+            <a
+              href="https://github.com/ssomy3800"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="github-button"
+            >
+              <i className="fa-brands fa-github"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/hong-chen-5779311a5/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="github-button"
+            >
+              <i className="fa-brands fa-linkedin"></i>
+            </a>
+            {sessionUser && (
+              <div className="storeLink">
+                <NavLink to="/cart">Cart</NavLink>
+              </div>
+            )}
+            {sessionUser && (
+              <div className="storeLink">
+                <NavLink to="/storage">Storage</NavLink>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
 
-      {sessionLinks}
+        {sessionLinks}
+      </div>
     </div>
   );
 }

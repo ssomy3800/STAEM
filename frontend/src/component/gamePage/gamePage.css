@@ -1,7 +1,18 @@
+.game-body {
+  color: white;
+  width: 60%;
+  margin-left: 20%;
+}
+
+.game-body .carousel .thumbs-wrapper {
+  margin: 0 !important;
+  width: 100%;
+}
+
 .game-page {
   display: flex;
   justify-content: space-between;
-  width: 70%;
+  width: 100%;
   text-align: center;
   margin: 0 auto;
   background: -webkit-gradient(
@@ -13,27 +24,35 @@
   );
 }
 
-.game-body {
-  color: white;
-}
-
 .game-carousel {
   width: 60%;
-  padding: 1%;
+
+  margin-top: 1%;
 }
 
 .game-title,
 .game-header {
-  margin-left: 15%;
   text-align: left;
 }
 
 .game-title {
-  font-size: xx-large;
+  color: white;
+  font-family: Motiva Sans, Arial, Helvetica, sans-serif;
+  font-size: 26px;
+  line-height: 32px;
+  text-overflow: ellipsis;
 }
 
 .game-header {
-  color: lightgray;
+  margin-top: 0.5%;
+  color: #56707f;
+  font-size: 14px;
+  font-family: "Motiva Sans", Sans-serif;
+  font-weight: normal;
+}
+
+.game-header a:hover {
+  color: white;
 }
 
 .rightside {
@@ -64,7 +83,7 @@
   display: flex;
   flex-direction: row; /* Changing from row to column */
   min-height: 500px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   overflow-y: auto;
   background: rgba(174, 214, 229, 0.4);
   width: 70%; /* Ensures it takes full width of the parent container */
@@ -113,6 +132,14 @@
   width: 75%; /* Set to 75% as per your requirement */
   min-height: 30vh;
   margin: auto;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 14px;
+  color: #000;
+  resize: vertical;
 }
 
 .comments .button-selected {
@@ -151,41 +178,67 @@
 .game-body .mid {
   display: flex;
   justify-content: space-between;
-  width: 70%;
+  width: 100%;
   text-align: center;
 
   margin: 0 auto;
 }
 .about {
-  width: 50%;
+  position: relative;
+  width: 60%;
   height: 30vh;
-  background-color: darkblue;
+
   margin-top: 10%;
-  color: #acb2b8;
+  line-height: 1.5em;
+  font-size: 14px;
+  margin-top: 30px;
+  overflow: hidden;
+  font-family: "Motiva Sans", Sans-serif;
+  font-weight: normal;
 
   display: flex;
   margin-bottom: 10%;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: left;
+  text-align: left;
+}
+
+.long-description-header::after {
+  margin-top: 3px;
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, #add8e6, transparent);
+}
+
+.about::before {
+  top: 0;
+}
+
+.about::after {
+  bottom: 0;
 }
 
 .long-description-header {
-  color: red;
-  padding: 10px;
-  font-size: 200%;
-  font-weight: bold;
-  margin-bottom: 10px;
+  font-family: "Motiva Sans", Sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 10px;
+  letter-spacing: 0.03em;
+  font-weight: normal;
 }
 .long-description-body {
-  padding: 30px;
+  /* padding: 30px; */
   font-size: 110%;
 }
 .mid-right {
   background-color: #1b2838;
-  margin-left: 1%;
-  width: 50%;
   height: 30vh;
+  width: 39%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -205,7 +258,7 @@
 
 .price-layer {
   height: 40%;
-  width: 30%;
+  width: 75%;
   display: flex;
   align-items: center; /* Align game info vertically */
   justify-content: flex-end; /* Align game info horizontally */
@@ -214,8 +267,8 @@
 }
 .purchase {
   height: 100px;
-  width: 35%;
-  margin-left: 15%;
+  width: 60%;
+  /* margin-left: 15%; */
   display: flex;
   align-items: center; /* Align game info vertically */
   justify-content: flex-start; /* Align game info horizontally */
