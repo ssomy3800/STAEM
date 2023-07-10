@@ -60,6 +60,21 @@
   width: 40%;
   padding: 3%;
 }
+.short-description {
+  color: #c6d4df;
+  font-size: 13px;
+  padding: 0px 16px 16px 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  max-height: 111px;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 18px;
+  padding-right: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
 .thumbs-wrapper .axis-vertical {
   margin: 5px !important;
 }
@@ -69,8 +84,68 @@
 }
 
 .game-info {
-  margin-top: 20px;
+  margin-top: 10px;
   color: #66c0f4;
+}
+.game-info-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.game-info-title {
+  flex: 1;
+  text-transform: uppercase;
+  font-size: 10px;
+  color: #556772;
+}
+.mid-right .game-info-title {
+  margin-left: 7%;
+  margin-top: 2%;
+}
+
+.game-info-content {
+  color: #67c1f5;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: row;
+  flex: 2;
+}
+.date {
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #8f98a0;
+  flex: 2;
+}
+
+.game-info-tag-container {
+  display: flex;
+  flex-direction: column;
+}
+.game-info-tag {
+  display: inline-block;
+  line-height: 19px;
+  padding: 0 7px;
+  color: #67c1f5;
+  background-color: rgba(103, 193, 245, 0.2);
+  box-shadow: none;
+  margin-right: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-bottom: 3px;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.game-info-content .positive,
+.game-info-content .average,
+.game-info-content .negative {
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
 }
 
 .game-carousel .carousel-image {
@@ -169,7 +244,7 @@
   border: 1px solid #66c0f4;
   background-color: transparent;
   color: #66c0f4;
-  padding: 5px 10px;
+  padding: none;
   border-radius: 15px;
   font-size: 16px;
   cursor: pointer;
@@ -200,7 +275,7 @@
 .comments button {
   width: 30%;
   /* margin-left: 15%; */
-  padding: 10px;
+  padding: 2px;
   color: #ffffff;
   background-color: #196ed7;
   border-radius: 5%;
@@ -333,7 +408,6 @@
 }
 
 .game-info {
-  margin-left: 5%;
   font-size: larger;
   text-align: left; /* Align text to the left */
 }
@@ -349,6 +423,9 @@
   margin-right: 20%;
 }
 
+.tags{
+  margin-left: 5%;
+}
 .tags p {
   margin-top: 20px;
   margin-bottom: 10px;
@@ -356,9 +433,10 @@
 
 .tags .tag {
   margin-right: 10px;
-  padding: 5px 10px;
+  padding: 2px 5px;
   background-color: #384959;
-  color: #ffffff;
+  color: #67c1f5;
+  font-size: 12px;
   text-decoration: none;
   display: inline-block;
   border-radius: 4px;
@@ -373,4 +451,70 @@
 .game-carousel .thumb {
   height: 48px;
   width: 80px;
+}
+.comment-statistics {
+  display: flex;
+  flex-direction: row;
+}
+
+.overall-likes,
+.recent-likes {
+  border: 1px solid black;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 15px;
+}
+.recent-likes {
+  background: rgba(148, 217, 255, 0.2);
+  width: 40%;
+}
+
+.overall-likes {
+  width: 60%;
+  background: rgba(5, 45, 66, 0.266);
+}
+
+.likes-header {
+  font-family: "Motiva Sans", Sans-serif;
+  font-weight: normal;
+  font-size: 15px;
+  margin-bottom: 5px;
+  color: #e5e5e5;
+  margin-bottom: 10px;
+}
+
+.stat-body {
+  display: flex;
+  flex-direction: row;
+}
+.positive {
+  font-family: "Motiva Sans", Sans-serif;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 9px;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+  color: #66c0f4;
+}
+
+.average {
+  font-family: "Motiva Sans", Sans-serif;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 9px;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+  color: orange;
+}
+
+.negative {
+  font-family: "Motiva Sans", Sans-serif;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 9px;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+  color: red;
+}
+
+.percentage {
+  font-size: 12px;
+  color: #8ba6b6;
+  font-family: Arial, Helvetica, sans-serif;
 }

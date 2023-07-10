@@ -34,10 +34,20 @@ const deleteComment = (commentId) => ({
 
 // THUNK ACTIONS
 export const fetchComments = (gameId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/games/${gameId}/comments`);
+  try {
+    const response = await csrfFetch(`/api/games/${gameId}/comments`);
 
-  const comments = await response.json();
-  dispatch(setComments(comments));
+    if (!response.ok) {
+      throw new Error("Failed to fetch comments");
+    }
+
+    const comments = await response.json();
+    dispatch(setComments(comments));
+    return true; // Return true when the comments are successfully fetched.
+  } catch (error) {
+    console.error("Failed to fetch comments:", error);
+    return false; // Return false when the fetch operation fails.
+  }
 };
 export const setActiveCommentId = (commentId) => async (dispatch, getState) => {
   const comments = getState().comments.comments;

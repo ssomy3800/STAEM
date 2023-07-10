@@ -32,7 +32,7 @@ function GamePage() {
   const [activeItem, setActiveItem] = useState(0);
   const handleThumbClick = (index) => setActiveItem(index);
   const [purchased, setPurchased] = useState(null);
-
+  const [loading, setLoading] = useState(true);
   const comments = useSelector((state) => state.comments.comments);
   const activeComment = useSelector((state) => state.comments.active);
 
@@ -43,7 +43,10 @@ function GamePage() {
 
   useEffect(() => {
     if (game) {
-      dispatch(fetchComments(game.id));
+      dispatch(fetchComments(game.id)).then((result) => {
+        // If fetchComments returned true, set loading to false. Otherwise, handle the error (set loading to false as well in this case).
+        setLoading(!result);
+      });
     }
   }, [dispatch, game]);
 
@@ -79,6 +82,25 @@ function GamePage() {
     dispatch(setActiveComment(null));
     setEditingCommentId(null); // reset the comment currently being edited
   };
+
+  let overallLikes, recentAverageLikes;
+
+  // Only calculate likes percentages if comments are not empty
+  if (!loading) {
+    const totalComments = comments.length;
+    const totalLikes = comments.filter(
+      (comment) => comment.likes === true
+    ).length;
+
+    overallLikes = (totalLikes / totalComments) * 100;
+
+    // Calculate recent likes
+    let recentComments = comments.slice(-5);
+    const recentLikes = recentComments.filter(
+      (comment) => comment.likes === true
+    ).length;
+    recentAverageLikes = (recentLikes / recentComments.length) * 100;
+  }
   useEffect(() => {
     if (game) {
       let found = false;
@@ -129,6 +151,9 @@ function GamePage() {
       history.push("/login");
     }
   };
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (!game) {
     return <div>Loading...</div>;
@@ -209,10 +234,61 @@ function GamePage() {
           <div className="rightside">
             <img src={firstImageUrl} alt="Game Cover" className="game-cover" />
             <div className="game-info">
-              <h2>{game.title}</h2>
-              <p>Publisher: {game.publisher}</p>
-              <p>Developer: {game.developer}</p>
-              <p>Publish Date: {game.publishDate}</p>
+              <p className="short-description">{game.shortDescription}</p>
+              <div className="game-info-section">
+                <div className="game-info-title">Publisher:</div>
+                <div className="game-info-content">{game.publisher}</div>
+              </div>
+              <div className="game-info-section">
+                <div className="game-info-title">Developer:</div>
+                <div className="game-info-content">{game.developer}</div>
+              </div>
+              <div className="game-info-section">
+                <div className="game-info-title">Publish Date:</div>
+                <div className="date">{game.publishDate}</div>
+              </div>
+              <div className="game-info-section">
+                <div className="game-info-title">Overall Views:</div>
+                <div className="game-info-content">
+                  {overallLikes >= 70 && (
+                    <div className="positive">Very positive</div>
+                  )}
+                  {overallLikes < 70 && overallLikes >= 30 && (
+                    <div className="average">Average</div>
+                  )}
+                  {overallLikes < 30 && (
+                    <div className="negative">Negative</div>
+                  )}
+                  <div className="percentage">({overallLikes.toFixed(2)}%)</div>
+                </div>
+              </div>
+              <div className="game-info-section">
+                <div className="game-info-title">Most Recent Views:</div>
+                <div className="game-info-content">
+                  {recentAverageLikes >= 70 && (
+                    <div className="positive">Very positive</div>
+                  )}
+                  {recentAverageLikes < 70 && recentAverageLikes >= 30 && (
+                    <div className="average">Average</div>
+                  )}
+                  {recentAverageLikes < 30 && (
+                    <div className="negative">Negative</div>
+                  )}
+                  <div className="percentage">
+                    ({recentAverageLikes.toFixed(2)}%)
+                  </div>
+                </div>
+              </div>
+              <div className="game-info-tag-container">
+                <div className="game-info-title">Most Popular Tags:</div>
+                <div className="game-info-content">
+                  {game.tags.slice(0, 5).map((tag, index) => (
+                    <span key={index} className="game-info-tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -225,14 +301,31 @@ function GamePage() {
             <p className="long-description-body">{game.longDescription}</p>
           </div>
           <div className="mid-right">
-            <p id="Short-description">{game.shortDescription}</p>
-            <div className="tags">
-              <p>Tags:</p>
-              {game.tags.map((tag, index) => (
-                <Link key={index} to={`/tags/${tag}`} className="tag">
-                  {tag}
-                </Link>
-              ))}
+            <div className="game-info">
+              <div className="game-info-section">
+                <div className="game-info-title">Title:</div>
+                <div className="game-info-content">{game.title}</div>
+              </div>
+              <div className="game-info-section">
+                <div className="game-info-title">Publisher:</div>
+                <div className="game-info-content">{game.publisher}</div>
+              </div>
+              <div className="game-info-section">
+                <div className="game-info-title">Developer:</div>
+                <div className="game-info-content">{game.developer}</div>
+              </div>
+              <div className="game-info-section">
+                <div className="game-info-title">Release Date:</div>
+                <div className="game-info-content">{game.publishDate}</div>
+              </div>
+              <div className="tags">
+                <p className="game-info-title">Genre:</p>
+                {game.tags.map((tag, index) => (
+                  <Link key={index} to={`/tags/${tag}`} className="tag">
+                    {tag}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -254,12 +347,34 @@ function GamePage() {
         <div className="comments">
           <div className="comment-statistics">
             <div className="overall-likes">
-              {/* Use a placeholder value here, replace with actual average overall likes */}
-              <span>Average overall likes: 80%</span>
+              <div className="likes-header">Overall Reviews:</div>
+              <div className="stat-body">
+                {overallLikes >= 70 && (
+                  <div className="positive">Very positive</div>
+                )}
+                {overallLikes < 70 && overallLikes >= 30 && (
+                  <div className="average">Average</div>
+                )}
+                {overallLikes < 30 && <div className="negative">Negative</div>}
+                <div className="percentage">({overallLikes.toFixed(2)}%)</div>
+              </div>
             </div>
             <div className="recent-likes">
-              {/* Use a placeholder value here, replace with actual recent likes */}
-              <span>Recent comment likes: 90%, 85%, 80%, 75%, 70%</span>
+              <div className="likes-header">Recent Reviews:</div>
+              <div className="stat-body">
+                {recentAverageLikes >= 70 && (
+                  <div className="positive">Very positive</div>
+                )}
+                {recentAverageLikes < 70 && recentAverageLikes >= 30 && (
+                  <div className="average">Average</div>
+                )}
+                {recentAverageLikes < 30 && (
+                  <div className="negative">Negative</div>
+                )}
+                <div className="percentage">
+                  ({recentAverageLikes.toFixed(2)}%)
+                </div>
+              </div>
             </div>
           </div>
 

@@ -327,3 +327,91 @@ CartedItem.create(
   game: dbd,
   purchased: false
 )
+
+
+
+user = User.first
+
+# Create comments for Lost Ark
+lost_ark.comments.create!(
+  [
+    { content: "Great game with incredible graphics!", likes: false, user: user, username: user.username },
+    { content: "Really enjoying the combat system.", likes: true, user: user, username: user.username },
+    { content: "Love the variety of classes available.", likes: true, user: user, username: user.username },
+    { content: "The world is rich and well developed.", likes: false, user: user, username: user.username },
+    { content: "One of the best MMORPGs I've played in a while.", likes: true, user: user, username: user.username }
+  ]
+)
+
+# Create comments for CS:GO
+csgo.comments.create!(
+  [
+    { content: "Addictive gameplay and intense matches!", likes: true, user: user, username: user.username },
+    { content: "Great selection of weapons and maps.", likes: true, user: user, username: user.username },
+    { content: "The competitive scene is thrilling to watch.", likes: true, user: user, username: user.username },
+    { content: "Communication and teamwork are crucial.", likes: true, user: user, username: user.username },
+    { content: "One of the best FPS games ever made.", likes: true, user: user, username: user.username }
+  ]
+)
+
+# Create comments for Dead By Daylight
+dbd.comments.create!(
+  [
+    { content: "Terrifying and suspenseful gameplay!", likes: true, user: user, username: user.username },
+    { content: "Love playing as the killer and hunting survivors.", likes: true, user: user, username: user.username },
+    { content: "Surviving with friends is a thrilling experience.", likes: true, user: user, username: user.username },
+    { content: "The game keeps getting better with each update.", likes: true, user: user, username: user.username },
+    { content: "Highly recommended for horror game fans.", likes: true, user: user, username: user.username }
+  ]
+)
+
+# Create comments for Lost Sky
+lost_sky.comments.create!(
+  [
+    { content: "Beautiful art style and atmospheric world.", likes: true, user: user, username: user.username },
+    { content: "Puzzles are challenging but rewarding.", likes: true, user: user, username: user.username },
+    { content: "The storyline is intriguing and keeps me engaged.", likes: true, user: user, username: user.username },
+    { content: "Unique gameplay mechanics make it stand out.", likes: true, user: user, username: user.username },
+    { content: "Worth every penny!", likes: true, user: user, username: user.username }
+  ]
+)
+
+# Create comments for Resident Evil 4
+re4.comments.create!(
+  [
+    { content: "A classic survival horror game that still holds up.", likes: true, user: user, username: user.username },
+    { content: "The atmosphere is incredibly tense and immersive.", likes: true, user: user, username: user.username },
+    { content: "The updated graphics make it even more terrifying.", likes: true, user: user, username: user.username },
+    { content: "One of my all-time favorite games.", likes: true, user: user, username: user.username },
+    { content: "Highly recommended for horror game enthusiasts.", likes: true, user: user, username: user.username }
+  ]
+)
+cod.comments.create!(
+  [
+    { content: "One of the best FPS games ever made!", likes: true, user: user, username: user.username },
+    { content: "The campaign is a rollercoaster ride of emotions.", likes: true, user: user, username: user.username },
+    { content: "Multiplayer is addictive and action-packed.", likes: true, user: user, username: user.username },
+    { content: "Memorable characters and intense moments.", likes: true, user: user, username: user.username },
+    { content: "A must-play for fans of the series.", likes: true, user: user, username: user.username }
+  ]
+)
+
+sf = Game.create(
+  title: "Street Fighter 6",
+  short_description: "Get ready to engage in epic battles and showcase your fighting skills in the next installment of the legendary Street Fighter series.",
+  long_description: "Street Fighter 6 continues the iconic fighting game franchise with new fighters, enhanced visuals, and refined gameplay mechanics. Choose from a diverse roster of characters, each with their unique fighting styles and special moves. Engage in intense battles against friends or test your skills against players from around the world in online matches. With its stunning visuals, tight controls, and strategic depth, Street Fighter 6 is a must-have for fighting game enthusiasts.",
+  publisher: "Capcom",
+  developer: "Capcom",
+  price: 59.99,
+  publish_date: Date.new(2023,6,30)
+)
+
+apex.comments.create!(
+  [
+    { content: "The best battle royale game out there!", likes: true, user: user, username: user.username },
+    { content: "Legends have unique abilities that add depth to the gameplay.", likes: true, user: user, username: user.username },
+    { content: "Smooth and responsive controls make it a joy to play.", likes: true, user: user, username: user.username },
+    { content: "The communication system is excellent for teamwork.", likes: true, user: user, username: user.username },
+    { content: "A game that keeps evolving and keeps me coming back for more.", likes: true, user: user, username: user.username }
+  ]
+)
