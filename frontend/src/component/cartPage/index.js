@@ -12,6 +12,7 @@ const CartPage = () => {
   const id = currentUser ? currentUser.id : null;
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const games = useSelector((state) => state.games.list);
 
   useEffect(() => {
@@ -34,12 +35,17 @@ const CartPage = () => {
 
   const handlePurchaseItem = (gameId, userId) => {
     dispatch(purchaseCartedItem(gameId, userId));
+    setShowModal(true);
   };
 
   const handlePurchaseAll = (userId) => {
     games.forEach((game) => {
       dispatch(purchaseCartedItem(game.id, userId));
+      setShowModal(true);
     });
+  };
+  const handleCloseModal = () => {
+    setShowModal(false); // <-- Close the modal
   };
 
   return (
@@ -90,6 +96,19 @@ const CartPage = () => {
       >
         Purchase All
       </button>
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close-button" onClick={handleCloseModal}>
+              &times;
+            </span>
+            <p className="confirmation-message">
+              You are all set! You can check it out in your storage page.
+            </p>
+            <div className="steam-logo">Staem</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

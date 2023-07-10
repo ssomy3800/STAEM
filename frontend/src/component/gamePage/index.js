@@ -8,6 +8,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./gamePage.css";
 import SearchBar from "../searchBar";
 import { fetchUserCart, fetchUserStorage } from "../../store/carteditemreducer";
+import thumbup from "../../assets/images/thumbup.png";
+import thumbdown from "../../assets/images/thumbdown.png";
+import avatar from "../../assets/images/avatar.png";
 
 import {
   fetchComments,
@@ -141,6 +144,7 @@ function GamePage() {
   const firstImageUrl = game.images[Object.keys(game.images)[0]];
   const lastImageUrl = game.images[Object.keys(game.images)[6]];
 
+  const newLocal = "$ " + game.price;
   return (
     <div>
       <SearchBar />
@@ -215,9 +219,9 @@ function GamePage() {
 
         <div className="mid">
           <div className="about">
-            <p className="long-description-header">
+            <div className="long-description-header">
               <div>About this game:</div>
-            </p>
+            </div>
             <p className="long-description-body">{game.longDescription}</p>
           </div>
           <div className="mid-right">
@@ -236,7 +240,7 @@ function GamePage() {
         <div className="purchase">
           <div className="game-info">Purchase: {game.title}</div>
           <div className="price-layer">
-            <p>{game.price === 0 ? "Free" : "$ " + game.price}</p>
+            <p>{game.price === 0 ? "Free" : newLocal}</p>
             <button onClick={addToCart}>
               {purchased === true
                 ? "Play!"
@@ -248,6 +252,17 @@ function GamePage() {
         </div>
 
         <div className="comments">
+          <div className="comment-statistics">
+            <div className="overall-likes">
+              {/* Use a placeholder value here, replace with actual average overall likes */}
+              <span>Average overall likes: 80%</span>
+            </div>
+            <div className="recent-likes">
+              {/* Use a placeholder value here, replace with actual recent likes */}
+              <span>Recent comment likes: 90%, 85%, 80%, 75%, 70%</span>
+            </div>
+          </div>
+
           <div className="existing-comments">
             {comments.map((comment) => (
               <div key={comment.id} className="comment">
@@ -315,24 +330,34 @@ function GamePage() {
             ))}
           </div>
           <div className="new-comment-form">
+            <div className="leave-comment">Share Your Thoughts:</div>
             <textarea
+              placeholder="Enter your comment here..."
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
               maxLength={100}
             />
-            <button
-              className={newCommentLike ? "button-selected" : ""}
-              onClick={() => setNewCommentLike(true)}
-            >
-              Like
+            <div className="like-dislike-buttons">
+              <button
+                className={
+                  newCommentLike ? "button-selected" : "like-dislike-button"
+                }
+                onClick={() => setNewCommentLike(true)}
+              >
+                <img src={thumbup} alt="Upvote" /> Upvote
+              </button>
+              <button
+                className={
+                  !newCommentLike ? "button-selected" : "like-dislike-button"
+                }
+                onClick={() => setNewCommentLike(false)}
+              >
+                <img src={thumbdown} alt="Downvote" /> Downvote
+              </button>
+            </div>
+            <button className="add-comment-button" onClick={handleAddComment}>
+              Post Comment
             </button>
-            <button
-              className={!newCommentLike ? "button-selected" : ""}
-              onClick={() => setNewCommentLike(false)}
-            >
-              Dislike
-            </button>
-            <button onClick={handleAddComment}>Add Comment</button>
           </div>
         </div>
       </div>

@@ -94,3 +94,57 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.modal {
+  display: block; 
+  position: fixed; 
+  z-index: 1; 
+  padding-top: 100px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.8); 
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #171a21;
+  color: #c6d4df;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* The Close Button */
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.confirmation-message {
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+.steam-logo {
+  font-size: 36px;
+  font-weight: 700;
+  color: #66c0f4;
+}

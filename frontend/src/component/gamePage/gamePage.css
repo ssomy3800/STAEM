@@ -81,12 +81,12 @@
 
 .comments {
   display: flex;
-  flex-direction: row; /* Changing from row to column */
+  flex-direction: column; /* Changing from row to column */
   min-height: 500px;
   /* margin: 0 auto; */
   overflow-y: auto;
   background: rgba(174, 214, 229, 0.4);
-  width: 70%; /* Ensures it takes full width of the parent container */
+  width: 100%; /* Ensures it takes full width of the parent container */
 }
 .comments::-webkit-scrollbar {
   display: none; /* For Chrome, Safari and Opera */
@@ -121,25 +121,74 @@
 .new-comment-form {
   margin-top: 2%;
   display: flex;
-  width: 50%;
+  margin-left: 5%;
+  width: 90%;
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  height: 75%; /* Increased the height as per your requirement */
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #2a475e;
+  height: 75%;
+  color: #ffffff;
+  padding: 20px;
 }
 
 .new-comment-form textarea {
-  width: 75%; /* Set to 75% as per your requirement */
+  width: 70%;
   min-height: 30vh;
   margin: auto;
   padding: 10px;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: #1b2838;
   font-size: 14px;
-  color: #000;
-  resize: vertical;
+  color: #ffffff;
+  resize: none;
+  margin-top: 10px;
+}
+
+.new-comment-form .leave-comment {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.like-dislike-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  margin: 10px auto;
+}
+
+.like-dislike-button,
+.button-selected,
+.add-comment-button {
+  border: 1px solid #66c0f4;
+  background-color: transparent;
+  color: #66c0f4;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.like-dislike-button:hover,
+.add-comment-button:hover {
+  background-color: #66c0f4;
+  color: #1b2838;
+}
+
+.button-selected {
+  background-color: #66c0f4;
+  color: #1b2838;
+}
+
+.add-comment-button {
+  margin-top: 20px;
 }
 
 .comments .button-selected {
@@ -226,14 +275,16 @@
   font-weight: 300;
   font-size: 14px;
   text-transform: uppercase;
-  color: #fff;
+
+  color: white;
   margin: 0 0 10px;
   letter-spacing: 0.03em;
   font-weight: normal;
 }
 .long-description-body {
   /* padding: 30px; */
-  font-size: 110%;
+  font-size: 14px;
+  color: #acb2b8;
 }
 .mid-right {
   background-color: #1b2838;

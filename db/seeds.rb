@@ -23,8 +23,8 @@ User.create!(
   )
   lost_ark = Game.new(
     title: "Lost Ark",
-    short_description: "Lost Ark is a massively multiplayer online action role-playing game.",
-    long_description: "Lost Ark is a Korean MMO with a fantastical world. You play as the last bastion of humanity, traveling across continents and islands to reach the Ark before the Legion.",
+    short_description: "Lost Ark is a visually stunning MMORPG developed by Smilegate RPG. With its action-packed, skill-oriented combat system, the game offers an immersive experience in a rich fantasy world full of dynamic quests and a wide range of classes to choose from.",
+    long_description: "Lost Ark is a visually compelling MMORPG that successfully combines action and role-playing elements to provide an engaging gaming experience. Developed by Smilegate RPG, the game captivates players with an expansive, beautifully designed fantasy world. The gameplay is defined by a dynamic, skill-based combat system that demands strategic utilization of a chosen class's abilities. With a broad variety of classes each possessing unique skill sets, Lost Ark diversifies the gameplay and increases replayability. The game offers dynamic quests, thrilling boss battles, and treasure hunts that create a rich and evolving narrative. With additional features like cooperative modes, PVP, and naval battles, Lost Ark ensures a truly immersive and versatile gaming experience.",
     publisher: "Smilegate RPG",
     developer: "Smilegate RPG",
     price: 0,
@@ -53,8 +53,8 @@ User.create!(
   
 csgo = Game.create(
   title: "CS:GO",
-  short_description: "Counter-Strike: Global Offensive (CS:GO) is a multiplayer first-person shooter developed by Valve and Hidden Path Entertainment.",
-  long_description: "CS:GO is the fourth game in the Counter-Strike series. Players join either the Terrorist or Counter-Terrorist team and attempt to complete objectives or eliminate the enemy team.",
+  short_description: "Counter-Strike: Global Offensive (CSGO) is a competitive first-person shooter known for its tactical gameplay, diverse maps, and robust eSports scene.",
+  long_description: "Counter-Strike: Global Offensive (CSGO) is a highly competitive first-person shooter that emphasizes strategic team play and individual skill. The game offers various modes such as Bomb Defusal and Hostage Rescue, each demanding different strategies. Its diverse selection of maps, each with unique layouts, keeps matches challenging. The game's robust eSports scene, with numerous tournaments worldwide, showcases the depth of skill and strategy required to excel. Regular updates, including new maps, weapons, and cosmetic items, keep the community engaged. With its tactical depth, high skill ceiling, and active community, CSGO remains a cornerstone of competitive gaming.",
   publisher: "Valve",
   developer: "Valve",
   price: 0,
@@ -85,8 +85,8 @@ csgo = Game.create(
   # Repeat the process above for each game...
   dbd = Game.create(
     title: "Dead By Daylight",
-    short_description: "Dead by Daylight is a multiplayer (4vs1) horror game where one player takes on the role of the savage Killer, and the other four players play as Survivors.",
-    long_description: "Survivors play in third-person and have the advantage of better situational awareness. The Killer plays in first-person and is more focused on their prey.",
+    short_description: "Dead by Daylight is an asymmetrical multiplayer horror game where players take on the roles of either ruthless killers or survivors trying to evade a gruesome end.",
+    long_description: " Dead by Daylight is an asymmetrical multiplayer game that plunges players into a suspense-filled horror setting. Players have the choice to embody one of the many iconic killers or one of the survivors desperately trying to avoid a terrifying fate. Each role has unique objectives and gameplay: survivors need to cooperate to repair generators and escape, while the killer must prevent their escape. Regular updates introduce new killers, survivors, and maps, keeping the experience fresh. With its tense atmosphere, strategic gameplay, and continual content additions, Dead by Daylight provides a uniquely terrifying multiplayer experience.",
     publisher: "Behaviour Interactive",
     developer: "Behaviour Interactive",
     price: 20,
@@ -119,8 +119,8 @@ csgo = Game.create(
 
     lost_sky = Game.new(
       title: "Lost Sky",
-      short_description: "Lost Sky is an adventure puzzle game set in a mysterious world.",
-      long_description: "Embark on a journey through a captivating world filled with challenging puzzles and intriguing secrets. Unravel the mysteries of the Lost Sky and discover its hidden treasures.",
+      short_description: "Lost Sky is a captivating side-scrolling adventure game set in a dystopian world. It offers challenging puzzles, unique gameplay mechanics, and a deep storyline that unfolds throughout the journey",
+      long_description: "Lost Sky is an adventurous side-scrolling game that transports players into a beautifully eerie, dystopian world. The gameplay revolves around solving a wide array of challenging puzzles and navigating through varied terrains filled with dangerous obstacles. Unique game mechanics, such as grappling and manipulating the environment, ensure that the gameplay remains engaging and fresh. The game's art design is a visual treat, adding layers to the emotional depth of the narrative. Lost Sky's storyline is thought-provoking and unfolds progressively as players navigate through the game, enhancing the overall immersion and attachment to the game world.",
       publisher: "Dreamscape Studios",
       developer: "Dreamscape Studios",
       price: 19.99,
@@ -149,8 +149,8 @@ csgo = Game.create(
 
     re4 = Game.create(
       title: "Resident Evil 4",
-      short_description: "Resident Evil 4 is a survival horror game developed and published by Capcom.",
-      long_description: "Resident Evil 4 follows the story of Leon S. Kennedy as he investigates the mysterious disappearance of the president's daughter and encounters dangerous creatures in a rural village.",
+      short_description: "Resident Evil 4 Remake revives the classic survival horror game with updated graphics, modernized controls, and enriched story elements, while preserving its tension-filled atmosphere.",
+      long_description: "The Resident Evil 4 Remake is a thrilling reinvention of the classic survival horror game. While it preserves the original's atmosphere and compelling narrative, the remake enhances the experience with improved graphics that bring the eerie setting to life. Modernized controls and gameplay mechanics ensure smoother and more responsive action. Expanded story elements provide more depth and richness to the characters and plot. With the same sense of creeping dread and intense action sequences, Resident Evil 4 Remake is a lovingly crafted tribute to one of the most beloved games in the Resident Evil series.",
       publisher: "Capcom",
       developer: "Capcom",
       price: 19.99,
@@ -177,8 +177,8 @@ csgo = Game.create(
 
     sf = Game.create(
       title: "Street Fighter 6",
-      short_description: "Street Fighter 6 is a fighting game developed and published by Capcom.",
-      long_description: "Street Fighter 6 features a diverse roster of characters who engage in intense one-on-one battles with various special moves and combos.",
+      short_description: "Street Fighter 6, the latest installment in Capcom's iconic fighting series, boasts new mechanics, an expanded roster, and enhanced visuals, taking the adrenaline-pumping action to the next level.",
+      long_description: "Street Fighter 6 is the newest chapter in Capcom's legendary fighting series, promising intense one-on-one battles that the franchise is known for. The game incorporates new mechanics and systems, giving players more depth to explore while maintaining the classic fast-paced action. The expanded roster of fighters each have distinct abilities and styles, providing variety in gameplay and strategies. High-definition visuals, dynamic environments, and improved audio create an immersive atmosphere. Single-player campaigns and multiplayer modes, along with local and online competitions, make Street Fighter 6 a must-play for any fighting game enthusiast.",
       publisher: "Capcom",
       developer: "Capcom",
       price: 59.99,
@@ -206,8 +206,8 @@ csgo = Game.create(
 
     apex = Game.create(
       title: "Apex Legends",
-      short_description: "Apex Legends is a free-to-play battle royale game developed by Respawn Entertainment.",
-      long_description: "Apex Legends is set in the Titanfall universe and features a fast-paced battle royale experience with a variety of unique characters, each with their own abilities.",
+      short_description: "Apex Legends is a high-octane battle royale featuring unique characters with special abilities, intense gunfights, and fast-paced strategic gameplay within a futuristic universe.",
+      long_description: "Apex Legends is a dynamic battle royale game set within a stunning sci-fi universe. It introduces a cast of unique characters, each with their own special abilities and roles, allowing players to form strategic teams. Fast-paced gunfights and a focus on team strategy set Apex Legends apart from other games in the genre. The gameplay incorporates unique mechanics like respawning teammates and using zip-lines, adding layers of strategy. The map's rich design, containing a variety of terrains and locales, keeps every match interesting. Apex Legends also features regular content updates and seasonal events, keeping the game fresh and engaging.",
       publisher: "Electronic Arts",
       developer: "Respawn Entertainment",
       price: 0,
@@ -234,8 +234,8 @@ csgo = Game.create(
 
     cod = Game.create(
       title: "Call of Duty: Modern Warfare 2",
-      short_description: "Call of Duty: Modern Warfare 2 is a first-person shooter game developed by Infinity Ward and published by Activision.",
-      long_description: "Call of Duty: Modern Warfare 2 is the sixth installment in the Call of Duty series and features a thrilling single-player campaign and a multiplayer mode with various maps and game modes.",
+      short_description: "Call of Duty: Modern Warfare 2 is a high-stakes first-person shooter featuring a dramatic campaign, various multiplayer modes, and an engaging cooperative mode, all set in a modern warfare context.",
+      long_description: "Call of Duty: Modern Warfare 2 is a fast-paced first-person shooter set in the gritty reality of modern warfare. The game boasts a dramatic, emotionally charged campaign that unfolds globally. The multiplayer component features a variety of game modes, each providing unique challenges and requiring strategic team play. The game also includes a cooperative mode, known as Special Ops, where players can team up for intense, bite-sized missions. Modern Warfare 2's impressive graphics, cinematic storytelling, and balanced gameplay make it a standout title in the Call of Duty franchise.",
       publisher: "Activision",
       developer: "Infinity Ward",
       price: 29.99,
