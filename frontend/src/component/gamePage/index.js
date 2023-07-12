@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams, useHistory, Link, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGame } from "../../store/gamesreducer";
 import { addGameToCart } from "../../store/carteditemreducer";
@@ -11,6 +11,7 @@ import { fetchUserCart, fetchUserStorage } from "../../store/carteditemreducer";
 import thumbup from "../../assets/images/thumbup.png";
 import thumbdown from "../../assets/images/thumbdown.png";
 import avatar from "../../assets/images/pic.png";
+import useravatar from "../../assets/images/bat.png";
 
 import {
   fetchComments,
@@ -559,35 +560,69 @@ function GamePage() {
                 ))}
             </div>
           </div>
-          <div className="new-comment-form">
-            <div className="leave-comment">Share Your Thoughts:</div>
-            <textarea
-              placeholder="Enter your comment here..."
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-              maxLength={100}
-            />
-            <div className="like-dislike-buttons">
-              <button
-                className={
-                  newCommentLike ? "button-selected" : "like-dislike-button"
-                }
-                onClick={() => setNewCommentLike(true)}
-              >
-                <img src={thumbup} alt="Upvote" /> Upvote
-              </button>
-              <button
-                className={
-                  !newCommentLike ? "button-selected" : "like-dislike-button"
-                }
-                onClick={() => setNewCommentLike(false)}
-              >
-                <img src={thumbdown} alt="Downvote" /> Downvote
-              </button>
-            </div>
-            <button className="add-comment-button" onClick={handleAddComment}>
-              Post Comment
-            </button>
+          <div className="cutline"></div>
+          <div className="new-comment-section">
+            {currentUser ? (
+              <div className="logged-in-form">
+                <div className="user-avatar">
+                  <img src={useravatar} alt="useravatar" />
+                  {currentUser.username}
+                </div>
+                <div className="new-comment-form">
+                  <div className="leave-comment">Share Your Thoughts:</div>
+                  <textarea
+                    placeholder="Enter your comment here..."
+                    value={newComment}
+                    onChange={(e) => setNewComment(e.target.value)}
+                    maxLength={100}
+                  />
+                  <div className="like-dislike-buttons">
+                    <button
+                      className={
+                        newCommentLike
+                          ? "button-selected"
+                          : "like-dislike-button"
+                      }
+                      onClick={() => setNewCommentLike(true)}
+                    >
+                      <img src={thumbup} alt="Upvote" /> Like!
+                    </button>
+                    <button
+                      className={
+                        !newCommentLike
+                          ? "button-selected"
+                          : "like-dislike-button"
+                      }
+                      onClick={() => setNewCommentLike(false)}
+                    >
+                      <img src={thumbdown} alt="Downvote" /> Dislike
+                    </button>
+                  </div>
+                  <button
+                    className="add-comment-button"
+                    onClick={handleAddComment}
+                  >
+                    Post Comment
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="ask-for-login-container">
+                <div className="ask-for-login">
+                  <div className="leave-comment">Want to leave a review?</div>
+                  <div className="auth-buttons">
+                    <div>You can login here:</div>
+                    <NavLink to="/login">
+                      <button className="login-button">Login</button>
+                    </NavLink>
+                    <div>Don't have an account yet? Signup!</div>
+                    <NavLink to="/signup">
+                      <button className="signup-button">Sign up!</button>
+                    </NavLink>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

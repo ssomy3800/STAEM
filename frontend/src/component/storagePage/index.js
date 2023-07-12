@@ -21,7 +21,7 @@ const StoragePage = () => {
     }
   }, [dispatch, id]);
 
-  if (isLoading) {
+  if (isLoading && games.length > 0) {
     return <div className="loading">Loading...</div>;
   }
   return (

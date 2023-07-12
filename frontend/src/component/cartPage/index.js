@@ -25,7 +25,7 @@ const CartPage = () => {
     }
   }, [dispatch, id]);
 
-  if (isLoading) {
+  if (isLoading && games.length > 0) {
     return <div className="loading">Loading...</div>;
   }
 
@@ -53,42 +53,46 @@ const CartPage = () => {
       <div className="cart-title">
         <span>Your Cart</span>
       </div>
-      <div className="home-games-container">
-        {games.map((game) => (
-          <div key={game.id} className="home-game-row">
-            <div className="home-game-image-container">
-              <img
-                className="home-game-image"
-                src={game.images[0]}
-                alt={game.title}
-              />
-            </div>
-            <div className="home-game-info-container">
-              <h3 className="home-game-title">{game.title}</h3>
-              <div className="home-game-tags">
-                {game.tags.map((tag) => (
-                  <span key={tag} className="home-game-tag">
-                    {tag}
-                  </span>
-                ))}
+      {games.length === 0 ? (
+        <div className="empty-cart-message">Your cart is empty.</div>
+      ) : (
+        <div className="home-games-container">
+          {games.map((game) => (
+            <div key={game.id} className="home-game-row">
+              <div className="home-game-image-container">
+                <img
+                  className="home-game-image"
+                  src={game.images[0]}
+                  alt={game.title}
+                />
               </div>
+              <div className="home-game-info-container">
+                <h3 className="home-game-title">{game.title}</h3>
+                <div className="home-game-tags">
+                  {game.tags.map((tag) => (
+                    <span key={tag} className="home-game-tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <button
+                className="cart-button"
+                onClick={() => handlePurchaseItem(game.id, currentUser.id)}
+              >
+                Purchase
+              </button>
+              <button
+                className="cart-button"
+                onClick={() => handleRemoveFromCart(game.id, currentUser.id)}
+              >
+                Remove from Cart
+              </button>
+              <div className="home-game-price">${game.price}</div>
             </div>
-            <button
-              className="cart-button"
-              onClick={() => handlePurchaseItem(game.id, currentUser.id)}
-            >
-              Purchase
-            </button>
-            <button
-              className="cart-button"
-              onClick={() => handleRemoveFromCart(game.id, currentUser.id)}
-            >
-              Remove from Cart
-            </button>
-            <div className="home-game-price">${game.price}</div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
       <button
         id="purchase-all"
         className="cart-button"
