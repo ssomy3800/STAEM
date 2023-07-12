@@ -10,7 +10,7 @@ import SearchBar from "../searchBar";
 import { fetchUserCart, fetchUserStorage } from "../../store/carteditemreducer";
 import thumbup from "../../assets/images/thumbup.png";
 import thumbdown from "../../assets/images/thumbdown.png";
-import avatar from "../../assets/images/avatar.png";
+import avatar from "../../assets/images/pic.png";
 
 import {
   fetchComments,
@@ -331,7 +331,7 @@ function GamePage() {
         </div>
 
         <div className="purchase">
-          <div className="game-info">Purchase: {game.title}</div>
+          <div className="purchase-section">Purchase: {game.title}</div>
           <div className="price-layer">
             <p>{game.price === 0 ? "Free" : newLocal}</p>
             <button onClick={addToCart}>
@@ -343,8 +343,9 @@ function GamePage() {
             </button>
           </div>
         </div>
-
+        <div className="cutline"></div>
         <div className="comments">
+          <p className="comment-part-header">Customer Reviews:</p>
           <div className="comment-statistics">
             <div className="overall-likes">
               <div className="likes-header">Overall Reviews:</div>
@@ -377,72 +378,186 @@ function GamePage() {
               </div>
             </div>
           </div>
-
-          <div className="existing-comments">
-            {comments.map((comment) => (
-              <div key={comment.id} className="comment">
-                {editingCommentId === comment.id ? (
-                  <div className="create-comment-button">
-                    <input
-                      type="text"
-                      value={activeComment.content}
-                      onChange={(e) =>
-                        dispatch(
-                          setActiveComment({
-                            ...activeComment,
-                            content: e.target.value,
-                          })
-                        )
-                      }
-                    />
-                    <button
-                      className={activeComment.likes ? "button-selected" : ""}
-                      onClick={() =>
-                        dispatch(
-                          setActiveComment({ ...activeComment, likes: true })
-                        )
-                      }
-                    >
-                      Like
-                    </button>
-                    <button
-                      className={!activeComment.likes ? "button-selected" : ""}
-                      onClick={() =>
-                        dispatch(
-                          setActiveComment({ ...activeComment, likes: false })
-                        )
-                      }
-                    >
-                      Dislike
-                    </button>
-                    <button onClick={handleUpdateComment}>
-                      Update Comment
-                    </button>
-                    <button onClick={() => setEditingCommentId(null)}>
-                      Cancel
-                    </button>
-                  </div>
-                ) : (
-                  <>
-                    <div className="comment-header">
-                      <strong>{comment.username}</strong>
-                      {comment.likes ? <span>👍</span> : <span>👎</span>}
+          <div className="comment-section">
+            <div className="existing-comments">
+              {comments.map((comment) => (
+                <div key={comment.id} className="comment">
+                  {editingCommentId === comment.id ? (
+                    <div className="create-comment-button">
+                      <input
+                        type="text"
+                        value={activeComment.content}
+                        onChange={(e) =>
+                          dispatch(
+                            setActiveComment({
+                              ...activeComment,
+                              content: e.target.value,
+                            })
+                          )
+                        }
+                      />
+                      <button
+                        className={activeComment.likes ? "button-selected" : ""}
+                        onClick={() =>
+                          dispatch(
+                            setActiveComment({ ...activeComment, likes: true })
+                          )
+                        }
+                      >
+                        Like
+                      </button>
+                      <button
+                        className={
+                          !activeComment.likes ? "button-selected" : ""
+                        }
+                        onClick={() =>
+                          dispatch(
+                            setActiveComment({ ...activeComment, likes: false })
+                          )
+                        }
+                      >
+                        Dislike
+                      </button>
+                      <button onClick={handleUpdateComment}>
+                        Update Comment
+                      </button>
+                      <button onClick={() => setEditingCommentId(null)}>
+                        Cancel
+                      </button>
                     </div>
-                    <div className="comment-content">{comment.content}</div>
-                    {currentUser && currentUser.id === comment.user_id && (
-                      <div className="exist-comment-button">
-                        <button onClick={() => handleEditComment(comment.id)}>
-                          Edit
-                        </button>
-                        <button onClick={() => handleDeleteComment(comment.id)}>
-                          Delete
-                        </button>
+                  ) : (
+                    <>
+                      <div className="overall-comment">
+                        <div className="comment-username">
+                          <img src={avatar} alt="Upvote" />
+                          <strong>{comment.username}</strong>
+                        </div>
+
+                        <div className="comment-content">
+                          <div className="comment-header">
+                            {comment.likes ? (
+                              <>
+                                <img src={thumbup} alt="Upvote" />
+                                <p>Recommended</p>
+                                <i className="fa-brands fa-steam"></i>
+                              </>
+                            ) : (
+                              <>
+                                <img src={thumbdown} alt="Downvote" />
+                                <p className="not-recommended">
+                                  Not Recommended
+                                </p>
+                                <i className="fa-brands fa-steam"></i>
+                              </>
+                            )}
+                          </div>
+                          <div className="comment-updated-at">
+                            updated at:
+                            {new Date(comment.updated_at).toLocaleDateString(
+                              "en-US",
+                              {
+                                month: "long",
+                                day: "numeric",
+                              }
+                            )}
+                          </div>
+                          <div className="comment-content-body">
+                            {comment.content}
+                          </div>
+                          <div className="vote">
+                            Was this comment helpful?
+                            <div className="buttons">
+                              <button>
+                                <i className="fa-solid fa-thumbs-up"></i>
+                              </button>
+                              <button>
+                                <i className="fa-solid fa-thumbs-down"></i>
+                              </button>
+                              <button>😄</button>
+                              <button>😊</button>
+                              <button>👍</button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    )}
-                  </>
-                )}
-              </div>
-            ))}
+                      {currentUser && currentUser.id === comment.user_id && (
+                        <div className="exist-comment-button">
+                          <button onClick={() => handleEditComment(comment.id)}>
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDeleteComment(comment.id)}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="recent-comment">
+              {comments
+                .slice(-5)
+                .reverse()
+                .map((comment) => (
+                  <div key={comment.id} className="comment">
+                    {
+                      <>
+                        <div className="comment-content">
+                          <div className="comment-header">
+                            {comment.likes ? (
+                              <>
+                                <img src={thumbup} alt="Upvote" />
+                                <div className="comment-username">
+                                  <strong>{comment.username}</strong>
+                                </div>
+                                <i className="fa-brands fa-steam"></i>
+                              </>
+                            ) : (
+                              <>
+                                <img src={thumbdown} alt="Downvote" />
+                                <div className="comment-username">
+                                  <strong>{comment.username}</strong>
+                                </div>
+                                <i className="fa-brands fa-steam"></i>
+                              </>
+                            )}
+                          </div>
+                          <div className="comment-updated-at">
+                            updated at:
+                            {new Date(comment.updated_at).toLocaleDateString(
+                              "en-US",
+                              {
+                                month: "long",
+                                day: "numeric",
+                              }
+                            )}
+                          </div>
+                          <div className="comment-content-body">
+                            {comment.content}
+                          </div>
+                          <div className="vote">
+                            Was this comment helpful?
+                            <div className="buttons">
+                              <button>
+                                <i className="fa-solid fa-thumbs-up"></i>
+                              </button>
+                              <button>
+                                <i className="fa-solid fa-thumbs-down"></i>
+                              </button>
+                              <button>😄</button>
+                              <button>😊</button>
+                              <button>👍</button>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    }
+                  </div>
+                ))}
+            </div>
           </div>
           <div className="new-comment-form">
             <div className="leave-comment">Share Your Thoughts:</div>

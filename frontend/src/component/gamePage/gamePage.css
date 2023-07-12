@@ -59,6 +59,9 @@
   margin-top: -2%;
   width: 40%;
   padding: 3%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 }
 .short-description {
   color: #c6d4df;
@@ -80,12 +83,18 @@
 }
 .game-cover {
   width: 100%;
+  max-width: 320px;
   height: auto; /* Preserve aspect ratio */
 }
 
 .game-info {
   margin-top: 10px;
+  /* margin-left: 5%; */
   color: #66c0f4;
+}
+.purchase-section {
+  color: #66c0f4;
+  margin-left: 5%;
 }
 .game-info-section {
   display: flex;
@@ -170,7 +179,7 @@
   background: #1b2838;
   padding: 1%;
   margin: 1% 0;
-  min-height: 30%;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -180,17 +189,85 @@
   background-color: #0f415e;
   min-height: 30%;
   flex-direction: column;
-  width: 50%;
+  width: 59.5%;
 }
-.comment-header {
+.comment-section {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+}
+.recent-comment {
+  width: 37%;
+  min-height: 100%;
+  margin-left: 1.5%;
+  display: flex;
+  flex-direction: column;
 }
 
 .comment-content {
-  padding: 10px 0;
+  /* padding: 10px 0; */
+  margin-left: 3%;
+  width: 55%;
+
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+
+.recent-comment .comment .comment-content {
+  /* padding: 10px 0; */
+  margin-left: 3%;
+  width: 95%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+.recent-comment .comment-username {
+  margin-left: 5px;
+}
+
+.comment-content p {
+  margin-left: 3%;
+  font-size: 16px;
+  color: #d6d7d8;
+  font-family: "Motiva Sans", Sans-serif;
+  font-weight: normal;
+  padding: 3px 0px 0px 0px;
+  line-height: 19px;
+}
+
+.comment-content-body {
+  padding: 20px 0px 30px 0px;
+  text-align: left;
+  margin-right: 8px;
+  font-family: "Motiva Sans", Sans-serif;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 17px;
+  color: #acb2b8;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+.vote::before {
+  content: "";
+  display: block;
+  margin-top: 3px;
+  margin-bottom: 5px;
+  height: 0.3px;
+  width: 100%;
+  background-color: #e9e4e499;
+}
+.vote {
+  display: inline-block;
+  width: 100%;
+  margin-right: 9px;
+  color: #8091a2;
+  font-size: 12px;
+  opacity: 0.6;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+.vote .buttons {
+  display: flex;
+  margin-top: 1%;
+  flex-direction: row;
 }
 
 .new-comment-form {
@@ -417,13 +494,13 @@
 
   width: 200px;
   bottom: -15%; /* Adjust this value to position the button halfway out from the bottom right corner */
-  right: 10%; /* Adjust this value to position the button halfway out from the bottom right corner */
+  right: 10%; /* Adjust this fvalue to position the button halfway out from the bottom right corner */
 }
 .price-layer p {
   margin-right: 20%;
 }
 
-.tags{
+.tags .tag {
   margin-left: 5%;
 }
 .tags p {
@@ -517,4 +594,69 @@
   font-size: 12px;
   color: #8ba6b6;
   font-family: Arial, Helvetica, sans-serif;
+}
+.overall-comment {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.comment-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.comment-username {
+  color: #c1dbf4;
+  font-size: 13px;
+  font-family: "Motiva Sans", Sans-serif;
+  font-weight: bold;
+  margin-right: 15%;
+  display: flex;
+  flex-direction: row;
+}
+.comment-username img {
+  height: 48px;
+  width: 48px;
+  padding: 0 15px 0 0;
+}
+
+.comment-content .fa-brands.fa-steam {
+  color: gray;
+  font-size: 16px;
+  margin-left: auto;
+  width: auto;
+  height: 32px;
+  line-height: 25px;
+  padding: 0%;
+}
+.comment-header img {
+  height: 32px;
+  width: 32px;
+}
+.buttons button {
+  background: #1a9dea;
+}
+.comment-updated-at {
+  margin: 0px 0px 8px;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-style: normal;
+  color: #8091a2;
+  display: inline-block;
+  opacity: 0.6;
+}
+.comment-header .not-recommended {
+  color: red;
+}
+.comment-part-header {
+  background: #1b2838;
+  padding: 1%;
+}
+.cutline {
+  border-top: 1px solid #000;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
